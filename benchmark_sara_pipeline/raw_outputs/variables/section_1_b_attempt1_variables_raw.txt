@@ -1,0 +1,1 @@
+{"unit_id": "section_1_b", "variables": [{"variable_name": "TaxableIncome", "description": "The amount of income subject to tax.", "supporting_span": "taxable income"}, {"variable_name": "HeadOfHousehold", "description": "A person who is the head of a household as defined in section 2(b).", "supporting_span": "head of a household (as defined in section 2(b))"}]}

@@ -1,0 +1,1 @@
+{"unit_id": "section_68_f", "variables": [{"variable_name": "TaxableYear", "description": "The calendar year in which the income is reported for tax purposes.", "supporting_span": "taxable year"}]}

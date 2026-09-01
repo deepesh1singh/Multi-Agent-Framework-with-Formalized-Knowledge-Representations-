@@ -1,0 +1,16 @@
+{"unit_id": "section_7703_a", "variables": [{"variable_name": "TaxableYear", "description": "The period during which the tax is assessed.", "supporting_span": "tax_year"}, "{\"1\": \"Spouse\", \"2\": \"Legal spouse of an individual.\", \"3\": \"spouse\"}", "{\"1\": \"Spouse\", \"2\": \"Legal spouse of an individual.\", \"3\": \"support_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_sp_userthought{ "
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

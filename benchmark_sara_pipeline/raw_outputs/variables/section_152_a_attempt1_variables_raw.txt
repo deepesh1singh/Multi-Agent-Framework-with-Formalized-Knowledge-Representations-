@@ -1,0 +1,1 @@
+{"unit_id": "section_152_a", "variables": [{"variable_name": "Dependent", "description": "A person who is a qualifying child or a qualifying relative for purposes of this subtitle.", "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative."}]}

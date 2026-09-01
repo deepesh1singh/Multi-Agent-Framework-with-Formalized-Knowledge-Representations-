@@ -1,0 +1,1 @@
+{"unit_id": "section_151_a", "variables": [{"variable_name": "Individual", "description": "A person for whom the exemption is being calculated.", "supporting_span": "In the case of an individual"}]}
