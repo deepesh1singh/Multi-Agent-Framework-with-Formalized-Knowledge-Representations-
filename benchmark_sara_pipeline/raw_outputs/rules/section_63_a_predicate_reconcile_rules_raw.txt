@@ -1,0 +1,1 @@
+{"```json\n{\n  ":"\n}\n``` (Wait, I need to provide the actual JSON based on the logic). 1. Identify undefined predicates in rules. The validation issues list "," as an issue? No, it says ":" and then lists `chapter`. Wait, looking at the rule: `"  }

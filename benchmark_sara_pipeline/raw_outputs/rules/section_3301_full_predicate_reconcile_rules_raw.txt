@@ -1,0 +1,74 @@
+{"unit_id": "section_3301_full", "predicates": [
+    {
+      "predicate_name": "excise_tax_imposed_on_employer",
+      "predicate_type": "status",
+      "arguments": [
+        "Employer",
+        "ExciseTax"
+      ],
+      "description": "The excise tax imposed on the employer for having individuals in their employ.",
+      "supporting_span": "There is hereby imposed on every employer (as defined in section 3306(a)) for each calendar year an excise tax, with respect to having individuals in his employ",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_paid_by_employer",
+      "predicate_type": "relationship",
+      "arguments": [
+      "Employer",
+      "TotalWages"
+    ],
+    "description": "The total wages paid by the employer during the calendar year.",
+    "supporting_span": "total wages (as defined in section 3306(b)) paid by such employer during the calendar year",
+    "constants": {}
+    },
+    {
+      "predicate_name": "employment_defined_by_section",
+      "predicate_type": "definition",
+      "arguments": [
+        "Employment",
+        "string"
+      ],
+      "description": "The definition of employment as specified in section 3306(c).",
+      "supporting_span": "employment (as defined in section 3306(c))",
+      "constants": {}
+    },
+    {
+      "predicate_name": "tax_rate_defined_by_law",
+      "predicate_type": "datatype",
+      "description": "The legal rate of the excise tax.",
+      "arguments": [
+        "decimal"
+      ],
+      "supporting_span": "equal to 6 percent of the total wages",
+      "constants": {
+        "rate": 0.06
+      }
+    },
+    {
+      "predicate_name": "is_calendar_year",
+      "predicate_type": "datatype",
+      "arguments": [
+      "CalendarYear"
+    ],
+    "description": "The calendar year for which the tax is calculated.",
+    "supporting_span": "calendar year",
+    "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_3301_full_rule_1",
+      "conditions": [
+        "wages_paid_by_employer(Employer, TotalWages)",
+        "is_calendar_year(CalendarYear)"
+      ],
+      "conclusion": "excise_tax_imposed_on_employer(Employer, ExciseTax)",
+      "constants": {
+        "rate": 0.06,
+        "basis": "total wages"
+      },
+      "supporting_span": "There is hereby imposed on every employer (as defined in section 3306(a)) for each calendar year an excise tax, with respect to having individuals in his employ, equal to 6 percent of the total wages (as defined in section 3306(b)) paid by such employer during the calendar year with respect to employment (as defined in section 3306(c)).",
+      "explanation": "The excise tax is imposed on an employer for each calendar year based on a rate of 6 percent of total wages."
+    }
+  ]
+}

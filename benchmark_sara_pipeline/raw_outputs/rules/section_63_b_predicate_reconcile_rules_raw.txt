@@ -1,0 +1,51 @@
+{"unit_id": "section_63_b", "predicates": [
+    {
+      "predicate_name": "is_individual_non_itemizer",
+      "predicate_type": "status",
+      "arguments": ["Individual"],
+      "description": "An individual who does not elect to itemize their deductions.",
+      "supporting_span": "In the case of an individual who does not elect to itemize his deductions for the taxable year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_standard_deduction",
+      "predicate_type": "datatype",
+      "arguments": ["StandardDeduction"],
+      "description": "The amount of the standard deduction.",
+      "supporting_span": "the standard deduction",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_personal_exemption",
+      "predicate_type": "datatype",
+      "arguments": ["PersonalExemption"],
+      "description": "The deduction for personal exemptions.",
+      "supporting_span": "the deduction for personal exemptions provided in section 151.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_taxable_income",
+      "predicate_type": "datatype",
+      "arguments": ["TaxableIncome"],
+      "description": "The amount of income that is subject to taxation.",
+      "supporting_span": "\"taxable income\"",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_63_b_rule_1",
+      "conditions": [
+        "is_individual_non_itemizer(I)",
+        "has_standard_deduction(S)",
+        "has_personal_exemption(P)"
+      ],
+      "conclusion": "has_taxable_income(I, T)",
+      "constants": {
+        "standard_deduction_amount": "adjusted gross income minus standard deduction and personal exemptions",
+        "calculation_basis": "adjusted gross income"
+      },
+      "supporting_span": "In the case of an individual who does not elect to itemize his deductions for the taxable year, for purposes of this subtitle, the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+      "explanation": "Defines taxable income for individuals who do not itemize their deductions as adjusted gross income minus the standard deduction and the deduction for personal exemptions."
+    }
+  ]}

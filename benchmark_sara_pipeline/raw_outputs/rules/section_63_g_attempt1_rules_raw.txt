@@ -1,0 +1,1 @@
+{"unit_id": "section_63_g", "rules": [{"rule_id": "section_63_g_rule_1", "conditions": ["marital_status_determined_by_section(M)"], "conclusion": "is_married_individual(M)", "constants": {}, "supporting_span": "marital status shall be determined under section 7703.", "explanation": "Defines the determination of marital status for purposes of the section."}]}

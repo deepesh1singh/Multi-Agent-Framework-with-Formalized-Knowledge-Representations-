@@ -1,0 +1,1 @@
+{"unit_id": "section_63_a", "rules": [{"rule_id": "section_63_a_rule_1", "conditions": [], "conclusion": "taxable_income_defined_by_section", "constants": {}, "supporting_span": "the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction)", "explanation": "Rule derived from definition of taxable income."}]}
