@@ -1,0 +1,8 @@
+[
+  {
+    "rule_id": "section_151_c_R1",
+    "statute_id": "section_151_c",
+    "supporting_span": "An exemption of the exemption amount for each individual who is a dependent (as defined in section 152) of the taxpayer for the taxable year.",
+    "rule": "(is_dependent(dependent,taxpayer,taxable_year) AND exemption_amount_equals(taxpayer,exemption_amount,taxable_year)) -> dependent_exemption_deduction_equals(taxpayer,dependent,exemption_amount,taxable_year)"
+  }
+]

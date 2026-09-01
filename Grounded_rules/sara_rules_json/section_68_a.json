@@ -1,0 +1,26 @@
+[
+  {
+    "rule_id": "section_68_a_R1",
+    "statute_id": "section_68_a",
+    "supporting_span": "the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of-",
+    "rule": "(has_itemized_deductions(individual,itemized_deductions) AND applicable_amount_exceeded(individual,taxable_year)) -> itemized_deduction_reduction_applies(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_68_a_R2",
+    "statute_id": "section_68_a",
+    "supporting_span": "3 percent of the excess of adjusted gross income over the applicable amount",
+    "rule": "(itemized_deduction_reduction_applies(individual,taxable_year) AND has_adjusted_gross_income(individual,adjusted_gross_income) AND applicable_amount_equals(individual,applicable_amount,taxable_year) AND amount_over(adjusted_gross_income,applicable_amount)) -> reduction_amount_equals(individual,0.03*(adjusted_gross_income-applicable_amount))"
+  },
+  {
+    "rule_id": "section_68_a_R3",
+    "statute_id": "section_68_a",
+    "supporting_span": "80 percent of the amount of the itemized deductions otherwise allowable",
+    "rule": "(itemized_deduction_reduction_applies(individual,taxable_year) AND has_itemized_deductions(individual,itemized_deductions)) -> maximum_reduction_equals(individual,0.80*itemized_deductions)"
+  },
+  {
+    "rule_id": "section_68_a_R4",
+    "statute_id": "section_68_a",
+    "supporting_span": "shall be reduced by the lesser of",
+    "rule": "(reduction_amount_equals(individual,reduction_amount) AND maximum_reduction_equals(individual,maximum_reduction)) -> final_itemized_deduction_reduction_equals(individual,min(reduction_amount,maximum_reduction))"
+  }
+]

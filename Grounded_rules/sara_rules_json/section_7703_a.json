@@ -1,0 +1,20 @@
+[
+  {
+    "rule_id": "section_7703_a_R1",
+    "statute_id": "section_7703_a",
+    "supporting_span": "the determination of whether an individual is married shall be made as of the close of his taxable year",
+    "rule": "(married_at_close_of_taxable_year(individual,taxable_year)) -> is_married_individual(individual)"
+  },
+  {
+    "rule_id": "section_7703_a_R2",
+    "statute_id": "section_7703_a",
+    "supporting_span": "except that if his spouse dies during his taxable year such determination shall be made as of the time of such death",
+    "rule": "(spouse_dies_during_taxable_year(spouse,taxable_year) AND married_at_time_of_spouse_death(individual,spouse,taxable_year)) -> is_married_individual(individual)"
+  },
+  {
+    "rule_id": "section_7703_a_R3",
+    "statute_id": "section_7703_a",
+    "supporting_span": "an individual legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married",
+    "rule": "(legally_separated_under_decree(individual,spouse,taxable_year)) -> NOT is_married_individual(individual)"
+  }
+]

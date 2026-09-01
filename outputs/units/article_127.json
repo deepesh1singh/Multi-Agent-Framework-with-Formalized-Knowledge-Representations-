@@ -1,0 +1,168 @@
+{
+  "unit_id": "article_127",
+  "article_number": "127",
+  "unit_label": "Article 127",
+  "title": "Article 127 Article 127  (1) A juridical act subject to a condition precedent becomes effective upon fulfillment of the condition precedent.",
+  "statute_text": "Article 127 Article 127  (1) A juridical act subject to a condition precedent becomes effective upon fulfillment of the condition precedent.\n(2) A juridical act that is subject to a condition subsequent ceases to be effective upon fulfillment of the condition subsequent.\n(3) If the party manifests an intention to make the effects retroactive to the time of or any time prior to the time of the fulfillment, that intention prevails.\n(Prohibition of Infringement of Interest of Counterparty Pending Fulfillment of Conditions)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal act performed by a person or entity.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "ConditionPrecedent",
+      "description": "A condition that must be fulfilled before an obligation or right arises.",
+      "supporting_span": "condition precedent"
+    },
+    {
+      "variable_name": "condition_precedent_fulfillment",
+      "description": "The fulfillment of a condition precedent.",
+      "supporting_span": "fulfillment of the condition precedent"
+    },
+    {
+      "variable_name": "ConditionSubsequent",
+      "description": "A condition that, when fulfilled, terminates an existing right or obligation.",
+      "supporting_span": "condition subsequent"
+    },
+    {
+      "variable_name": "Party",
+      "description": "A person or entity involved in a legal transaction or agreement.",
+      "supporting_span": "party"
+    },
+    {
+      "variable_name": "Intention",
+      "description": "The mental state or purpose of a party to achieve a specific result.",
+      "supporting_span": "intention"
+    },
+    {
+      "variable_name": "RetroactiveEffect",
+      "description": "The application of legal effects to a time prior to the current moment.",
+      "supporting_span": "retroactive"
+    },
+    {
+      "variable_name": "TimeOfFulfillment",
+      "description": "The point in time when a condition is fulfilled.",
+      "supporting_span": "time of the fulfillment"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_subject_to_condition_precedent",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "ConditionPrecedent"
+      ],
+      "description": "A juridical act that is subject to a condition precedent.",
+      "supporting_span": "A juridical act subject to a condition precedent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "condition_precedent_fulfillment",
+      "predicate_type": "status",
+      "arguments": [
+        "ConditionPrecedent"
+      ],
+      "description": "The fulfillment of the condition precedent.",
+      "supporting_span": "fulfillment of the condition precedent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_becomes_effective_upon_fulfillment",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act becomes effective upon fulfillment of the condition precedent.",
+      "supporting_span": "A juridical act subject to a condition precedent becomes effective upon fulfillment of the condition precedent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_subject_to_condition_subsequent",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "ConditionSubsequent"
+      ],
+      "description": "A juridical act that is subject to a condition subsequent.",
+      "supporting_span": "A juridical act that is subject to a condition subsequent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "condition_subsequent_fulfillment",
+      "predicate_type": "status",
+      "arguments": [
+        "ConditionSubsequent"
+      ],
+      "description": "The fulfillment of the condition subsequent.",
+      "supporting_span": "fulfillment of the condition subsequent",
+      "summary_span": "fulfillment of the condition subsequent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_ceases_to_be_effective",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act that is subject to a condition subsequent ceases to be effective upon fulfillment of the condition subsequent.",
+      "supporting_span": "A juridical act that is subject to a condition subsequent ceases to be effective upon fulfillment of the condition subsequent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "party_manifests_intention",
+      "predicate_type": "status",
+      "arguments": [
+        "Party",
+        "Intention"
+      ],
+      "description": "The party manifests an intention.",
+      "supporting_span": "the party manifests an intention",
+      "constants": {}
+    },
+    {
+      "predicate_name": "intention_is_retroactive",
+      "predicate_type": "status",
+      "arguments": [
+        "Intention"
+      ],
+      "description": "An intention to make the effects retroactive to the time of or any time prior to the time of the fulfillment.",
+      "supporting_span": "the party manifests an intention to make the effects retroactive to the time of or any time prior to the time of the fulfillment, that intention prevails.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_127_rule_1",
+      "conditions": [
+        "juridical_act_subject_to_condition_precedent(JuridicalAct, ConditionPrecedent)"
+      ],
+      "conclusion": "juridical_act_becomes_effective_upon_fulfillment(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act subject to a condition precedent becomes effective upon fulfillment of the condition precedent.",
+      "explanation": "A juridical act that is subject to a condition precedent becomes effective when the condition is fulfilled."
+    },
+    {
+      "rule_id": "article_127_rule_2",
+      "conditions": [
+        "juridical_act_subject_to_condition_subsequent(JuridicalAct, ConditionSubsequent)"
+      ],
+      "conclusion": "juridical_act_ceases_to_be_effective(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act that is subject to a condition subsequent ceases to be effective upon fulfillment of the condition subsequent.",
+      "explanation": "A juridical act subject to a condition subsequent loses its effectiveness when the condition is fulfilled."
+    },
+    {
+      "rule_id": "article_127_rule_3",
+      "conditions": [
+        "party_manifests_intention(Party, Intention)"
+      ],
+      "conclusion": "intention_is_retroactive(Intention)",
+      "constants": {},
+      "supporting_span": "If the party manifests an intention to make the effects retroactive to the time of or any time prior to the time of the fulfillment, that intention prevails.",
+      "explanation": "If a party expresses an intent for retroactivity, that intention is legally upheld."
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "rule_id": "section_152_a_R1",
+    "statute_id": "section_152_a",
+    "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative.",
+    "rule": "(is_qualifying_child(individual,taxpayer,taxable_year) OR is_qualifying_relative(individual,taxpayer,taxable_year)) -> is_dependent(individual,taxpayer,taxable_year)"
+  }
+]

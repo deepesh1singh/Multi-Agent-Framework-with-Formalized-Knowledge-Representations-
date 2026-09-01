@@ -1,0 +1,71 @@
+{
+  "unit_id": "article_132",
+  "article_number": "132",
+  "unit_label": "Article 132",
+  "title": "Article 132 Article 132  A juridical act subject to an unlawful condition is void. The same applies to a juridical act subject to the condition that an unlawful act not be performed.",
+  "statute_text": "Article 132 Article 132  A juridical act subject to an unlawful condition is void. The same applies to a juridical act subject to the condition that an unlawful act not be performed.\n(Impossible Conditions)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal action or transaction.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "UnlawfulCondition",
+      "description": "A condition that is illegal or prohibited by law.",
+      "supporting_span": "unlawful condition"
+    },
+    {
+      "variable_name": "UnlawfulAct",
+      "description": "An action that is illegal or performed in violation of law.",
+      "supporting_span": "unlawful act"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_subject_to_unlawful_condition",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "UnlawfulCondition"
+      ],
+      "description": "A juridical act that is subject to an unlawful condition.",
+      "supporting_span": "juridical act subject to an unlawful condition",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_subject_to_unlawful_act_condition",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "UnlawfulAct"
+      ],
+      "description": "A juridical act subject to the condition that an unlawful act not be performed.",
+      "supporting_span": "juridical act subject to the condition that an unlawful act not be performed",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_void",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act is declared void.",
+      "supporting_span": "is void",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_132_rule_1",
+      "conditions": [
+        "juridical_act_subject_to_unlawful_condition(JuridicalAct, UnlawfulCondition)"
+      ],
+      "conclusion": "juridical_act_void(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act subject to an unlawful condition is void.",
+      "explanation": "A juridical act that is subject to an unlawful condition is declared void."
+    }
+  ],
+  "warnings": []
+}

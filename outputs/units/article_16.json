@@ -1,0 +1,55 @@
+{
+  "unit_id": "article_16",
+  "article_number": "16",
+  "unit_label": "Article 16",
+  "title": "Article 16 Article 16  A person subject to a decision for commencement of assistance becomes a person under assistance, and an assistant is appointed for that person.",
+  "statute_text": "Article 16 Article 16  A person subject to a decision for commencement of assistance becomes a person under assistance, and an assistant is appointed for that person.\n(Decisions Requiring Person to Obtain Consent of Assistant)",
+  "variables": [
+    {
+      "variable_name": "PersonUnderAssistance",
+      "description": "A person subject to a decision for commencement of assistance.",
+      "supporting_span": "A person subject to a decision for commencement of assistance becomes a person under assistance"
+    },
+    {
+      "variable_name": "Assistant",
+      "description": "The individual appointed as an assistant for the person under assistance.",
+      "supporting_span": "an assistant is appointed for that person"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "person_under_assistance_status",
+      "predicate_type": "status",
+      "arguments": [
+        "PersonUnderAssistance"
+      ],
+      "description": "A person who is subject to a decision for commencement of assistance.",
+      "supporting_span": "A person subject to a decision for commencement of assistance becomes a person under assistance",
+      "constants": {}
+    },
+    {
+      "predicate_name": "assistant_appointed_for_person",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PersonUnderAssistance",
+        "Assistant"
+      ],
+      "description": "An assistant is appointed for the person under assistance.",
+      "supporting_span": "an assistant is appointed for that person",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_16_rule_1",
+      "conditions": [
+        "person_under_assistance_status(PersonUnderAssistance)"
+      ],
+      "conclusion": "assistant_appointed_for_person(PersonUnderAssistance, Assistant)",
+      "constants": {},
+      "supporting_span": "A person subject to a decision for commencement of assistance becomes a person under assistance, and an assistant is appointed for that person.",
+      "explanation": "If a person is subject to a decision for commencement of assistance, they are considered a person under assistance and an assistant is appointed for them."
+    }
+  ],
+  "warnings": []
+}

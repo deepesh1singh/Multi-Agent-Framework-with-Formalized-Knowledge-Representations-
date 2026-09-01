@@ -1,0 +1,38 @@
+[
+  {
+    "rule_id": "section_1_b_R1",
+    "statute_id": "section_1_b",
+    "supporting_span": "every head of a household (as defined in section 2(b))",
+    "rule": "(is_head_of_household(individual)) -> qualifies_for_head_of_household_tax_schedule(individual)"
+  },
+  {
+    "rule_id": "section_1_b_R2",
+    "statute_id": "section_1_b",
+    "supporting_span": "15% of taxable income if the taxable income is not over $29,600",
+    "rule": "(qualifies_for_head_of_household_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_not_over(taxable_income,29600)) -> tax_amount_equals(individual,0.15*taxable_income)"
+  },
+  {
+    "rule_id": "section_1_b_R3",
+    "statute_id": "section_1_b",
+    "supporting_span": "$4,440, plus 28% of the excess over $29,600 if the taxable income is over $29,600 but not over $76,400",
+    "rule": "(qualifies_for_head_of_household_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,29600) AND amount_not_over(taxable_income,76400)) -> tax_amount_equals(individual,4440 + 0.28*(taxable_income - 29600))"
+  },
+  {
+    "rule_id": "section_1_b_R4",
+    "statute_id": "section_1_b",
+    "supporting_span": "$17,544, plus 31% of the excess over $76,400 if the taxable income is over $76,400 but not over $127,500",
+    "rule": "(qualifies_for_head_of_household_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,76400) AND amount_not_over(taxable_income,127500)) -> tax_amount_equals(individual,17544 + 0.31*(taxable_income - 76400))"
+  },
+  {
+    "rule_id": "section_1_b_R5",
+    "statute_id": "section_1_b",
+    "supporting_span": "$33,385, plus 36% of the excess over $127,500 if the taxable income is over $127,500 but not over $250,000",
+    "rule": "(qualifies_for_head_of_household_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,127500) AND amount_not_over(taxable_income,250000)) -> tax_amount_equals(individual,33385 + 0.36*(taxable_income - 127500))"
+  },
+  {
+    "rule_id": "section_1_b_R6",
+    "statute_id": "section_1_b",
+    "supporting_span": "$77,485, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000",
+    "rule": "(qualifies_for_head_of_household_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,250000)) -> tax_amount_equals(individual,77485 + 0.396*(taxable_income - 250000))"
+  }
+]

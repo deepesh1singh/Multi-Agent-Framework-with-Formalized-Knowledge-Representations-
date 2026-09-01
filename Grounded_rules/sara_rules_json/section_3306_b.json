@@ -1,0 +1,50 @@
+[
+  {
+    "rule_id": "section_3306_b_R1",
+    "statute_id": "section_3306_b",
+    "supporting_span": "the term \"wages\" means all remuneration for employment, including the cash value of all remuneration (including benefits) paid in any medium other than cash",
+    "rule": "(remuneration_for_employment(employer,employee,amount) OR non_cash_remuneration_for_employment(employer,employee,amount)) -> counts_as_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R2",
+    "statute_id": "section_3306_b",
+    "supporting_span": "after remuneration ... equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year",
+    "rule": "(counts_as_wages(employer,employee,amount,calendar_year) AND prior_wages_paid(employer,employee,prior_wages,calendar_year) AND amount_at_least(prior_wages,7000)) -> excluded_from_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R3",
+    "statute_id": "section_3306_b",
+    "supporting_span": "on account of- (A) sickness or accident disability, or (C) death",
+    "rule": "(payment_under_employer_plan(employer,employee,amount) AND (payment_on_account_of_sickness_or_accident_disability(employee,amount) OR payment_on_account_of_death(employee,amount))) -> excluded_from_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R4",
+    "statute_id": "section_3306_b",
+    "supporting_span": "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business",
+    "rule": "(non_cash_remuneration(employer,employee,amount) AND service_not_in_course_of_employer_trade_or_business(employee,employer,service)) -> excluded_from_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R5",
+    "statute_id": "section_3306_b",
+    "supporting_span": "upon or after the termination of an employee's employment relationship because of (i) death, or (ii) retirement for disability",
+    "rule": "(payment_after_termination(employer,employee,amount) AND (termination_due_to_death(employee) OR termination_due_to_disability_retirement(employee)) AND payment_under_employer_plan(employer,employee,amount)) -> excluded_from_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R6",
+    "statute_id": "section_3306_b",
+    "supporting_span": "other than any such payment or series of payments which would have been paid if the employee's employment relationship had not been so terminated",
+    "rule": "(payment_after_termination(employer,employee,amount) AND would_have_been_paid_without_termination(employer,employee,amount)) -> counts_as_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R7",
+    "statute_id": "section_3306_b",
+    "supporting_span": "remuneration for agricultural labor paid in any medium other than cash",
+    "rule": "(non_cash_remuneration_for_agricultural_labor(employer,employee,amount)) -> excluded_from_wages(employer,employee,amount,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_b_R8",
+    "statute_id": "section_3306_b",
+    "supporting_span": "any payment made by an employer to a survivor or the estate of a former employee after the calendar year in which such employee died",
+    "rule": "(payment_to_survivor_or_estate(employer,former_employee,amount) AND employee_died_before_calendar_year(former_employee,calendar_year)) -> excluded_from_wages(employer,former_employee,amount,calendar_year)"
+  }
+]

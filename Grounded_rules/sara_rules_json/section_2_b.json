@@ -1,0 +1,80 @@
+[
+  {
+    "rule_id": "section_2_b_R1",
+    "statute_id": "section_2_b",
+    "supporting_span": "such individual is not married at the close of his taxable year, is not a surviving spouse",
+    "rule": "(is_individual(individual) AND NOT is_married_individual(individual) AND NOT is_surviving_spouse(individual)) -> head_of_household_status_base_requirement_met(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R2",
+    "statute_id": "section_2_b",
+    "supporting_span": "maintains as his home a household which constitutes for more than one-half of such taxable year the principal place of abode",
+    "rule": "(maintains_household_as_home(individual,household,taxable_year) AND household_is_principal_place_of_abode_for_more_than_half_year(household,dependent,taxable_year)) -> head_of_household_household_requirement_met(individual,household,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R3",
+    "statute_id": "section_2_b",
+    "supporting_span": "a qualifying child of the individual",
+    "rule": "(is_qualifying_child(dependent,individual,taxable_year)) -> head_of_household_qualifying_person_requirement_met(individual,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R4",
+    "statute_id": "section_2_b",
+    "supporting_span": "but not if such child- (I) is married ... and (II) is not a dependent",
+    "rule": "(is_qualifying_child(child,individual,taxable_year) AND is_married_individual(child) AND NOT is_dependent(child,individual,taxable_year)) -> NOT head_of_household_qualifying_person_requirement_met(individual,child,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R5",
+    "statute_id": "section_2_b",
+    "supporting_span": "any other person who is a dependent of the taxpayer, if the taxpayer is entitled to a deduction for the taxable year for such person under section 151",
+    "rule": "(is_dependent(dependent,individual,taxable_year) AND deduction_under_151_allowed_for_dependent(individual,dependent,taxable_year)) -> head_of_household_qualifying_person_requirement_met(individual,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R6",
+    "statute_id": "section_2_b",
+    "supporting_span": "maintains a household which constitutes for such taxable year the principal place of abode of the father or mother of the taxpayer",
+    "rule": "(maintains_household(individual,household,taxable_year) AND household_is_principal_place_of_abode_of_parent(household,parent,taxable_year) AND (relationship_is_father(parent,individual) OR relationship_is_mother(parent,individual))) -> head_of_household_parent_household_requirement_met(individual,parent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R7",
+    "statute_id": "section_2_b",
+    "supporting_span": "if over half of the cost of maintaining the household during the taxable year is furnished by such individual",
+    "rule": "(furnishes_over_half_cost_of_maintaining_household(individual,household,taxable_year)) -> maintains_household_for_section_2_b(individual,household,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_b_R8",
+    "statute_id": "section_2_b",
+    "supporting_span": "An individual shall be considered a head of a household if, and only if",
+    "rule": "(head_of_household_status_base_requirement_met(individual,taxable_year) AND maintains_household_for_section_2_b(individual,household,taxable_year) AND ((head_of_household_household_requirement_met(individual,household,dependent,taxable_year) AND head_of_household_qualifying_person_requirement_met(individual,dependent,taxable_year)) OR head_of_household_parent_household_requirement_met(individual,parent,taxable_year))) -> is_head_of_household(individual)"
+  },
+  {
+    "rule_id": "section_2_b_R9",
+    "statute_id": "section_2_b",
+    "supporting_span": "an individual who is legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married",
+    "rule": "(legally_separated_under_decree(individual,spouse,taxable_year)) -> NOT is_married_individual(individual)"
+  },
+  {
+    "rule_id": "section_2_b_R10",
+    "statute_id": "section_2_b",
+    "supporting_span": "if at any time during the taxable year his spouse is a nonresident alien",
+    "rule": "(spouse_is_nonresident_alien_at_any_time(spouse,taxable_year)) -> NOT is_married_individual(individual)"
+  },
+  {
+    "rule_id": "section_2_b_R11",
+    "statute_id": "section_2_b",
+    "supporting_span": "if his spouse ... died during the taxable year",
+    "rule": "(spouse_died_during_taxable_year(spouse,taxable_year) AND NOT spouse_is_nonresident_alien_at_any_time(spouse,taxable_year)) -> is_married_individual(individual)"
+  },
+  {
+    "rule_id": "section_2_b_R12",
+    "statute_id": "section_2_b",
+    "supporting_span": "if at any time during the taxable year he is a nonresident alien",
+    "rule": "(is_nonresident_alien(individual,taxable_year)) -> NOT is_head_of_household(individual)"
+  },
+  {
+    "rule_id": "section_2_b_R13",
+    "statute_id": "section_2_b",
+    "supporting_span": "by reason of an individual who would not be a dependent for the taxable year but for subparagraph (H) of section 152(d)(2)",
+    "rule": "(dependent_only_by_reason_of_152_d_2_H(dependent,individual,taxable_year)) -> NOT is_head_of_household(individual)"
+  }
+]

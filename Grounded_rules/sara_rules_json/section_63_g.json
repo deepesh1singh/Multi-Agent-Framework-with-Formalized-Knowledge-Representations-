@@ -1,0 +1,8 @@
+[
+  {
+    "rule_id": "section_63_g_R1",
+    "statute_id": "section_63_g",
+    "supporting_span": "For purposes of this section, marital status shall be determined under section 7703.",
+    "rule": "(marital_status_determined_under_7703(individual,taxable_year)) -> marital_status_applies_for_section_63(individual,taxable_year)"
+  }
+]

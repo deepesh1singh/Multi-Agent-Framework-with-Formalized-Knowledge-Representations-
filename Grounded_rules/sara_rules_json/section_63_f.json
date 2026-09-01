@@ -1,0 +1,38 @@
+[
+  {
+    "rule_id": "section_63_f_R1",
+    "statute_id": "section_63_f",
+    "supporting_span": "for himself if he has attained age 65 before the close of his taxable year",
+    "rule": "(is_taxpayer(taxpayer) AND attained_age_before_close_of_taxable_year(taxpayer,65,taxable_year)) -> additional_standard_deduction_amount_equals(taxpayer,600,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_f_R2",
+    "statute_id": "section_63_f",
+    "supporting_span": "for the spouse of the taxpayer if the spouse has attained age 65 before the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b)",
+    "rule": "(is_spouse_of(spouse,taxpayer) AND attained_age_before_close_of_taxable_year(spouse,65,taxable_year) AND additional_exemption_allowable_for_spouse_under_151_b(taxpayer,spouse,taxable_year)) -> additional_standard_deduction_amount_equals(taxpayer,600,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_f_R3",
+    "statute_id": "section_63_f",
+    "supporting_span": "for himself if he is blind at the close of the taxable year",
+    "rule": "(is_taxpayer(taxpayer) AND is_blind_at_close_of_taxable_year(taxpayer,taxable_year)) -> additional_standard_deduction_amount_equals(taxpayer,600,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_f_R4",
+    "statute_id": "section_63_f",
+    "supporting_span": "for the spouse of the taxpayer if the spouse is blind as of the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b)",
+    "rule": "(is_spouse_of(spouse,taxpayer) AND is_blind_at_close_of_taxable_year(spouse,taxable_year) AND additional_exemption_allowable_for_spouse_under_151_b(taxpayer,spouse,taxable_year)) -> additional_standard_deduction_amount_equals(taxpayer,600,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_f_R5",
+    "statute_id": "section_63_f",
+    "supporting_span": "if the spouse dies during the taxable year the determination of whether such spouse is blind shall be made as of the time of such death",
+    "rule": "(spouse_dies_during_taxable_year(spouse,taxable_year) AND is_blind_at_time_of_death(spouse)) -> is_blind_for_63_f_purposes(spouse,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_f_R6",
+    "statute_id": "section_63_f",
+    "supporting_span": "In the case of an individual who is not married and is not a surviving spouse, paragraphs (1) and (2) shall be applied by substituting \"$750\" for \"$600\".",
+    "rule": "(is_individual(individual) AND NOT is_married_individual(individual) AND NOT is_surviving_spouse(individual) AND (attained_age_before_close_of_taxable_year(individual,65,taxable_year) OR is_blind_at_close_of_taxable_year(individual,taxable_year))) -> additional_standard_deduction_amount_equals(individual,750,taxable_year)"
+  }
+]

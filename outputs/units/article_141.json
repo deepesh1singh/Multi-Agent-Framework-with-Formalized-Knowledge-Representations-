@@ -1,0 +1,59 @@
+{
+  "unit_id": "article_141",
+  "article_number": "141",
+  "unit_label": "Article 141",
+  "title": "Article 141 Article 141  In the case referred to in the preceding Article, the period expires at the end of the last day.",
+  "statute_text": "Article 141 Article 141  In the case referred to in the preceding Article, the period expires at the end of the last day.",
+  "variables": [
+    {
+      "variable_name": "Period",
+      "description": "The duration or timeframe for a legal action or requirement.",
+      "supporting_span": "the period"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "period_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The existence of a period for a legal action.",
+      "supporting_span": "the period",
+      "constants": {}
+    },
+    {
+      "predicate_name": "last_day_of_period_defined",
+      "predicate_type": "definition",
+      "arguments": [
+        "Period"
+      ],
+      "description": "Definition of the expiration date of the period.",
+      "supporting_span": "expires at the end of the last day",
+      "constants": {}
+    },
+    {
+      "predicate_name": "period_expires_at_end_of_last_day",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The relationship between the period and its expiration date.",
+      "supporting_span": "the period expires at the end of the last day",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_141_rule_1",
+      "conditions": [
+        "period_exists(Period)"
+      ],
+      "conclusion": "period_expires_at_end_of_last_day(Period)",
+      "constants": {},
+      "supporting_span": "the period expires at the end of the last day",
+      "explanation": "The rule defines that a legal period expires specifically at the end of its final day."
+    }
+  ],
+  "warnings": []
+}

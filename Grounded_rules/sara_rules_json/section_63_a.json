@@ -1,0 +1,8 @@
+[
+  {
+    "rule_id": "section_63_a_R1",
+    "statute_id": "section_63_a",
+    "supporting_span": "Except as provided in subsection (b), for purposes of this subtitle, the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction).",
+    "rule": "(has_gross_income(taxpayer,gross_income) AND has_allowed_deductions_other_than_standard_deduction(taxpayer,deduction)) -> taxable_income_equals(taxpayer,gross_income - deduction)"
+  }
+]

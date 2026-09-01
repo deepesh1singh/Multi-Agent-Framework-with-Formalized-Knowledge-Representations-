@@ -1,0 +1,20 @@
+[
+  {
+    "rule_id": "section_3301_full_R1",
+    "statute_id": "section_3301_full",
+    "supporting_span": "There is hereby imposed on every employer (as defined in section 3306(a)) for each calendar year an excise tax",
+    "rule": "(qualifies_as_employer(employer,calendar_year)) -> excise_tax_imposed(employer,calendar_year)"
+  },
+  {
+    "rule_id": "section_3301_full_R2",
+    "statute_id": "section_3301_full",
+    "supporting_span": "with respect to having individuals in his employ",
+    "rule": "(excise_tax_imposed(employer,calendar_year) AND has_individuals_in_employ(employer,individual,calendar_year)) -> employment_tax_context_applies(employer,calendar_year)"
+  },
+  {
+    "rule_id": "section_3301_full_R3",
+    "statute_id": "section_3301_full",
+    "supporting_span": "equal to 6 percent of the total wages (as defined in section 3306(b)) paid by such employer during the calendar year with respect to employment (as defined in section 3306(c))",
+    "rule": "(employment_tax_context_applies(employer,calendar_year) AND total_wages_paid_with_respect_to_employment(employer,total_wages,calendar_year,employment)) -> excise_tax_amount(employer,calendar_year,0.06*total_wages)"
+  }
+]

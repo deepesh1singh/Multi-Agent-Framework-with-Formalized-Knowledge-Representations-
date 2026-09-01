@@ -1,0 +1,44 @@
+[
+  {
+    "rule_id": "section_151_d_R1",
+    "statute_id": "section_151_d",
+    "supporting_span": "the term \"exemption amount\" means $2,000",
+    "rule": "(taxable_year_exists(taxable_year)) -> exemption_amount_equals(taxpayer,2000,taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R2",
+    "statute_id": "section_151_d",
+    "supporting_span": "In the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer ... the exemption amount applicable to such individual ... shall be zero.",
+    "rule": "(deduction_under_151_allowable_to_another_taxpayer(individual,taxable_year)) -> exemption_amount_equals(individual,0,taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R3",
+    "statute_id": "section_151_d",
+    "supporting_span": "adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b), the exemption amount shall be reduced by the applicable percentage",
+    "rule": "(has_adjusted_gross_income(taxpayer,adjusted_gross_income) AND applicable_amount_equals(taxpayer,applicable_amount,taxable_year) AND amount_over(adjusted_gross_income,applicable_amount) AND applicable_percentage_equals(taxpayer,applicable_percentage,taxable_year)) -> exemption_amount_equals(taxpayer,2000*(1 - applicable_percentage),taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R4",
+    "statute_id": "section_151_d",
+    "supporting_span": "2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount",
+    "rule": "(has_adjusted_gross_income(taxpayer,adjusted_gross_income) AND applicable_amount_equals(taxpayer,applicable_amount,taxable_year) AND amount_over(adjusted_gross_income,applicable_amount) AND NOT files_separate_return(taxpayer)) -> applicable_percentage_equals(taxpayer,min(1,0.02*ceil((adjusted_gross_income - applicable_amount)/2500)),taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R5",
+    "statute_id": "section_151_d",
+    "supporting_span": "In the case of a married individual filing a separate return, the preceding sentence shall be applied by substituting \"$1,250\" for \"$2,500\".",
+    "rule": "(has_adjusted_gross_income(taxpayer,adjusted_gross_income) AND applicable_amount_equals(taxpayer,applicable_amount,taxable_year) AND amount_over(adjusted_gross_income,applicable_amount) AND files_separate_return(taxpayer)) -> applicable_percentage_equals(taxpayer,min(1,0.02*ceil((adjusted_gross_income - applicable_amount)/1250)),taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R6",
+    "statute_id": "section_151_d",
+    "supporting_span": "In no event shall the applicable percentage exceed 100 percent.",
+    "rule": "(applicable_percentage_computed(taxpayer,computed_percentage,taxable_year)) -> applicable_percentage_equals(taxpayer,min(computed_percentage,1),taxable_year)"
+  },
+  {
+    "rule_id": "section_151_d_R7",
+    "statute_id": "section_151_d",
+    "supporting_span": "taxable year beginning after December 31, 2017, and before January 1, 2026, the term \"exemption amount\" means zero.",
+    "rule": "(taxable_year_after(taxable_year,2017-12-31) AND taxable_year_before(taxable_year,2026-01-01)) -> exemption_amount_equals(taxpayer,0,taxable_year)"
+  }
+]

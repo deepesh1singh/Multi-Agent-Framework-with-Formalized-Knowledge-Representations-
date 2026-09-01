@@ -1,0 +1,8 @@
+[
+  {
+    "rule_id": "section_68_f_R1",
+    "statute_id": "section_68_f",
+    "supporting_span": "This section shall not apply to any taxable year beginning after December 31, 2017, and before January 1, 2026.",
+    "rule": "(taxable_year_after(taxable_year,2017-12-31) AND taxable_year_before(taxable_year,2026-01-01)) -> NOT section_68_applies(taxable_year)"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "rule_id": "section_152_b_R1",
+    "statute_id": "section_152_b",
+    "supporting_span": "If an individual is a dependent of a taxpayer for any taxable year ... such individual shall be treated as having no dependents",
+    "rule": "(is_dependent(individual,taxpayer,taxable_year)) -> treated_as_having_no_dependents(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_b_R2",
+    "statute_id": "section_152_b",
+    "supporting_span": "An individual shall not be treated as a dependent of a taxpayer under subsection (a) if such individual has made a joint return with the individual's spouse",
+    "rule": "(makes_joint_return(individual,spouse)) -> NOT is_dependent(individual,taxpayer,taxable_year)"
+  }
+]

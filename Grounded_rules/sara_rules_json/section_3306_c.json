@@ -1,0 +1,110 @@
+[
+  {
+    "rule_id": "section_3306_c_R1",
+    "statute_id": "section_3306_c",
+    "supporting_span": "performed by an employee for the person employing him, irrespective of the citizenship or residence of either, within the United States",
+    "rule": "(service_performed_by_employee_for_employer(employee,employer,service) AND service_performed_within_united_states(service)) -> employment_exists(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R2",
+    "statute_id": "section_3306_c",
+    "supporting_span": "performed outside the United States ... by a citizen of the United States as an employee of an American employer",
+    "rule": "(service_performed_outside_united_states(service) AND is_united_states_citizen(employee) AND is_american_employer(employer) AND service_performed_by_employee_for_employer(employee,employer,service) AND NOT service_performed_in_contiguous_country_with_unemployment_agreement(service)) -> employment_exists(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R3",
+    "statute_id": "section_3306_c",
+    "supporting_span": "agricultural labor unless-",
+    "rule": "(is_agricultural_labor(service) AND NOT agricultural_labor_exception_satisfied(employee,employer,service,calendar_year)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R4",
+    "statute_id": "section_3306_c",
+    "supporting_span": "during the calendar year or the preceding calendar year paid remuneration in cash of $20,000 or more to individuals employed in agricultural labor",
+    "rule": "((paid_cash_remuneration_for_agricultural_labor(employer,amount,calendar_year) AND amount_at_least(amount,20000)) OR (paid_cash_remuneration_for_agricultural_labor(employer,amount,preceding_calendar_year) AND amount_at_least(amount,20000))) -> agricultural_labor_employer_threshold_satisfied(employer,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_c_R5",
+    "statute_id": "section_3306_c",
+    "supporting_span": "employed in agricultural labor ... 5 or more individuals",
+    "rule": "(employed_at_least_five_agricultural_workers_on_10_days(employer,calendar_year) OR employed_at_least_five_agricultural_workers_on_10_days(employer,preceding_calendar_year)) -> agricultural_labor_employer_threshold_satisfied(employer,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_c_R6",
+    "statute_id": "section_3306_c",
+    "supporting_span": "such labor is not agricultural labor performed by an individual who is an alien admitted to the United States to perform agricultural labor",
+    "rule": "(is_agricultural_labor(service) AND agricultural_labor_employer_threshold_satisfied(employer,calendar_year) AND NOT alien_admitted_to_perform_agricultural_labor(employee)) -> agricultural_labor_exception_satisfied(employee,employer,service,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_c_R7",
+    "statute_id": "section_3306_c",
+    "supporting_span": "domestic service ... unless performed for a person who paid cash remuneration of $1,000 or more",
+    "rule": "(is_domestic_service(service) AND NOT domestic_service_exception_satisfied(employer,calendar_year)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R8",
+    "statute_id": "section_3306_c",
+    "supporting_span": "paid cash remuneration of $1,000 or more to individuals employed in such domestic service in the calendar year or the preceding calendar year",
+    "rule": "((paid_cash_remuneration_for_domestic_service(employer,amount,calendar_year) AND amount_at_least(amount,1000)) OR (paid_cash_remuneration_for_domestic_service(employer,amount,preceding_calendar_year) AND amount_at_least(amount,1000))) -> domestic_service_exception_satisfied(employer,calendar_year)"
+  },
+  {
+    "rule_id": "section_3306_c_R9",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed by an individual in the employ of his son, daughter, or spouse",
+    "rule": "(service_performed_for_relative(employee,employer,service) AND (relationship_is_son(employer,employee) OR relationship_is_daughter(employer,employee) OR relationship_is_spouse(employer,employee))) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R10",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed by a child under the age of 21 in the employ of his father or mother",
+    "rule": "(relationship_is_child(employee,employer) AND amount_under(age_of(employee),21) AND (relationship_is_father(employer,employee) OR relationship_is_mother(employer,employee))) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R11",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of the United States Government",
+    "rule": "(service_performed_in_employ_of_united_states_government(employee,service)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R12",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of a State, or any political subdivision thereof",
+    "rule": "(service_performed_in_employ_of_state_or_political_subdivision(employee,service)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R13",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of a school, college, or university",
+    "rule": "(service_performed_for_school_college_or_university(employee,service) AND (student_enrolled_and_regularly_attending_classes(employee) OR spouse_of_student_enrolled_and_regularly_attending_classes(employee))) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R14",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of a hospital, if such service is performed by a patient of such hospital",
+    "rule": "(service_performed_for_hospital(employee,service) AND is_patient_of_hospital(employee,hospital)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R15",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of a foreign government",
+    "rule": "(service_performed_in_employ_of_foreign_government(employee,service)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R16",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed as a student nurse",
+    "rule": "(service_performed_as_student_nurse(employee,service) AND enrolled_and_regularly_attending_nurses_training_school(employee)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R17",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed in the employ of an international organization",
+    "rule": "(service_performed_in_employ_of_international_organization(employee,service)) -> excluded_from_employment(employee,employer,service)"
+  },
+  {
+    "rule_id": "section_3306_c_R18",
+    "statute_id": "section_3306_c",
+    "supporting_span": "service performed by a person committed to a penal institution",
+    "rule": "(service_performed_by_person_committed_to_penal_institution(employee,service)) -> excluded_from_employment(employee,employer,service)"
+  }
+]

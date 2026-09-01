@@ -1,0 +1,196 @@
+{
+  "unit_id": "article_11",
+  "article_number": "11",
+  "unit_label": "Article 11",
+  "title": "Article 11 Article 11  The family court may decide to commence a curatorship in respect of a person whose capacity to appreciate their own situation is extremely inadequate due to a mental disorder, at the request of the person in question, the person's spouse, the person's relative within the fourth degree of kinship, the guardian, the guardian's supervisor, the assistant, the assistant's supervisor, or a public prosecutor; provided, however, that this does not apply to a person in respect of whom a cause set forth in Article 7 exists.",
+  "statute_text": "Article 11 Article 11  The family court may decide to commence a curatorship in respect of a person whose capacity to appreciate their own situation is extremely inadequate due to a mental disorder, at the request of the person in question, the person's spouse, the person's relative within the fourth degree of kinship, the guardian, the guardian's supervisor, the assistant, the assistant's supervisor, or a public prosecutor; provided, however, that this does not apply to a person in respect of whom a cause set forth in Article 7 exists.\n(Persons under Curatorship; Curators)",
+  "variables": [
+    {
+      "variable_name": "FamilyCourt",
+      "description": "The judicial body authorized to decide on curatorship.",
+      "supporting_span": "family court"
+    },
+    {
+      "variable_name": "Curatorship",
+      "description": "A legal status or proceeding regarding the capacity of a person.",
+      "supporting_span": "curatorship"
+    },
+    {
+      "variable_name": "Person",
+      "description": "An individual whose mental capacity is being evaluated for curatorship.",
+      "supporting_span": "person"
+    },
+    {
+      "variable_name": "MentalDisorder",
+      "description": "A medical or psychological condition affecting the judgment of a person.",
+      "supporting_span": "mental disorder"
+    },
+    {
+      "variable_name": "Spouse",
+      "description": "The legal spouse of the individual in question.",
+      "supporting_span": "spouse"
+    },
+    {
+      "variable_name": "RelativeWithinFourthDegree",
+      "description": "A relative within the fourth degree of kinship.",
+      "supporting_span": "relative within the fourth degree of kinship"
+    },
+    {
+      "variable_name": "Guardian",
+      "description": "An individual appointed to protect or manage affairs for another.",
+      "supporting_span": "guardian"
+    },
+    {
+      "variable_name": "Supervisor",
+      "description": "The supervisor of a guardian or assistant.",
+      "supporting_span": "supervisor"
+    },
+    {
+      "variable_name": "Assistant",
+      "description": "A person assisting in the legal management of another's affairs.",
+      "supporting_span": "assistant"
+    },
+    {
+      "variable_name": "SupervisorOfAssistant",
+      "description": "The supervisor of an assistant.",
+      "supporting_span": "assistant's supervisor"
+    },
+    {
+      "variable_name": "PublicProsecutor",
+      "description": "A state official responsible for legal prosecution.",
+      "supporting_span": "public prosecutor"
+    },
+    {
+      "variable_name": "Article7Cause",
+      "description": "A specific condition or cause set forth in Article 7 that precludes curatorship.",
+      "supporting_span": "cause set forth in Article 7"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "curatorship_commencement_decision_by_court",
+      "predicate_type": "status",
+      "arguments": [
+        "FamilyCourt",
+        "Curatorship"
+      ],
+      "description": "The family court's decision to commence a curatorship.",
+      "supporting_span": "The family court may decide to commence a curatorship",
+      "constants": {}
+    },
+    {
+      "predicate_name": "person_capacity_assessment",
+      "predicate_type": "status",
+      "arguments": [
+        "Person",
+        "string"
+      ],
+      "description": "Assessment of the person's capacity to appreciate their own situation.",
+      "supporting_span": "a person whose capacity to appreciate their own situation is extremely inadequate due to a mental disorder",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_person",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "string"
+      ],
+      "description": "Request for curatorship by the person in question.",
+      "supporting_span": "at the request of the person in question",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_spouse",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Spouse",
+        "string"
+      ],
+      "description": "Request for curatorship by the spouse.",
+      "supporting_span": "the person's spouse",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_guardian",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Guardian",
+        "string"
+      ],
+      "description": "Request for curatorship by a guardian.",
+      "supporting_span": "the guardian",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_guardian_supervisor",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Supervisor",
+        "string"
+      ],
+      "description": "Request for curatorship by the guardian's supervisor.",
+      "supporting_span": "the guardian's supervisor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_assistant",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Assistant",
+        "string"
+      ],
+      "description": "Request for curatorship by an assistant.",
+      "supporting_span": "the assistant",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_assistant_supervisor",
+      "predicate_type": "relationship",
+      "arguments": [
+        "SupervisorOfAssistant",
+        "string"
+      ],
+      "description": "Request for curatorship by the assistant's supervisor.",
+      "supporting_span": "the assistant's supervisor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_public_prosecutor",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PublicProsecutor",
+        "string"
+      ],
+      "description": "Request for curatorship by a public prosecutor.",
+      "supporting_span": "or a public prosecutor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "curatorship_exception_article_7",
+      "predicate_type": "exception",
+      "arguments": [
+        "Curatorship",
+        "Article7Cause"
+      ],
+      "description": "Exclusion of curatorship if an Article 7 cause exists.",
+      "supporting_span": "provided, however, that this does not apply to a person in respect of whom a cause set forth in Article 7 exists.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_11_rule_1",
+      "conditions": [
+        "person_capacity_assessment(Person, \"extremely inadequate due to a mental disorder\")",
+        "(request_by_person(Person, \"\") OR request_by_spouse(Spouse, \"\") OR request_by_guardian(Guardian, \"\") OR request_by_assistant(Assistant, \"\") OR request_by_public_prosecutor(PublicProsecutor, \"\"))",
+        "NOT curatorship_exception_article_7(Curatorship, Article7Cause)"
+      ],
+      "conclusion": "curatorship_commencement_decision_by_court(FamilyCourt, Curatorship)",
+      "constants": {},
+      "supporting_span": "The family court may decide to commence a curatorship in respect of a person whose capacity to appreciate their own situation is extremely inadequate due to a mental disorder, at the request of the person in question, the person's spouse, the person's relative within the fourth degree of kinship, the guardian, the guardian's supervisor, the assistant, the assistant's supervisor, or a public prosecutor; provided, however, that this does not apply to a person in respect of whom a cause set forth in Article 7 exists.",
+      "explanation": "The family court may decide to commence a curatorship for a person with inadequate capacity due to mental disorder if requested by various parties and no Article 7 exception applies."
+    }
+  ],
+  "warnings": []
+}

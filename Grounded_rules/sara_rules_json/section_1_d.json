@@ -1,0 +1,38 @@
+[
+  {
+    "rule_id": "section_1_d_R1",
+    "statute_id": "section_1_d",
+    "supporting_span": "every married individual (as defined in section 7703) who does not make a single return jointly with his spouse",
+    "rule": "(is_married_individual(individual) AND NOT makes_joint_return(individual,spouse)) -> qualifies_for_separate_return_tax_schedule(individual)"
+  },
+  {
+    "rule_id": "section_1_d_R2",
+    "statute_id": "section_1_d",
+    "supporting_span": "15% of taxable income if the taxable income is not over $18,450",
+    "rule": "(qualifies_for_separate_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_not_over(taxable_income,18450)) -> tax_amount_equals(individual,0.15*taxable_income)"
+  },
+  {
+    "rule_id": "section_1_d_R3",
+    "statute_id": "section_1_d",
+    "supporting_span": "$2,767.50, plus 28% of the excess over $18,450 if the taxable income is over $18,450 but not over $44,575",
+    "rule": "(qualifies_for_separate_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,18450) AND amount_not_over(taxable_income,44575)) -> tax_amount_equals(individual,2767.50 + 0.28*(taxable_income - 18450))"
+  },
+  {
+    "rule_id": "section_1_d_R4",
+    "statute_id": "section_1_d",
+    "supporting_span": "$10,082.50, plus 31% of the excess over $44,575 if the taxable income is over $44,575 but not over $70,000",
+    "rule": "(qualifies_for_separate_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,44575) AND amount_not_over(taxable_income,70000)) -> tax_amount_equals(individual,10082.50 + 0.31*(taxable_income - 44575))"
+  },
+  {
+    "rule_id": "section_1_d_R5",
+    "statute_id": "section_1_d",
+    "supporting_span": "$17,964.25, plus 36% of the excess over $70,000 if the taxable income is over $70,000 but not over $125,000",
+    "rule": "(qualifies_for_separate_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,70000) AND amount_not_over(taxable_income,125000)) -> tax_amount_equals(individual,17964.25 + 0.36*(taxable_income - 70000))"
+  },
+  {
+    "rule_id": "section_1_d_R6",
+    "statute_id": "section_1_d",
+    "supporting_span": "$37,764.25, plus 39.6% of the excess over $125,000 if the taxable income is over $125,000",
+    "rule": "(qualifies_for_separate_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,125000)) -> tax_amount_equals(individual,37764.25 + 0.396*(taxable_income - 125000))"
+  }
+]

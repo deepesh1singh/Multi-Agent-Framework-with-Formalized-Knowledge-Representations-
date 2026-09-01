@@ -1,0 +1,66 @@
+{
+  "unit_id": "article_123",
+  "article_number": "123",
+  "unit_label": "Article 123",
+  "title": "Article 123 Article 123  If the counterparty to a voidable act is identified, the voidance or ratification of that act is made by the manifestation of intention to the counterparty.",
+  "statute_text": "Article 123 Article 123  If the counterparty to a voidable act is identified, the voidance or ratification of that act is made by the manifestation of intention to the counterparty.\n(Requirements for Ratification)",
+  "variables": [
+    {
+      "variable_name": "Counterparty",
+      "description": "The party involved in a transaction with another party.",
+      "supporting_span": "counterparty"
+    },
+    {
+      "variable_name": "VoidableAct",
+      "description": "An act that is capable of being annulled or ratified.",
+      "supporting_span": "voidable act"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "counterparty_identified_to_act",
+      "predicate_type": "status",
+      "arguments": [
+        "Counterparty"
+      ],
+      "description": "The counterparty to a voidable act is identified.",
+      "supporting_span": "If the counterparty to a voidable act is identified,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "voidable_act_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "The existence of a voidable act.",
+      "supporting_span": "voidable act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "voidance_or_ratification_made_by_intention",
+      "predicate_type": "relationship",
+      "arguments": [
+        "VoidableAct",
+        "Counterparty"
+      ],
+      "description": "The voidance or ratification of the act is made by the manifestation of intention to the counterparty.",
+      "supporting_span": "the voidance or ratification of that act is made by the manifestation of intention to the counterparty.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_123_rule_1",
+      "conditions": [
+        "counterparty_identified_to_act(Counterparty)",
+        "voidable_act_exists(VoidableAct)"
+      ],
+      "conclusion": "voidance_or_ratification_made_by_intention(VoidableAct, Counterparty)",
+      "constants": {},
+      "supporting_span": "If the counterparty to a voidable act is identified, the voidance or ratification of that act is made by the manifestation of intention to the counterparty.",
+      "explanation": "The rule specifies how the voidance or ratification of an act is communicated when the counterparty is known."
+    }
+  ],
+  "warnings": []
+}

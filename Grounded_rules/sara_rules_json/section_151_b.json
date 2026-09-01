@@ -1,0 +1,14 @@
+[
+  {
+    "rule_id": "section_151_b_R1",
+    "statute_id": "section_151_b",
+    "supporting_span": "An exemption of the exemption amount for the taxpayer",
+    "rule": "(is_taxpayer(taxpayer) AND exemption_amount_equals(taxpayer,exemption_amount,taxable_year)) -> personal_exemption_deduction_equals(taxpayer,exemption_amount,taxable_year)"
+  },
+  {
+    "rule_id": "section_151_b_R2",
+    "statute_id": "section_151_b",
+    "supporting_span": "an additional exemption of the exemption amount for the spouse of the taxpayer if a joint return is not made by the taxpayer and his spouse, and if the spouse ... has no gross income and is not the dependent of another taxpayer",
+    "rule": "(is_spouse_of(spouse,taxpayer) AND NOT makes_joint_return(taxpayer,spouse) AND has_no_gross_income(spouse,calendar_year) AND NOT is_dependent_of_another_taxpayer(spouse,taxable_year) AND exemption_amount_equals(taxpayer,exemption_amount,taxable_year)) -> additional_exemption_for_spouse_equals(taxpayer,spouse,exemption_amount,taxable_year)"
+  }
+]

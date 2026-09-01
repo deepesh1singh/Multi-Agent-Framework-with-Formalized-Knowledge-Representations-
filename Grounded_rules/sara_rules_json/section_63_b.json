@@ -1,0 +1,14 @@
+[
+  {
+    "rule_id": "section_63_b_R1",
+    "statute_id": "section_63_b",
+    "supporting_span": "individual who does not elect to itemize his deductions",
+    "rule": "(is_individual(individual) AND NOT elects_to_itemize_deductions(individual,taxable_year)) -> applies_non_itemizer_taxable_income_rule(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_b_R2",
+    "statute_id": "section_63_b",
+    "supporting_span": "taxable income means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+    "rule": "(applies_non_itemizer_taxable_income_rule(individual,taxable_year) AND has_adjusted_gross_income(individual,adjusted_gross_income) AND standard_deduction_equals(individual,standard_deduction,taxable_year) AND personal_exemption_deduction_equals(individual,personal_exemption,taxable_year)) -> taxable_income_equals(individual,adjusted_gross_income - standard_deduction - personal_exemption)"
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "unit_id": "article_10",
+  "article_number": "10",
+  "unit_label": "Article 10",
+  "title": "Article 10 Article 10  If the grounds prescribed in Article 7 cease to exist, the family court must rescind the decision for the commencement of guardianship at the request of the person in question, that person's spouse, that person's relative within the fourth degree of kinship, the guardian (meaning a minor's guardian or an adult guardian; the same applies hereinafter), the guardian's supervisor (meaning the supervisor of a minor's guardian or the adult guardian's supervisor; the same applies hereinafter), or a public prosecutor.",
+  "statute_text": "Article 10 Article 10  If the grounds prescribed in Article 7 cease to exist, the family court must rescind the decision for the commencement of guardianship at the request of the person in question, that person's spouse, that person's relative within the fourth degree of kinship, the guardian (meaning a minor's guardian or an adult guardian; the same applies hereinafter), the guardian's supervisor (meaning the supervisor of a minor's guardian or the adult guardian's supervisor; the same applies hereinafter), or a public prosecutor.\n(Decisions for Commencement of Curatorship)",
+  "variables": [
+    {
+      "variable_name": "GroundsForGuardianship",
+      "description": "The legal grounds prescribed in Article 7.",
+      "supporting_span": "grounds prescribed in Article 7"
+    },
+    {
+      "variable_name": "FamilyCourt",
+      "description": "The judicial body responsible for deciding on guardianship matters.",
+      "supporting_span": "family court"
+    },
+    {
+      "variable_name": "DecisionForCommencementOfGuardianship",
+      "description": "The legal decision regarding the start of a guardianship arrangement.",
+      "supporting_span": "decision for the commencement of guardianship"
+    },
+    {
+      "variable_name": "PersonInQuestion",
+      "description": "The individual whose status or rights are being addressed in the court case.",
+      "supporting_span": "person in question"
+    },
+    {
+      "variable_name": "PersonSpouse",
+      "description": "The spouse of the person in question.",
+      "supporting_span": "that person's spouse"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "grounds_for_guardianship_exist",
+      "predicate_type": "status",
+      "arguments": [
+        "GroundsForGuardianship"
+      ],
+      "description": "The existence of the grounds for guardianship as prescribed in Article 7.",
+      "supporting_span": "the grounds prescribed in Article 7",
+      "constants": {}
+    },
+    {
+      "predicate_name": "family_court_jurisdiction",
+      "predicate_type": "relationship",
+      "arguments": [
+        "FamilyCourt"
+      ],
+      "description": "The judicial body with jurisdiction over guardianship matters.",
+      "supporting_lang": "family court",
+      "supporting_span": "the family court",
+      "constants": {}
+    },
+    {
+      "predicate_name": "decision_for_commencement_of_guardianship_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "DecisionForCommencementOfGuardianship"
+      ],
+      "description": "The existence of a decision for the commencement of guardianship.",
+      "supporting_span": "decision for the commencement of guardianship",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_person_in_question",
+      "predicate_type": "status",
+      "arguments": [
+        "PersonInQuestion"
+      ],
+      "description": "A request made by the person in question.",
+      "supporting_span": "the request of the person in question",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_by_spouse",
+      "predicate_type": "status",
+      "arguments": [
+        "PersonSpouse"
+      ],
+      "description": "A request made by the spouse of the person in question.",
+      "supporting_span": "that person's spouse",
+      "constants": {}
+    },
+    {
+      "predicate_name": "grounds_cease_to_exist",
+      "predicate_type": "exception",
+      "arguments": [
+        "GroundsForGuardianship"
+      ],
+      "description": "The condition where grounds for guardianship no longer exist.",
+      "supporting_span": "the grounds prescribed in Article 7 cease to exist",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_made_at_request_of_parties",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PersonInQuestion",
+        "DecisionForCommencementOfGuardianship"
+      ],
+      "description": "The court's action to rescind the decision at the request of specific parties.",
+      "supporting_span": "at the request of the person in question, that person's spouse, that person's relative within the fourth degree of kinship, the guardian (meaning a minor's guardian or an adult guardian; the same applies hereinafter), the guardian's supervisor (meaning the supervisor of a minor's guardian or the adult guardian's supervisor; the same applies hereinafter), or a public prosecutor.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_10_rule_1",
+      "conditions": [
+        "grounds_cease_to_exist(GroundsForGuardianship)",
+        "request_made_at_request_of_parties(PersonInQuestion, DecisionForCommencementOfGuardianship)"
+      ],
+      "conclusion": "decision_for_commencement_of_guardianship_exists(DecisionForCommencementOfGuardianship)",
+      "constants": {},
+      "supporting_span": "If the grounds prescribed in Article 7 cease to exist, the family court must rescind the decision for the commencement of guardianship at the request of the person in question, that person's spouse, that person's relative within the fourth degree of kinship, the guardian (meaning a minor's guardian or an adult guardian; the same applies hereinafter), the guardian's supervisor (meaning the supervisor of a minor's guardian or the adult guardian's supervisor; the same applies hereinafter), or a public prosecutor.",
+      "explanation": "If the grounds for guardianship cease to exist and a request is made by authorized parties, the family court must rescind the decision for commencement of guardianship."
+    }
+  ],
+  "warnings": []
+}

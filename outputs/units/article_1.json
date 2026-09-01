@@ -1,0 +1,145 @@
+{
+  "unit_id": "article_1",
+  "article_number": "1",
+  "unit_label": "Article 1",
+  "title": "Article 1 Article 1  (1) Private rights must be congruent with the public welfare.",
+  "statute_text": "Article 1 Article 1  (1) Private rights must be congruent with the public welfare.\n(2) The exercise of rights and performance of duties must be done in good faith.\n(3) Abuse of rights is not permitted.\n(Standards for Construction)",
+  "variables": [
+    {
+      "variable_name": "PrivateRight",
+      "description": "A right held by a private individual or entity.",
+      "supporting_span": "Private rights"
+    },
+    {
+      "variable_name": "PublicWelfare",
+      "description": "The general well-being of the public interest.",
+      "supporting_span": "public welfare"
+    },
+    {
+      "variable_name": "GoodFaith",
+      "description": "The principle that actions are performed with honest intent and without deception.",
+      "supporting_span": "good faith"
+    },
+    {
+      "variable_name": "Duty",
+      "description": "A legal obligation or requirement to act in a certain way.",
+      "supporting_span": "performance of duties"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "private_right_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "PrivateRight"
+      ],
+      "description": "Existence of a private right.",
+      "supporting_span": "Private rights",
+      "constants": {}
+    },
+    {
+      "predicate_name": "public_welfare_standard",
+      "predicate_type": "definition",
+      "arguments": [
+        "PublicWelfare"
+      ],
+      "description": "The standard of public welfare.",
+      "supporting_span": "public welfare",
+      "constants": {}
+    },
+    {
+      "predicate_name": "private_right_must_be_congruent_with_public_welfare",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PrivateRight",
+        "PublicWelfare"
+      ],
+      "description": "Requirement for private rights to be congruent with public welfare.",
+      "supporting_span": "Private rights must be congruent with the public welfare.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "duty_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Duty"
+      ],
+      "description": "Existence of a duty.",
+      "supporting_span": "performance of duties",
+      "constants": {}
+    },
+    {
+      "predicate_name": "exercise_of_rights_in_good_faith",
+      "predicate_type": "status",
+      "arguments": [
+        "PrivateRight"
+      ],
+      "description": "The exercise of rights performed in good faith.",
+      "supporting_span": "The exercise of rights and performance of duties must be done in good faith.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "duty_performed_in_good_faith",
+      "predicate_type": "status",
+      "arguments": [
+        "Duty"
+      ],
+      "description": "The performance of duties performed in good faith.",
+      "supporting_span": "The exercise of rights and performance of duties must be done in good faith.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "abuse_of_right_not_permitted",
+      "predicate_type": "exception",
+      "arguments": [
+        "PrivateRight"
+      ],
+      "description": "Abuse of rights is not permitted.",
+      "supporting_span": "Abuse of rights is not permitted.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_1_rule_1",
+      "conditions": [
+        "private_right_exists(PrivateRight)"
+      ],
+      "conclusion": "private_right_must_be_congruent_with_public_welfare(PrivateRight, PublicWelfare)",
+      "constants": {},
+      "supporting_span": "Private rights must be congruent with the public welfare.",
+      "explanation": "Requirement for private rights to be congruent with public welfare."
+    },
+    {
+      "rule_id": "article_1_rule_2",
+      "conditions": [
+        "private_right_exists(PrivateRight)"
+      ],
+      "conclusion": "exercise_of_rights_in_good_faith(PrivateRight)",
+      "constants": {},
+      "supporting_span": "The exercise of rights and performance of duties must be done in good faith.",
+      "explanation": "Requirement for the exercise of rights to be performed in good faith."
+    },
+    {
+      "rule_id": "article_1_rule_3",
+      "conditions": [
+        "duty_exists(Duty)"
+      ],
+      "conclusion": "duty_performed_in_good_faith(Duty)",
+      "constants": {},
+      "supporting_span": "The exercise of rights and performance of duties must be done in good faith.",
+      "explanation": "Requirement for the performance of duties to be performed in good faith."
+    },
+    {
+      "rule_id": "article_1_rule_4",
+      "conditions": [
+        "private_right_exists(PrivateRight)"
+      ],
+      "conclusion": "abuse_of_right_not_permitted(PrivateRight)",
+      "constants": {},
+      "supporting_span": "Abuse of rights is not permitted.",
+      "explanation": "Prohibition on the abuse of private rights."
+    }
+  ],
+  "warnings": []
+}

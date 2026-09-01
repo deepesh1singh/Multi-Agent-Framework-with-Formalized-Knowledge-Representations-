@@ -1,0 +1,131 @@
+{
+  "unit_id": "article_34",
+  "article_number": "34",
+  "unit_label": "Article 34",
+  "title": "Article 34 Article 34  An not-for-profit association or foundation that is involved in academic activities, art, charity, worship, religion, or any other matter of public interest may be established as a juridical person with the permission of the competent government agency.",
+  "statute_text": "Article 34 Article 34  An not-for-profit association or foundation that is involved in academic activities, art, charity, worship, religion, or any other matter of public interest may be established as a juridical person with the permission of the competent government agency.\n(Restrictions on the Use of Names)",
+  "variables": [
+    {
+      "variable_name": "NotForProfitAssociation",
+      "description": "An association or foundation that is not for profit.",
+      "supporting_span": "not-for-profit association or foundation"
+    },
+    {
+      "variable_name": "JuridicalPerson",
+      "description": "A legal entity established as a person in the eyes of law.",
+      "supporting_span": "juridical person"
+    },
+    {
+      "variable_name": "AcademicActivity",
+      "description": "Activities related to education and research.",
+      "supporting_span": "academic activities"
+    },
+    {
+      "variable_name": "PublicInterestMatter",
+      "description": "Any matter that is of public interest.",
+      "supporting_span": "any other matter of public interest"
+    },
+    {
+      "variable_name": "ArtisticActivity",
+      "description": "Activities related to art.",
+      "supporting_span": "art"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "not_for_profit_status",
+      "predicate_type": "status",
+      "arguments": [
+        "NotForProfitAssociation"
+      ],
+      "description": "An association or foundation that is not for profit.",
+      "supporting_span": "not-for-profit association or foundation",
+      "constants": {}
+    },
+    {
+      "predicate_name": "academic_activity_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "AcademicActivity"
+      ],
+      "description": "Involvement in academic activities.",
+      "supporting_span": "academic activities",
+      "constants": {}
+    },
+    {
+      "predicate_name": "art_activity_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "ArtisticActivity"
+      ],
+      "description": "Involvement in art.",
+      "supporting_span": "art",
+      "constants": {}
+    },
+    {
+      "predicate_name": "charity_worship_religion_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "string"
+      ],
+      "description": "Involvement in charity, worship, religion.",
+      "supporting_span": "charity, worship, religion",
+      "constants": {}
+    },
+    {
+      "predicate_name": "public_interest_matter_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "PublicInterestMatter"
+      ],
+      "description": "Involvement in any other matter of public interest.",
+      "supporting_span": "any other matter of public interest",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_person_status",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalPerson"
+      ],
+      "description": "Status as a juridical person.",
+      "supporting_span": "juridical person",
+      "constants": {}
+    },
+    {
+      "predicate_name": "government_agency_permission_granted",
+      "predicate_type": "status",
+      "arguments": [
+        "string"
+      ],
+      "description": "Permission granted by the competent government agency.",
+      "supporting_span": "permission of the competent government agency",
+      "constants": {}
+    },
+    {
+      "predicate_name": "not_for_profit_juridical_person_establishment",
+      "predicate_type": "relationship",
+      "arguments": [
+        "NotForProfitAssociation",
+        "JuridicalPerson"
+      ],
+      "description": "Establishment as a juridical person for not-for-profit entities involved in specific activities.",
+      "supporting_span": "An not-for-profit association or foundation that is involved in academic activities, art, charity, worship, religion, or any other matter of public interest may be established as a juridical person with the permission of the competent government agency.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_34_rule_1",
+      "conditions": [
+        "not_for_profit_status(NotForProfitAssociation)",
+        "(academic_activity_involved(AcademicActivity) OR art_activity_involved(ArtisticActivity) OR charity_worship_religion_involved(CharityWorshipReligion) OR public_interest_matter_involved(PublicInterestMatter))"
+      ],
+      "conclusion": "not_for_profit_juridical_person_establishment(NotForProfitAssociation, JuridicalPerson)",
+      "constants": {},
+      "supporting_span": "An not-for-profit association or foundation that is involved in academic activities, art, charity, worship, religion, or any other matter of public interest may be established as a juridical person with the permission of the competent government agency.",
+      "explanation": "A not-for-profit organization involved in specific public interests can be established as a juridical person with government permission."
+    }
+  ],
+  "warnings": []
+}

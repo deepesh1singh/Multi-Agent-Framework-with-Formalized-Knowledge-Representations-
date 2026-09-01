@@ -1,0 +1,56 @@
+[
+  {
+    "rule_id": "section_2_a_R1",
+    "statute_id": "section_2_a",
+    "supporting_span": "whose spouse died during either of the two years immediately preceding the taxable year",
+    "rule": "(spouse_died_within_two_years_preceding_taxable_year(taxpayer,taxable_year)) -> surviving_spouse_time_requirement_met(taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_a_R2",
+    "statute_id": "section_2_a",
+    "supporting_span": "maintains as his home a household which constitutes for the taxable year the principal place of abode ... of a dependent",
+    "rule": "(maintains_household_as_home(taxpayer,household,taxable_year) AND household_is_principal_place_of_abode_of_dependent(household,dependent,taxable_year)) -> surviving_spouse_household_requirement_met(taxpayer,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_a_R3",
+    "statute_id": "section_2_a",
+    "supporting_span": "who ... is a son, stepson, daughter, or stepdaughter of the taxpayer",
+    "rule": "(is_dependent(dependent,taxpayer,taxable_year) AND (relationship_is_son(dependent,taxpayer) OR relationship_is_stepson(dependent,taxpayer) OR relationship_is_daughter(dependent,taxpayer) OR relationship_is_stepdaughter(dependent,taxpayer))) -> surviving_spouse_qualifying_dependent_relationship_met(taxpayer,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_a_R4",
+    "statute_id": "section_2_a",
+    "supporting_span": "with respect to whom the taxpayer is entitled to a deduction for the taxable year under section 151",
+    "rule": "(deduction_under_151_allowed_for_dependent(taxpayer,dependent,taxable_year)) -> surviving_spouse_dependent_deduction_requirement_met(taxpayer,dependent,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_a_R5",
+    "statute_id": "section_2_a",
+    "supporting_span": "only if over half of the cost of maintaining the household during the taxable year is furnished by such individual",
+    "rule": "(furnishes_over_half_cost_of_maintaining_household(taxpayer,household,taxable_year)) -> maintains_household_for_section_2_a(taxpayer,household,taxable_year)"
+  },
+  {
+    "rule_id": "section_2_a_R6",
+    "statute_id": "section_2_a",
+    "supporting_span": "the term \"surviving spouse\" means a taxpayer",
+    "rule": "(is_taxpayer(taxpayer) AND surviving_spouse_time_requirement_met(taxpayer,taxable_year) AND surviving_spouse_household_requirement_met(taxpayer,dependent,taxable_year) AND surviving_spouse_qualifying_dependent_relationship_met(taxpayer,dependent,taxable_year) AND surviving_spouse_dependent_deduction_requirement_met(taxpayer,dependent,taxable_year) AND maintains_household_for_section_2_a(taxpayer,household,taxable_year)) -> is_surviving_spouse(taxpayer)"
+  },
+  {
+    "rule_id": "section_2_a_R7",
+    "statute_id": "section_2_a",
+    "supporting_span": "if the taxpayer has remarried at any time before the close of the taxable year",
+    "rule": "(remarried_before_close_of_taxable_year(taxpayer,taxable_year)) -> NOT is_surviving_spouse(taxpayer)"
+  },
+  {
+    "rule_id": "section_2_a_R8",
+    "statute_id": "section_2_a",
+    "supporting_span": "unless, for the taxpayer's taxable year during which his spouse died, a joint return could have been made",
+    "rule": "(NOT joint_return_could_have_been_made_in_year_spouse_died(taxpayer,spouse)) -> NOT is_surviving_spouse(taxpayer)"
+  },
+  {
+    "rule_id": "section_2_a_R9",
+    "statute_id": "section_2_a",
+    "supporting_span": "no joint return shall be made if either the husband or wife at any time during the taxable year is a nonresident alien",
+    "rule": "((is_nonresident_alien(husband,taxable_year) OR is_nonresident_alien(wife,taxable_year))) -> NOT joint_return_could_have_been_made(husband,wife,taxable_year)"
+  }
+]

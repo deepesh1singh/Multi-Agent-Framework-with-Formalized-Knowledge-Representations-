@@ -1,0 +1,112 @@
+{
+  "unit_id": "article_3",
+  "article_number": "3",
+  "unit_label": "Article 3",
+  "title": "Article 3 Article 3  (1) The enjoyment of private rights commences at birth.",
+  "statute_text": "Article 3 Article 3  (1) The enjoyment of private rights commences at birth.\n(2) Unless otherwise prohibited by applicable laws, regulations, or treaties, foreign nationals enjoy private rights.\nSection 2 Mental Capacity",
+  "variables": [
+    {
+      "variable_name": "PrivateRights",
+      "description": "The right of an individual to possess and exercise personal legal rights.",
+      "supporting_span": "private rights"
+    },
+    {
+      "variable_name": "Birth",
+      "description": "The point in time at which a person is born, marking the commencement of birth-related rights.",
+      "supporting_span": "birth"
+    },
+    {
+      "variable_name": "ForeignNational",
+      "description": "A citizen or national of another country who may be entitled to subject rights.",
+      "supporting_span": "foreign nationals"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "private_right_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "PrivateRights"
+      ],
+      "description": "The existence of a private right.",
+      "supporting_span": "The enjoyment of private rights",
+      "constants": {}
+    },
+    {
+      "predicate_name": "birth_event",
+      "predicate_type": "status",
+      "arguments": [
+        "Birth"
+      ],
+      "description": "The event of birth.",
+      "supporting_span": "birth",
+      "constants": {}
+    },
+    {
+      "predicate_name": "private_right_commences_at_birth",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PrivateRights",
+        "Birth"
+      ],
+      "description": "The commencement of private rights at the point of birth.",
+      "supporting_span": "The enjoyment of private rights commences at birth.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "foreign_national_status",
+      "predicate_type": "status",
+      "arguments": [
+        "ForeignNational"
+      ],
+      "description": "Status as a foreign national.",
+      "supporting_span": "foreign nationals",
+      "constants": {}
+    },
+    {
+      "predicate_name": "foreign_national_enjoys_private_rights",
+      "predicate_type": "relationship",
+      "arguments": [
+        "ForeignNational",
+        "PrivateRights"
+      ],
+      "description": "The entitlement of foreign nationals to private rights.",
+      "supporting_span": "foreign nationals enjoy private rights.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "prohibited_by_law_regulation_treaty",
+      "predicate_type": "exception",
+      "arguments": [
+        "string"
+      ],
+      "description": "Prohibitions by applicable laws, regulations, or treaties.",
+      "supporting_span": "Unless otherwise prohibited by applicable laws, regulations, or treaties,",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_3_rule_1",
+      "conditions": [
+        "birth_event(Birth)"
+      ],
+      "conclusion": "private_right_commences_at_birth(PrivateRights, Birth)",
+      "constants": {},
+      "supporting_span": "The enjoyment of private rights commences at birth.",
+      "explanation": "Private rights begin at the moment of birth."
+    },
+    {
+      "rule_id": "article_3_rule_2",
+      "conditions": [
+        "foreign_national_status(ForeignNational)",
+        "NOT prohibited_by_law_regulation_treaty(\"string\")"
+      ],
+      "conclusion": "foreign_national_enjoys_private_rights(ForeignNational, PrivateRights)",
+      "constants": {},
+      "supporting_span": "Unless otherwise prohibited by applicable laws, regulations, or treaties, foreign nationals enjoy private rights.",
+      "explanation": "Foreign nationals are entitled to private rights unless specifically restricted by other legal instruments."
+    }
+  ],
+  "warnings": []
+}

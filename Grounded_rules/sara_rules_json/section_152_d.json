@@ -1,0 +1,74 @@
+[
+  {
+    "rule_id": "section_152_d_R1",
+    "statute_id": "section_152_d",
+    "supporting_span": "The term \"qualifying relative\" means, with respect to any taxpayer for any taxable year, an individual-",
+    "rule": "(qualifying_relative_relationship_requirement_met(individual,taxpayer,taxable_year) AND qualifying_relative_income_requirement_met(individual,taxpayer,taxable_year) AND qualifying_relative_not_qualifying_child_requirement_met(individual,taxpayer,taxable_year)) -> is_qualifying_relative(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_d_R2",
+    "statute_id": "section_152_d",
+    "supporting_span": "who bears a relationship to the taxpayer described in paragraph (2)",
+    "rule": "(qualifying_relative_relationship_under_152_d_2(individual,taxpayer)) -> qualifying_relative_relationship_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_d_R3",
+    "statute_id": "section_152_d",
+    "supporting_span": "who has no income for the calendar year in which such taxable year begins",
+    "rule": "(has_no_income(individual,calendar_year)) -> qualifying_relative_income_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_d_R4",
+    "statute_id": "section_152_d",
+    "supporting_span": "who is not a qualifying child of such taxpayer or of any other taxpayer",
+    "rule": "(NOT is_qualifying_child(individual,taxpayer,taxable_year) AND NOT is_qualifying_child_of_any_other_taxpayer(individual,taxable_year)) -> qualifying_relative_not_qualifying_child_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_d_R5",
+    "statute_id": "section_152_d",
+    "supporting_span": "A child or a descendant of a child.",
+    "rule": "(relationship_is_child(individual,taxpayer) OR relationship_is_descendant_of_child(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R6",
+    "statute_id": "section_152_d",
+    "supporting_span": "A brother, sister, stepbrother, or stepsister.",
+    "rule": "(relationship_is_brother(individual,taxpayer) OR relationship_is_sister(individual,taxpayer) OR relationship_is_stepbrother(individual,taxpayer) OR relationship_is_stepsister(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R7",
+    "statute_id": "section_152_d",
+    "supporting_span": "The father or mother, or an ancestor of either.",
+    "rule": "(relationship_is_father(individual,taxpayer) OR relationship_is_mother(individual,taxpayer) OR relationship_is_ancestor_of_parent(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R8",
+    "statute_id": "section_152_d",
+    "supporting_span": "A stepfather or stepmother.",
+    "rule": "(relationship_is_stepfather(individual,taxpayer) OR relationship_is_stepmother(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R9",
+    "statute_id": "section_152_d",
+    "supporting_span": "A son or daughter of a brother or sister of the taxpayer.",
+    "rule": "(relationship_is_child_of_sibling(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R10",
+    "statute_id": "section_152_d",
+    "supporting_span": "A brother or sister of the father or mother of the taxpayer.",
+    "rule": "(relationship_is_sibling_of_parent(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R11",
+    "statute_id": "section_152_d",
+    "supporting_span": "A son-in-law, daughter-in-law, father-in-law, mother-in-law, brother-in-law, or sister-in-law.",
+    "rule": "(relationship_is_son_in_law(individual,taxpayer) OR relationship_is_daughter_in_law(individual,taxpayer) OR relationship_is_father_in_law(individual,taxpayer) OR relationship_is_mother_in_law(individual,taxpayer) OR relationship_is_brother_in_law(individual,taxpayer) OR relationship_is_sister_in_law(individual,taxpayer)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  },
+  {
+    "rule_id": "section_152_d_R12",
+    "statute_id": "section_152_d",
+    "supporting_span": "An individual ... who, for the taxable year of the taxpayer, has the same principal place of abode as the taxpayer and is a member of the taxpayer's household.",
+    "rule": "(NOT is_spouse_of(individual,taxpayer) AND shares_principal_place_of_abode(individual,taxpayer,taxable_year) AND is_member_of_household(individual,taxpayer,taxable_year)) -> qualifying_relative_relationship_under_152_d_2(individual,taxpayer)"
+  }
+]

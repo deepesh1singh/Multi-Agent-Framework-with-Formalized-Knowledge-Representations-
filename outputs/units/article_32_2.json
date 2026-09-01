@@ -1,0 +1,66 @@
+{
+  "unit_id": "article_32_2",
+  "article_number": "32-2",
+  "unit_label": "Article 32-2",
+  "title": "Article 32-2 Article 32-2  If more than one person dies and it is unclear whether one of them was still alive after the death of another, it is presumed that they all died at the same time.",
+  "statute_text": "Article 32-2 Article 32-2  If more than one person dies and it is unclear whether one of them was still alive after the death of another, it is presumed that they all died at the same time.\nChapter III Juridical Persons\nSection 1 Incorporation of Juridical Persons\n(Formation of Juridical Persons)",
+  "variables": [
+    {
+      "variable_name": "Person",
+      "description": "A person whose death is being considered.",
+      "supporting_span": "person"
+    },
+    {
+      "variable_name": "DeathTime",
+      "description": "The timing of a death relative to another's death.",
+      "supporting_span": "died at the same time"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "multiple_persons_died",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "More than one person died.",
+      "supporting_span": "If more than one person dies",
+      "constants": {}
+    },
+    {
+      "predicate_name": "death_time_unclear",
+      "predicate_type": "status",
+      "arguments": [
+        "DeathTime"
+      ],
+      "description": "The timing of death between multiple people is unclear.",
+      "supporting_span": "it is unclear whether one of them was still alive after the death of another",
+      "constants": {}
+    },
+    {
+      "predicate_name": "presumed_simultaneous_death",
+      "predicate_type": "status",
+      "summary_span": "it is presumed that they all died at the same time.",
+      "arguments": [
+        "DeathTime"
+      ],
+      "description": "Presumption of simultaneous death when timing is unclear.",
+      "supporting_span": "it is presumed that they all died at the same time.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_32_2_rule_1",
+      "conditions": [
+        "multiple_persons_died(Person)",
+        "death_time_unclear(DeathTime)"
+      ],
+      "conclusion": "presumed_simultaneous_death(DeathTime)",
+      "constants": {},
+      "supporting_span": "If more than one person dies and it is unclear whether one of them was still alive after the death of another, it is presumed that they all died at the same time.",
+      "explanation": "Presumption of simultaneous death when timing between multiple deaths is unknown."
+    }
+  ],
+  "warnings": []
+}

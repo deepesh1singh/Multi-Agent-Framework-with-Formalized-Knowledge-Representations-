@@ -1,0 +1,71 @@
+{
+  "unit_id": "article_122",
+  "article_number": "122",
+  "unit_label": "Article 122",
+  "title": "Article 122 Article 122  A voidable act may not be rescinded after the person prescribed in Article 120 ratifies it.",
+  "statute_text": "Article 122 Article 122  A voidable act may not be rescinded after the person prescribed in Article 120 ratifies it.\n(Method of Voidance and Ratification)",
+  "variables": [
+    {
+      "variable_name": "VoidableAct",
+      "description": "An act that is voidable.",
+      "supporting_span": "A voidable act"
+    },
+    {
+      "variable_name": "Ratification",
+      "description": "The act of ratifying a voidable act.",
+      "supporting_span": "ratifies it"
+    },
+    {
+      "variable_name": "PersonPrescribedInArticle120",
+      "description": "The specific person defined in Article 120 who has the authority to ratify or rescind an act.",
+      "supporting_span": "the person prescribed in Article 120"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "voidable_act_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "A voidable act exists.",
+      "supporting_span": "A voidable act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "person_prescribed_in_article_120_ratifies_act",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PersonPrescribedInArticle120",
+        "VoidableAct"
+      ],
+      "description": "The person prescribed in Article 120 ratifies the voidable act.",
+      "supporting_span": "the person prescribed in Article 120 ratifies it",
+      "constants": {}
+    },
+    {
+      "predicate_name": "voidable_act_not_rescindable_after_ratification",
+      "predicate_type": "exception",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "A voidable act may not be rescinded after ratification.",
+      "supporting_span": "A voidable act may not be rescinded after the person prescribed in Article 120 ratifies it.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_122_rule_1",
+      "conditions": [
+        "voidable_act_exists(VoidableAct)",
+        "NOT person_prescribed_in_article_120_ratifies_act(PersonPrescribedInArticle120, VoidableAct)"
+      ],
+      "conclusion": "voidable_act_not_rescindable_after_ratification(VoidableAct)",
+      "constants": {},
+      "supporting_span": "A voidable act may not be rescinded after the person prescribed in Article 120 ratifies it.",
+      "explanation": "A voidable act cannot be rescinded once ratified by the specified person."
+    }
+  ],
+  "warnings": []
+}

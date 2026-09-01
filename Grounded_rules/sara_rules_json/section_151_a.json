@@ -1,0 +1,14 @@
+[
+  {
+    "rule_id": "section_151_a_R1",
+    "statute_id": "section_151_a",
+    "supporting_span": "In the case of an individual, the exemptions provided by this section shall be allowed as deductions in computing taxable income.",
+    "rule": "(is_individual(individual)) -> personal_exemption_deduction_allowed(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_151_a_R2",
+    "statute_id": "section_151_a",
+    "supporting_span": "shall be allowed as deductions in computing taxable income",
+    "rule": "(personal_exemption_deduction_allowed(individual,taxable_year) AND personal_exemption_amount_equals(individual,amount,taxable_year)) -> deduction_for_personal_exemptions_under_151(individual,amount)"
+  }
+]

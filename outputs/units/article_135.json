@@ -1,0 +1,92 @@
+{
+  "unit_id": "article_135",
+  "article_number": "135",
+  "unit_label": "Article 135",
+  "title": "Article 135 Article 135  (1) If a time of commencement is assigned to a juridical act, the performance of that juridical act may not be demanded before the arrival of that assigned time.",
+  "statute_text": "Article 135 Article 135  (1) If a time of commencement is assigned to a juridical act, the performance of that juridical act may not be demanded before the arrival of that assigned time.\n(2) If time of expiration is assigned to a juridical act, that juridical act expires upon the arrival of that assigned time.\n(Benefit of Time and Waiver)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal action or transaction.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "TimeOfCommencement",
+      "description": "The assigned start time for a juridical act.",
+      "supporting_span": "time of commencement"
+    },
+    {
+      "variable_name": "time_of_commitment",
+      "description": "The assigned end time for a juridical act.",
+      "supporting_span": "time of expiration"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_has_time_of_commencement",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct",
+        "TimeOfCommencement"
+      ],
+      "description": "A juridical act has an assigned time of commencement.",
+      "supporting_span": "If a time of commencement is assigned to a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_has_time_of_expiration",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct",
+        "time_of_commitment"
+      ],
+      "description": "A juridical act has an assigned time of expiration.",
+      "supporting_span": "If time of expiration is assigned to a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "performance_not_demanded_before_commencement",
+      "predicate_type": "exception",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The performance of the juridical act may not be demanded before the arrival of its assigned time of commencement.",
+      "supporting_span": "the performance of that juridical act may not be demanded before the arrival of that assigned time.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_expires_at_expiration_time",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The juridical act expires upon the arrival of its assigned time of expiration.",
+      "supporting_span1": "that juridical act expires upon the arrival of that assigned time.",
+      "supporting_span": "that juridical act expires upon the arrival of that assigned time.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_135_rule_1",
+      "conditions": [
+        "juridical_act_has_time_of_commencement(JuridicalAct, TimeOfCommencement)"
+      ],
+      "conclusion": "performance_not_demanded_before_commencement(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "If a time of commencement is assigned to a juridical act, the performance of that juridical act may not be demanded before the arrival of that assigned time.",
+      "explanation": "Performance of a juridical act cannot be demanded before its specified start time."
+    },
+    {
+      "rule_id": "article_135_rule_2",
+      "conditions": [
+        "juridical_act_has_time_of_expiration(JuridicalAct, time_of_commitment)"
+      ],
+      "conclusion": "juridical_act_expires_at_expiration_time(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "If time of expiration is assigned to a juridical act, that juridical act expires upon the arrival of that assigned time.",
+      "explanation": "A juridical act expires when its specified end time arrives."
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,120 @@
+{
+  "unit_id": "article_143",
+  "article_number": "143",
+  "unit_label": "Article 143",
+  "title": "Article 143 Article 143  (1) If a period is provided for in weeks, months, or years, the period is calculated in accordance to the calendar.",
+  "statute_text": "Article 143 Article 143  (1) If a period is provided for in weeks, months, or years, the period is calculated in accordance to the calendar.\n(2) If a period does not commence at the beginning of the week, month, or year, that period expires on the day immediately preceding the day which corresponds to the commencement day in the last week, month or year; provided, however, that if the period is provided for in months or years and the last month does not contain a corresponding day, the period expires on the last day of that month.\nChapter VII Prescription\nSection 1 General Provisions\n(Effect of Prescription)",
+  "variables": [
+    {
+      "variable_name": "Period",
+      "description": "A duration of time expressed in weeks, months, or years.",
+      "supporting_span": "period"
+    },
+    {
+      "variable_name": "Calendar",
+      "description": "The standard calendar system used for calculating periods.",
+      "supporting_span": "calendar"
+    },
+    {
+      "variable_name": "CommencementDay",
+      "description": "The specific day on which a period begins.",
+      "supporting_span": "commencement day"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "period_provided_in_units",
+      "predicate_type": "datatype",
+      "arguments": [
+        "Period"
+      ],
+      "description": "A period provided in weeks, months, or years.",
+      "supporting_span": "If a period is provided for in weeks, months, or years",
+      "constants": {}
+    },
+    {
+      "predicate_name": "period_calculated_in_accordance_to_calendar",
+      "predicate_type": "status",
+      "arguments": [
+        "Period",
+        "Calendar"
+      ],
+      "description": "The period is calculated in accordance to the calendar.",
+      "supporting_span": "the period is calculated in accordance to the calendar.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "period_not_commencing_at_beginning",
+      "predicate_type": "status",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The period does not commence at the beginning of the week, month, or year.",
+      "supporting_span": "If a period does not commence at the beginning of the week, month, or year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "expiration_day_preceding_corresponding_day",
+      "predicate_type": "status",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The period expires on the day immediately preceding the day which corresponds to the commencement day in the last week, month or year.",
+      "supporting_span": "that period expires on the day immediately preceding the day which corresponds to the commencement day in the last week, month or year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "period_in_months_or_years_no_corresponding_day",
+      "predicate_type": "status",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The period is provided for in months or years and the last month does not contain a corresponding day.",
+      "supporting_span": "if the period is provided for in months or years and the last month does not contain a corresponding day",
+      "constants": {}
+    },
+    {
+      "predicate_name": "expiration_on_last_day_of_month",
+      "predicate_type": "status",
+      "arguments": [
+        "Period"
+      ],
+      "description": "The period expires on the last day of that month.",
+      "supporting_span": "the period expires on the last day of that month.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_143_rule_1",
+      "conditions": [
+        "period_provided_in_units(Period)"
+      ],
+      "conclusion": "period_calculated_in_accordance_to_calendar(Period, Calendar)",
+      "constants": {},
+      "supporting_span": "If a period is provided for in weeks, months, or years, the period is calculated in accordance to the calendar.",
+      "explanation": "If a period is given in units of weeks, months, or years, it is calculated according to the calendar."
+    },
+    {
+      "rule_id": "article_143_rule_2",
+      "conditions": [
+        "period_not_commencing_at_beginning(Period)"
+      ],
+      "conclusion": "expiration_day_preceding_corresponding_day(Period)",
+      "constants": {},
+      "supporting_span": "If a period does not commence at the beginning of the week, month, or year, that period expires on the day immediately preceding the day which corresponds to the commencement day in the last week, month or year",
+      "explanation": "If a period starts mid-week/month/year, it expires on the day before the corresponding date in the final unit."
+    },
+    {
+      "rule_id": "article_143_rule_3",
+      "conditions": [
+        "period_in_months_or_years_no_corresponding_day(Period)"
+      ],
+      "conclusion": "expiration_on_last_day_of_month(Period)",
+      "constants": {},
+      "supporting_span": "if the period is provided for in months or years and the last month does not contain a corresponding day, the period expires on the last day of that month.",
+      "explanation": "If the period is in months/years and the final month lacks a corresponding date, it expires on the last day of that month."
+    }
+  ],
+  "warnings": []
+}

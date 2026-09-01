@@ -1,0 +1,74 @@
+[
+  {
+    "rule_id": "section_152_c_R1",
+    "statute_id": "section_152_c",
+    "supporting_span": "The term \"qualifying child\" means, with respect to any taxpayer for any taxable year, an individual if-",
+    "rule": "(qualifying_child_relationship_requirement_met(individual,taxpayer,taxable_year) AND qualifying_child_age_requirement_met(individual,taxpayer,taxable_year) AND qualifying_child_residence_requirement_met(individual,taxpayer,taxable_year) AND qualifying_child_support_requirement_met(individual,taxpayer,taxable_year) AND qualifying_child_joint_return_requirement_met(individual,taxable_year)) -> is_qualifying_child(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R2",
+    "statute_id": "section_152_c",
+    "supporting_span": "a child of the taxpayer or a descendant of such child",
+    "rule": "(relationship_is_child(individual,taxpayer) OR relationship_is_descendant_of_child(individual,taxpayer)) -> qualifying_child_relationship_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R3",
+    "statute_id": "section_152_c",
+    "supporting_span": "a brother, sister, stepbrother, or stepsister of the taxpayer or a descendant of any such relative",
+    "rule": "((relationship_is_brother(individual,taxpayer) OR relationship_is_sister(individual,taxpayer) OR relationship_is_stepbrother(individual,taxpayer) OR relationship_is_stepsister(individual,taxpayer)) OR relationship_is_descendant_of_sibling(individual,taxpayer)) -> qualifying_child_relationship_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R4",
+    "statute_id": "section_152_c",
+    "supporting_span": "has the same principal place of abode as the taxpayer for more than one-half of such taxable year",
+    "rule": "(shares_principal_place_of_abode(individual,taxpayer,taxable_year) AND resides_with_taxpayer_more_than_half_year(individual,taxpayer,taxable_year)) -> qualifying_child_residence_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R5",
+    "statute_id": "section_152_c",
+    "supporting_span": "has not attained the age of 19 ... or has not attained the age of 24 and is a student, or is permanently and totally disabled",
+    "rule": "((amount_under(age_of(individual),19)) OR (amount_under(age_of(individual),24) AND is_student(individual,taxable_year)) OR is_permanently_and_totally_disabled(individual)) -> qualifying_child_age_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R6",
+    "statute_id": "section_152_c",
+    "supporting_span": "has not provided over one-half of such individual's own support for the calendar year",
+    "rule": "(NOT provides_over_half_of_own_support(individual,calendar_year)) -> qualifying_child_support_requirement_met(individual,taxpayer,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R7",
+    "statute_id": "section_152_c",
+    "supporting_span": "has not filed a joint return ... other than only for a claim of refund",
+    "rule": "(NOT makes_joint_return(individual,spouse) OR joint_return_filed_only_for_refund(individual,spouse,taxable_year)) -> qualifying_child_joint_return_requirement_met(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R8",
+    "statute_id": "section_152_c",
+    "supporting_span": "if an individual may be and is claimed as a qualifying child by 2 or more taxpayers",
+    "rule": "(claimed_as_qualifying_child_by_multiple_taxpayers(individual,taxable_year)) -> qualifying_child_tie_breaker_required(individual,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R9",
+    "statute_id": "section_152_c",
+    "supporting_span": "if only one of the taxpayers is the individual's parent",
+    "rule": "(qualifying_child_tie_breaker_required(individual,taxable_year) AND is_parent(parent,individual) AND NOT is_parent(other_taxpayer,individual)) -> is_qualifying_child(individual,parent,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R10",
+    "statute_id": "section_152_c",
+    "supporting_span": "if the parents do not file a joint return together, the parent with whom the child resided for the longest period",
+    "rule": "(qualifying_child_tie_breaker_required(individual,taxable_year) AND two_parents_claim_child(individual,parent1,parent2) AND NOT parents_file_joint_return(parent1,parent2) AND resided_longer_with(parent1,individual,taxable_year)) -> is_qualifying_child(individual,parent1,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R11",
+    "statute_id": "section_152_c",
+    "supporting_span": "if the child resides with both parents for the same amount of time",
+    "rule": "(qualifying_child_tie_breaker_required(individual,taxable_year) AND equal_residence_time_with_parents(individual,parent1,parent2,taxable_year) AND parent_has_higher_adjusted_gross_income(parent1,parent2,taxable_year)) -> is_qualifying_child(individual,parent1,taxable_year)"
+  },
+  {
+    "rule_id": "section_152_c_R12",
+    "statute_id": "section_152_c",
+    "supporting_span": "if no parent claims the child, the taxpayer with the highest adjusted gross income",
+    "rule": "(qualifying_child_tie_breaker_required(individual,taxable_year) AND NOT parent_claims_child(individual,taxable_year) AND taxpayer_has_highest_adjusted_gross_income(taxpayer,individual,taxable_year)) -> is_qualifying_child(individual,taxpayer,taxable_year)"
+  }
+]

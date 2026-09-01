@@ -1,0 +1,81 @@
+{
+  "unit_id": "article_176",
+  "article_number": "176",
+  "unit_label": "Article 176",
+  "title": "Article 176 Article 176  The creation and transfer of a real right becomes effective solely by the manifestations of intention of the parties.",
+  "statute_text": "Article 176 Article 176  The creation and transfer of a real right becomes effective solely by the manifestations of intention of the parties.\n(Requirements of Perfection of Changes in Real Rights on Immovables)",
+  "variables": [
+    {
+      "variable_name": "RealRight",
+      "description": "A legal right over a real property or interest.",
+      "supporting_span": "real right"
+    },
+    {
+      "variable_name": "ManifestationOfIntention",
+      "description": "The expression of the intent to perform a legal act.",
+      "supporting_span": "manifestations of intention"
+    },
+    {
+      "variable_name": "Party",
+      "description": "A person or entity involved in a transaction or legal agreement.",
+      "supporting_span": "parties"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "real_right_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "RealRight"
+      ],
+      "description": "Existence of a real right.",
+      "supporting_span": "real right",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifestation_of_intention_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The existence of manifestations of intention.",
+      "supporting_span": "manifestations of intention",
+      "constants": {}
+    },
+    {
+      "predicate_name": "party_involved_in_transaction",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Party"
+      ],
+      "description": "A party involved in a transaction or legal agreement.",
+      "supporting_span": "parties",
+      "constants": {}
+    },
+    {
+      "predicate_name": "real_right_creation_and_transfer_effective_by_intention",
+      "predicate_type": "status",
+      "arguments": [
+        "RealRight",
+        "ManifestationOfIntention"
+      ],
+      "description": "The creation and transfer of a real right becomes effective solely by the manifestations of intention of the parties.",
+      "supporting_span": "The creation and transfer of a real right becomes effective solely by the manifestations of intention of the parties.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_176_rule_1",
+      "conditions": [
+        "manifestation_of_intention_exists(ManifestationOfIntention)",
+        "party_involved_in_transaction(Party)"
+      ],
+      "conclusion": "real_right_creation_and_transfer_effective_by_intention(RealRight, ManifestationOfIntention)",
+      "constants": {},
+      "supporting_span": "The creation and transfer of a real right becomes effective solely by the manifestations of intention of the parties.",
+      "explanation": "A real right is created or transferred based on the manifestation of intent from the involved parties."
+    }
+  ],
+  "warnings": []
+}

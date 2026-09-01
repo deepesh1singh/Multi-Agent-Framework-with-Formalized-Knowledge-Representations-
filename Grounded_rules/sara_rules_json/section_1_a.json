@@ -1,0 +1,44 @@
+[
+  {
+    "rule_id": "section_1_a_R1",
+    "statute_id": "section_1_a",
+    "supporting_span": "every married individual (as defined in section 7703) who makes a single return jointly with his spouse",
+    "rule": "(is_married_individual(individual) AND makes_joint_return(individual,spouse)) -> qualifies_for_joint_return_tax_schedule(individual)"
+  },
+  {
+    "rule_id": "section_1_a_R2",
+    "statute_id": "section_1_a",
+    "supporting_span": "every surviving spouse (as defined in section 2(a))",
+    "rule": "(is_surviving_spouse(individual)) -> qualifies_for_joint_return_tax_schedule(individual)"
+  },
+  {
+    "rule_id": "section_1_a_R3",
+    "statute_id": "section_1_a",
+    "supporting_span": "15% of taxable income if the taxable income is not over $36,900",
+    "rule": "(qualifies_for_joint_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_not_over(taxable_income,36900)) -> tax_amount_equals(individual,0.15*taxable_income)"
+  },
+  {
+    "rule_id": "section_1_a_R4",
+    "statute_id": "section_1_a",
+    "supporting_span": "$5,535, plus 28% of the excess over $36,900 if the taxable income is over $36,900 but not over $89,150",
+    "rule": "(qualifies_for_joint_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,36900) AND amount_not_over(taxable_income,89150)) -> tax_amount_equals(individual,5535 + 0.28*(taxable_income - 36900))"
+  },
+  {
+    "rule_id": "section_1_a_R5",
+    "statute_id": "section_1_a",
+    "supporting_span": "$20,165, plus 31% of the excess over $89,150 if the taxable income is over $89,150 but not over $140,000",
+    "rule": "(qualifies_for_joint_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,89150) AND amount_not_over(taxable_income,140000)) -> tax_amount_equals(individual,20165 + 0.31*(taxable_income - 89150))"
+  },
+  {
+    "rule_id": "section_1_a_R6",
+    "statute_id": "section_1_a",
+    "supporting_span": "$35,928.50, plus 36% of the excess over $140,000 if the taxable income is over $140,000 but not over $250,000",
+    "rule": "(qualifies_for_joint_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,140000) AND amount_not_over(taxable_income,250000)) -> tax_amount_equals(individual,35928.50 + 0.36*(taxable_income - 140000))"
+  },
+  {
+    "rule_id": "section_1_a_R7",
+    "statute_id": "section_1_a",
+    "supporting_span": "$75,528.50, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000",
+    "rule": "(qualifies_for_joint_return_tax_schedule(individual) AND has_taxable_income(individual,taxable_income) AND amount_over(taxable_income,250000)) -> tax_amount_equals(individual,75528.50 + 0.396*(taxable_income - 250000))"
+  }
+]

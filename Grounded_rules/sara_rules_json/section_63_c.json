@@ -1,0 +1,68 @@
+[
+  {
+    "rule_id": "section_63_c_R1",
+    "statute_id": "section_63_c",
+    "supporting_span": "the term \"standard deduction\" means the sum of- (A) the basic standard deduction, and (B) the additional standard deduction.",
+    "rule": "(basic_standard_deduction_equals(individual,basic_standard_deduction,taxable_year) AND additional_standard_deduction_equals(individual,additional_standard_deduction,taxable_year)) -> standard_deduction_equals(individual,basic_standard_deduction + additional_standard_deduction,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R2",
+    "statute_id": "section_63_c",
+    "supporting_span": "200 percent of the dollar amount in effect under subparagraph (C) for the taxable year in the case of- (i) a joint return, or (ii) a surviving spouse",
+    "rule": "((makes_joint_return(individual,spouse) OR is_surviving_spouse(individual)) AND base_standard_deduction_amount_equals(3000,taxable_year)) -> basic_standard_deduction_equals(individual,2*3000,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R3",
+    "statute_id": "section_63_c",
+    "supporting_span": "$4,400 in the case of a head of household",
+    "rule": "(is_head_of_household(individual)) -> basic_standard_deduction_equals(individual,4400,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R4",
+    "statute_id": "section_63_c",
+    "supporting_span": "$3,000 in any other case",
+    "rule": "(is_individual(individual) AND NOT makes_joint_return(individual,spouse) AND NOT is_surviving_spouse(individual) AND NOT is_head_of_household(individual)) -> basic_standard_deduction_equals(individual,3000,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R5",
+    "statute_id": "section_63_c",
+    "supporting_span": "the additional standard deduction is the sum of each additional amount to which the taxpayer is entitled under subsection (f).",
+    "rule": "(additional_amounts_under_63_f_equal(individual,additional_amount,taxable_year)) -> additional_standard_deduction_equals(individual,additional_amount,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R6",
+    "statute_id": "section_63_c",
+    "supporting_span": "shall not exceed the greater of- (A) $500, or (B) the sum of $250 and such individual's earned income.",
+    "rule": "(deduction_under_151_allowable_to_another_taxpayer(individual,taxable_year) AND has_earned_income(individual,earned_income)) -> basic_standard_deduction_equals(individual,max(500,250 + earned_income),taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R7",
+    "statute_id": "section_63_c",
+    "supporting_span": "a married individual filing a separate return where either spouse itemizes deductions",
+    "rule": "(is_married_individual(individual) AND files_separate_return(individual) AND spouse_itemizes_deductions(spouse,taxable_year)) -> standard_deduction_equals(individual,0,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R8",
+    "statute_id": "section_63_c",
+    "supporting_span": "a nonresident alien individual",
+    "rule": "(is_nonresident_alien(individual)) -> standard_deduction_equals(individual,0,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R9",
+    "statute_id": "section_63_c",
+    "supporting_span": "an estate or trust, common trust fund, or partnership",
+    "rule": "(is_estate_or_trust_or_common_trust_fund_or_partnership(taxpayer)) -> standard_deduction_equals(taxpayer,0,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R10",
+    "statute_id": "section_63_c",
+    "supporting_span": "taxable year beginning after December 31, 2017, and before January 1, 2026",
+    "rule": "(taxable_year_after(taxable_year,2017-12-31) AND taxable_year_before(taxable_year,2026-01-01) AND is_head_of_household(individual)) -> basic_standard_deduction_equals(individual,18000,taxable_year)"
+  },
+  {
+    "rule_id": "section_63_c_R11",
+    "statute_id": "section_63_c",
+    "supporting_span": "by substituting \"$12,000\" for \"$3,000\" in subparagraph (C)",
+    "rule": "(taxable_year_after(taxable_year,2017-12-31) AND taxable_year_before(taxable_year,2026-01-01) AND is_individual(individual) AND NOT is_head_of_household(individual) AND NOT makes_joint_return(individual,spouse) AND NOT is_surviving_spouse(individual)) -> basic_standard_deduction_equals(individual,12000,taxable_year)"
+  }
+]

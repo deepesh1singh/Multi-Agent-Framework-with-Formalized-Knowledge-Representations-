@@ -1,0 +1,26 @@
+[
+  {
+    "rule_id": "section_68_b_R1",
+    "statute_id": "section_68_b",
+    "supporting_span": "$100,000 in the case of a joint return or a surviving spouse",
+    "rule": "((makes_joint_return(individual,spouse) OR is_surviving_spouse(individual))) -> applicable_amount_equals(individual,100000,taxable_year)"
+  },
+  {
+    "rule_id": "section_68_b_R2",
+    "statute_id": "section_68_b",
+    "supporting_span": "$75,000 in the case of a head of household",
+    "rule": "(is_head_of_household(individual)) -> applicable_amount_equals(individual,75000,taxable_year)"
+  },
+  {
+    "rule_id": "section_68_b_R3",
+    "statute_id": "section_68_b",
+    "supporting_span": "$50,000 in the case of a married individual filing a separate return",
+    "rule": "(files_separate_return(individual)) -> applicable_amount_equals(individual,50000,taxable_year)"
+  },
+  {
+    "rule_id": "section_68_b_R4",
+    "statute_id": "section_68_b",
+    "supporting_span": "$75,000 in any other case",
+    "rule": "(NOT makes_joint_return(individual,spouse) AND NOT is_surviving_spouse(individual) AND NOT is_head_of_household(individual) AND NOT files_separate_return(individual)) -> applicable_amount_equals(individual,75000,taxable_year)"
+  }
+]

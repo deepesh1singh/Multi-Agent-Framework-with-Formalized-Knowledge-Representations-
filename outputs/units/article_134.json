@@ -1,0 +1,71 @@
+{
+  "unit_id": "article_134",
+  "article_number": "134",
+  "unit_label": "Article 134",
+  "title": "Article 134 Article 134  A juridical act subject to a condition precedent is void if the condition is dependent only upon the intention of the obligor.",
+  "statute_text": "Article 134 Article 134  A juridical act subject to a condition precedent is void if the condition is dependent only upon the intention of the obligor.\n(Effect of Arrival of Assigned Time)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal act performed by a party.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "ConditionPrecedent",
+      "description": "A condition that must be met before an obligation is fulfilled.",
+      "supporting_span": "condition precedent"
+    },
+    {
+      "variable_name": "Obligor",
+      "description": "The party who owes a legal obligation or performs a juridical act.",
+      "supporting_span": "obligor"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_subject_to_condition_precedent",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "ConditionPrecedent"
+      ],
+      "description": "A juridical act that is subject to a condition precedent.",
+      "supporting_span": "A juridical act subject to a condition precedent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "condition_dependent_on_obligor_intention",
+      "predicate_type": "status",
+      "arguments": [
+        "ConditionPrecedent"
+      ],
+      "description": "The condition is dependent only upon the intention of the obligor.",
+      "supporting_span": "the condition is dependent only upon the intention of the obligor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_void_due_to_obligor_intention",
+      "predicate_type": "exception",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The juridical act is void if the condition is dependent only upon the intention of the obligor.",
+      "supporting_span": "is void if the condition is dependent only upon the intention of the obligor.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_134_rule_1",
+      "conditions": [
+        "juridical_act_subject_to_condition_precedent(JuridicalAct, ConditionPrecedent)",
+        "condition_dependent_on_obligor_intention(ConditionPrecedent)"
+      ],
+      "conclusion": "juridical_act_void_due_to_obligor_intention(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act subject to a condition precedent is void if the condition is dependent only upon the intention of the obligor.",
+      "explanation": "A juridical act is considered void if it contains a condition that depends solely on the intent of the person performing the action."
+    }
+  ],
+  "warnings": []
+}

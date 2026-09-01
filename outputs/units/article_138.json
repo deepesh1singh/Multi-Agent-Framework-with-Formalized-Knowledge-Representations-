@@ -1,0 +1,91 @@
+{
+  "unit_id": "article_138",
+  "article_number": "138",
+  "unit_label": "Article 138",
+  "title": "Article 138 Article 138  The method of computation of a period of time is governed by the provisions of this Chapter unless otherwise provided in the laws and regulations or a judicial order, or unless otherwise provided for by the relevant juridical act.",
+  "statute_text": "Article 138 Article 138  The method of computation of a period of time is governed by the provisions of this Chapter unless otherwise provided in the laws and regulations or a judicial order, or unless otherwise provided for by the relevant juridical act.\n(Commencement of Period)",
+  "variables": [
+    {
+      "variable_name": "PeriodOfTime",
+      "description": "A duration of time as defined in legal contexts.",
+      "supporting_span": "period of time"
+    },
+    {
+      "variable_name": "Law",
+      "description": "Statutes or regulations governing the matter.",
+      "supporting_span": "laws and regulations"
+    },
+    {
+      "variable_name": "JudicialOrder",
+      "description": "An order issued by a court or judicial authority.",
+      "supporting_span": "judicial order"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "period_of_time_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "PeriodOfTime"
+      ],
+      "description": "A period of time as defined in legal contexts.",
+      "supporting_span": "period of time",
+      "constants": {}
+    },
+    {
+      "predicate_name": "law_governing_matter",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Law"
+      ],
+      "description": "Statutes or regulations governing the matter.",
+      "supporting_span": "laws and regulations",
+      "constants": {}
+    },
+    {
+      "predicate_name": "judicial_order_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "JudicialOrder"
+      ],
+      "description": "An order issued by a court or judicial authority.",
+      "supporting_span": "judicial order",
+      "constants": {}
+    },
+    {
+      "predicate_name": "computation_method_governed_by_law",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PeriodOfTime",
+        "Law"
+      ],
+      "description": "The method of computation of a period of time is governed by the provisions of this Chapter.",
+      "supporting_span": "method of computation of a period of time is governed by the provisions of this Chapter",
+      "constants": {}
+    },
+    {
+      "predicate_name": "computation_method_governed_by_judicial_order",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PeriodOfTime",
+        "JudicialOrder"
+      ],
+      "description": "The method of computation of a period of time is governed by a judicial order.",
+      "supporting_span": "unless otherwise provided in the laws and regulations or a judicial order",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_138_rule_1",
+      "conditions": [
+        "period_of_time_exists(PeriodOfTime)"
+      ],
+      "conclusion": "computation_method_governed_by_law(PeriodOfTime, Law)",
+      "constants": {},
+      "supporting_span": "The method of computation of a period of time is governed by the provisions of this Chapter",
+      "explanation": "The calculation method for a period of time is governed by the laws and regulations."
+    }
+  ],
+  "warnings": []
+}
