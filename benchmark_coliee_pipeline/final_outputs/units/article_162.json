@@ -1,0 +1,143 @@
+{
+  "unit_id": "article_162",
+  "article_number": "162",
+  "unit_label": "Article 162",
+  "title": "Article 162 Article 162  (1) A person that possesses the property of another for 20 years peacefully and openly with the intention to own it acquires ownership thereof.",
+  "statute_text": "Article 162 Article 162  (1) A person that possesses the property of another for 20 years peacefully and openly with the intention to own it acquires ownership thereof.\n(2) A person that possesses the property of another for 10 years peacefully and openly with an intention to own it acquires ownership thereof if the person was acting in good faith and was not negligent at the time when the possession started.\n(Acquisitive Prescription of Property Rights Other Than Ownership)",
+  "variables": [
+    {
+      "variable_name": "Person",
+      "description": "A person who possesses property.",
+      "supporting_span": "A person"
+    },
+    {
+      "variable_name": "Property",
+      "description": "The property being possessed and potentially acquired by ownership.",
+      "supporting_span": "property"
+    },
+    {
+      "variable_name": "PossessionPeriod",
+      "description": "The duration of possession for the purpose of acquiring ownership.",
+      "supporting_span": "20 years"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "person_possesses_property",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "Property"
+      ],
+      "description": "A person possesses the property.",
+      "supporting_span": "A person that possesses the property",
+      "constants": {}
+    },
+    {
+      "predicate_name": "possession_period_duration",
+      "predicate_type": "datatype",
+      "arguments": [
+        "PossessionPeriod",
+        "integer"
+      ],
+      "description": "The duration of possession for acquisitive prescription.",
+      "supporting_span": "20 years",
+      "constants": {
+        "years": 20
+      }
+    },
+    {
+      "predicate_name": "peacefully_and_openly_possessed",
+      "predicate_type": "status",
+      "arguments": [
+        "Property"
+      ],
+      "description": "Possession is peaceful and open.",
+      "supporting_span": "peacefully and openly",
+      "constants": {}
+    },
+    {
+      "predicate_name": "intention_to_own_property",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "The person has the intention to own the property.",
+      "supporting_span": "with the intention to own it",
+      "constants": {}
+    },
+    {
+      "predicate_name": "acquires_ownership_of_property",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "Property"
+      ],
+      "description": "A person acquires ownership of the property.",
+      "supporting_span": "acquires ownership thereof",
+      "constants": {}
+    },
+    {
+      "predicate_name": "possession_period_short_term",
+      "predicate_type": "datatype",
+      "arguments": [
+        "PossessionPeriod",
+        "integer"
+      ],
+      "description": "The duration of possession for good faith cases.",
+      "supporting_span": "10 years",
+      "constants": {
+        "years": 10
+      }
+    },
+    {
+      "predicate_name": "good_faith_action",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "The person acted in good faith.",
+      "supporting_span": "acting in good faith",
+      "constants": {}
+    },
+    {
+      "predicate_name": "not_negligent_at_start",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "The person was not negligent at the time when possession started.",
+      "supporting_span": "was not negligent at the time when the possession started",
+      "constants": {}
+    },
+    {
+      "predicate_name": "good_faith_acquisition_of_ownership",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "Property"
+      ],
+      "description": "Acquisition of ownership through good faith and shorter period.",
+      "supporting_span": "acquires ownership thereof if the person was acting in good faith and was not negligent at the time when the possession started",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_162_rule_1",
+      "conditions": [
+        "person_possesses_property(Person, Property)",
+        "possession_period_duration(PossessionPeriod, integer)",
+        "peacefully_and_openly_possessed(Property)",
+        "intention_to_own_property(Person)"
+      ],
+      "conclusion": "acquires_ownership_of_property(Person, Property)",
+      "constants": {
+        "years": 20
+      },
+      "supporting_span": "A person that possesses the property of another for 20 years peacefully and openly with the intention to own it acquires ownership thereof.",
+      "explanation": "Acquisition of ownership through long-term peaceful and open possession with intent."
+    }
+  ],
+  "warnings": []
+}

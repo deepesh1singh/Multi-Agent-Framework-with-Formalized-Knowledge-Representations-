@@ -1,0 +1,66 @@
+{
+  "unit_id": "article_22",
+  "article_number": "22",
+  "unit_label": "Article 22",
+  "title": "Article 22 Article 22  A person's principal place of daily activity is that person's domicile.",
+  "statute_text": "Article 22 Article 22  A person's principal place of daily activity is that person's domicile.\n(Residence)",
+  "variables": [
+    {
+      "variable_name": "Person",
+      "description": "An individual or entity performing a legal act.",
+      "supporting_span": "A person's"
+    },
+    {
+      "variable_name": "PrincipalPlaceOfDailyActivity",
+      "description": "The primary location where an individual performs daily activities.",
+      "supporting_span": "principal place of daily activity"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "person_has_principal_place_of_daily_activity",
+      "predicate_type": "status",
+      "arguments": [
+        "Person",
+        "PrincipalPlaceOfDailyActivity"
+      ],
+      "description": "A person's primary location for daily activities.",
+      "supporting_span": "A person's principal place of daily activity",
+      "constants": {}
+    },
+    {
+      "predicate_name": "domicile_definition",
+      "predicate_type": "definition",
+      "arguments": [
+        "Domicile"
+      ],
+      "description": "The legal definition of a domicile.",
+      "supporting_span": "is that person's domicile.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "principal_place_of_daily_activity_is_domicile",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "PrincipalPlaceOfDailyActivity"
+      ],
+      "description": "The relationship between a person's principal place of daily activity and their domicile.",
+      "supporting_span": "A person's principal place of daily activity is that person's domicile.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_22_rule_1",
+      "conditions": [
+        "person_has_principal_place_of_daily_activity(Person, PrincipalPlaceOfDailyActivity)"
+      ],
+      "conclusion": "principal_place_of_daily_activity_is_domicile(Person, PrincipalPlaceOfDailyActivity)",
+      "constants": {},
+      "supporting_span": "A person's principal place of daily activity is that person's domicile.",
+      "explanation": "Defines the legal status of a person's primary location as their domicile."
+    }
+  ],
+  "warnings": []
+}

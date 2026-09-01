@@ -1,0 +1,60 @@
+{
+  "unit_id": "article_144",
+  "article_number": "144",
+  "unit_label": "Article 144",
+  "title": "Article 144 Article 144  The prescription is retroactive to the commencement day.",
+  "statute_text": "Article 144 Article 144  The prescription is retroactive to the commencement day.\n(Invocation of Prescription)",
+  "variables": [
+    {
+      "variable_name": "Prescription",
+      "description": "The legal period during which a right or action may be lost.",
+      "supporting_span": "The prescription"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "prescription_period_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Prescription"
+      ],
+      "description": "The existence of a prescription period.",
+      "supporting_span": "The prescription",
+      "constants": {}
+    },
+    {
+      "predicate_name": "commencement_day_defined",
+      "predicate_type": "definition",
+      "arguments": [
+        "CommencementDay"
+      ],
+      "description": "The date on which the prescription period begins.",
+      "supporting_span": "the commencement day",
+      "constants": {}
+    },
+    {
+      "predicate_name": "prescription_retroactive_to_commencement_day",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Prescription",
+        "CommencementDay"
+      ],
+      "description": "The retroactive nature of the prescription to the commencement day.",
+      "supporting_span": "The prescription is retroactive to the commencement day.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_144_rule_1",
+      "conditions": [
+        "prescription_period_exists(Prescription)"
+      ],
+      "conclusion": "prescription_retroactive_to_commencement_day(Prescription, CommencementDay)",
+      "constants": {},
+      "supporting_span": "The prescription is retroactive to the commencement day.",
+      "explanation": "The rule establishes that the prescription period is retroactively applied starting from the defined commencement date."
+    }
+  ],
+  "warnings": []
+}

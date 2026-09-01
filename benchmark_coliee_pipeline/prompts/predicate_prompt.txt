@@ -1,0 +1,182 @@
+CRITICAL OUTPUT RULES:
+You must output JSON only.
+Do not explain.
+Do not reason aloud.
+Do not include thoughts, notes, markdown, or comments.
+Do not include fields outside the schema.
+No duplicate keys.
+No trailing commas.
+If unsure, return fewer predicates, but keep JSON valid.
+For every legal command, create separate input predicates and outcome predicates. Do not create only one combined predicate, because that causes tautological rules.
+
+You are building SOLAR-inspired predicates/properties for a legal benchmark.
+
+You are given:
+1. Statute text
+2. Approved VARIABLES extracted from that statute
+
+Your task is to extract predicates that describe legal facts, statuses, relationships, definitions, exceptions, cross-references, and raw measurable values.
+
+A predicate must be a reusable logical relation that can later be used inside rules.
+VERY IMPORTANT FOR RULE GENERATION:
+For each legal statement, create BOTH:
+1. input/trigger predicates, and
+2. legal outcome predicates.
+
+Do NOT create only outcome predicates.
+
+If the statute says "Private rights must be congruent with public welfare", create:
+- private_right_exists(PrivateRight)
+- public_welfare_exists(PublicWelfare)
+- private_right_must_be_congruent_with_public_welfare(PrivateRight, PublicWelfare)
+
+If the statute says "If a person did not have mental capacity, the juridical act is void", create:
+- juridical_act_made_by_person(JuridicalAct, Person)
+- lacks_mental_capacity(Person)
+- juridical_act_void(JuridicalAct)
+
+Rules need separate condition predicates and conclusion predicates.
+
+For COLIEE civil-code statutes, prefer predicates about:
+- persons
+- juridical acts
+- intention
+- mental capacity
+- rights
+- duties
+- good faith
+- abuse of rights
+- contracts
+- obligations
+- property
+- guardians/agents
+- consent
+- validity/voidness/cancellation
+
+Predicate arguments must use ONLY:
+- approved variable_name values from VARIABLES
+- primitive literal types: integer, decimal, date, string, boolean
+
+Prefer predicates that connect legal outcomes to the legal actor or subject.
+
+Bad:
+has_excise_tax(ExciseTax)
+
+Good:
+excise_tax_imposed_on(Employer, ExciseTax)
+
+Bad:
+has_total_wages(TotalWages)
+
+Good:
+wages_paid_by_employer(Employer, TotalWages)
+
+Do NOT use a variable that is not present in VARIABLES.
+Do NOT invent new variables inside predicates.
+If a needed variable is missing, use primitive type string instead of inventing a new variable.
+
+Allowed predicate types:
+- status
+- relationship
+- datatype
+- definition
+- cross_reference
+- exception
+
+Good COLIEE predicates:
+- private_right(Right)
+- public_welfare_standard(PublicWelfare)
+- right_congruent_with_public_welfare(Right, PublicWelfare)
+- exercise_done_in_good_faith(RightOrDuty)
+- abuse_of_right(Right)
+- abuse_of_right_not_permitted(Right)
+- juridical_act_made_by(Person, JuridicalAct)
+- has_mental_capacity(Person)
+- intention_manifested_by(Person, Intention)
+- juridical_act_void(JuridicalAct)
+- person_is_minor(Person)
+- consent_given_by_legal_representative(Person, LegalRepresentative)
+
+Bad predicates:
+- is_income_over_36900
+- tax_calculation_bracket_1
+- calculate_tax_rate_28
+- meets_wage_threshold
+- is_tax_amount_5535
+
+If the statute contains a legal command such as "must", "must not", "is void", "may cancel", "is not permitted", create a predicate for the legal outcome/status, not only the input condition.
+
+Bad:
+private_right_congruent_with_welfare(Right, PublicWelfare)
+
+Good:
+private_right(Right)
+public_welfare_standard(PublicWelfare)
+must_be_congruent_with_public_welfare(Right, PublicWelfare)
+
+Do NOT create predicates for threshold judgments.
+Do NOT create predicates like is_income_over_36900, meets_threshold, qualifies_for_bracket.
+Do NOT create calculation predicates like calculate_tax_rate_15.
+Thresholds, rates, formulas, and bracket logic belong in RULES, not predicates.
+Legal outcome predicates should usually include the legal subject, not only the outcome variable.
+
+Every predicate must be directly supported by the statute text.
+
+Every predicate must contain:
+- predicate_name
+- predicate_type
+- arguments
+- description
+- supporting_span
+- constants
+
+supporting_span must be an exact excerpt from the statute.
+supporting_span must be copied exactly from STATUTE with no changes, no correction, no paraphrasing.
+
+For direct entitlement or commencement statements, create separate trigger predicates.
+
+Example:
+Text: "The enjoyment of private rights commences at birth."
+Create:
+- private_right_exists(PrivateRight)
+- birth_event(Birth)
+- private_right_commences_at_birth(PrivateRight, Birth)
+
+Text: "foreign nationals enjoy private rights."
+Create:
+- foreign_national_status(ForeignNational)
+- private_right_exists(PrivateRight)
+- foreign_national_enjoys_private_rights(ForeignNational, PrivateRight)
+
+For definition statutes with numeric constants, always create at least:
+- one input/status predicate
+- one definition predicate with constants
+
+Example:
+Text: "The age of majority is 20 years of age."
+Create:
+- person_age(Person, integer)
+- age_of_majority_defined(AgeOfMajority)
+- reaches_age_of_majority(Person, AgeOfMajority)
+constants: {"age": 20, "unit": "years"}
+
+Return ONLY JSON:
+{
+  "unit_id": "{{unit_id}}",
+  "predicates": [
+    {
+      "predicate_name": "snake_case_name",
+      "predicate_type": "status|relationship|datatype|definition|cross_reference|exception",
+      "arguments": ["VariableName", "decimal"],
+      "description": "Short precise description.",
+      "supporting_span": "exact statute text",
+      "constants": {}
+    }
+  ]
+}
+
+VARIABLES:
+{{variables_json}}
+
+STATUTE:
+{{statute_text}}

@@ -1,0 +1,154 @@
+{
+  "unit_id": "article_125",
+  "article_number": "125",
+  "unit_label": "Article 125",
+  "title": "Article 125 Article 125  If, at or after the time when it becomes possible to ratify an act, any of the following facts occur with respect to a voidable act, it is deemed that the act has been ratified; provided, however, that this does not apply if an objection is reserved:",
+  "statute_text": "Article 125 Article 125  If, at or after the time when it becomes possible to ratify an act, any of the following facts occur with respect to a voidable act, it is deemed that the act has been ratified; provided, however, that this does not apply if an objection is reserved:\n(i) full or partial performance;\n(ii) request for the performance;\n(iii) novation;\n(iv) provision of a security;\n(v) assignment of a part of or the whole of a right acquired by the voidable act; or\n(vi) compulsory execution.\n(Limitation on Period of Right to Rescind)",
+  "variables": [
+    {
+      "variable_name": "VoidableAct",
+      "description": "An act that is capable of being ratified or rescinded.",
+      "supporting_span": "voidable act"
+    },
+    {
+      "variable_name": "RatificationTime",
+      "description": "The point in time at which it becomes possible to ratify an act.",
+      "supporting_span": "time when it becomes possible to ratify an act"
+    },
+    {
+      "variable_name": "Ratification",
+      "description": "The legal status of an act being ratified.",
+      "supporting_span": "ratified"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "ratification_time_reached",
+      "predicate_type": "status",
+      "arguments": [
+        "RatificationTime"
+      ],
+      "description": "The point in time at which it becomes possible to ratify an act.",
+      "supporting_span": "at or after the time when it becomes possible to ratify an act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "voidable_act_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "A voidable act that may be ratified or rescinded.",
+      "supporting_span": "voidable act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "full_or_partial_performance_occurred",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Full or partial performance of a voidable act.",
+      "supporting_span": "full or partial performance",
+      "constants": {}
+    },
+    {
+      "predicate_name": "request_for_performance_occurred",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "A request for the performance of a voidable act.",
+      "supporting_span": "request for the performance",
+      "constants": {}
+    },
+    {
+      "predicate_name": "novation_occurred",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Novation of a voidable act.",
+      "supporting_span": "novation",
+      "constants": {}
+    },
+    {
+      "predicate_name": "security_provided_for_act",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Provision of a security for a voidable act.",
+      "supporting_span": "provision of a security",
+      "constants": {}
+    },
+    {
+      "predicate_name": "right_assigned_by_voidable_act",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Assignment of part or all of a right acquired by the voidable act.",
+      "supporting_span": "assignment of a part of or the whole of a right acquired by the voidable act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "compulsory_execution_occurred",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Compulsory execution of a voidable act.",
+      "supporting_span": "compulsory execution",
+      "constants": {}
+    },
+    {
+      "predicate_name": "act_deemed_ratified",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "The act is deemed to have been ratified.",
+      "supporting_span": "it is deemed that the act has been ratified",
+      "constants": {}
+    },
+    {
+      "predicate_name": "objection_reserved_status",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidableAct"
+      ],
+      "description": "Whether an objection was reserved regarding a voidable act.",
+      "supporting_span": "an objection is reserved",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_125_rule_1",
+      "conditions": [
+        "voidable_act_exists(VoidableAct)",
+        "ratification_time_reached(RatificationTime)",
+        "(full_or_partial_performance_occurred(VoidableAct) OR request_for_performance_occurred(VoidableAct) OR novation_occurred(VoidableAct) OR security_provided_for_act(VoidableAct) OR right_assigned_by_voidable_act(VoidableAct) OR compulsory_execution_occurred(VoidableAct))"
+      ],
+      "conclusion": "act_deemed_ratified(VoidableAct)",
+      "constants": {},
+      "supporting_span": "If, at or after the time when it becomes possible to ratify an act, any of the following facts occur with respect to a voidable act, it is deemed that the act has been ratified; provided, however, that this does not apply if an objection is reserved:",
+      "explanation": "A voidable act is deemed ratified if certain conditions (performance, request, novation, security, assignment, or compulsory execution) occur after the ratification time is reached and no objection is reserved."
+    },
+    {
+      "rule_id": "article_125_rule_2",
+      "conditions": [
+        "voidable_act_exists(VoidableAct)",
+        "ratification_time_reached(RatificationTime)",
+        "(full_or_partial_performance_occurred(VoidableAct) OR request_for_performance_occurred(VoidableAct) OR novation_occurred(VoidableAct) OR security_provided_for_act(VoidableAct) OR right_assigned_by_voidable_act(VoidableAct) OR compulsory_execution_occurred(VoidableAct))",
+        "objection_reserved_status(VoidableAct)"
+      ],
+      "conclusion": "NOT act_deemed_ratified(VoidableAct)",
+      "constants": {},
+      "supporting_span": "provided, however, that this does not apply if an objection is reserved:",
+      "explanation": "If an objection is reserved, the act is not deemed ratified even if other conditions are met."
+    }
+  ],
+  "warnings": []
+}

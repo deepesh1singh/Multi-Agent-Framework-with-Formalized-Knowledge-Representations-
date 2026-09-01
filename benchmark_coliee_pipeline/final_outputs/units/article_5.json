@@ -1,0 +1,169 @@
+{
+  "unit_id": "article_5",
+  "article_number": "5",
+  "unit_label": "Article 5",
+  "title": "Article 5 Article 5  (1) A minor must obtain the consent of the minor's legal representative to perform a juridical act; provided, however, that this does not apply to a juridical act for merely acquiring a right or being released from an obligation.",
+  "statute_text": "Article 5 Article 5  (1) A minor must obtain the consent of the minor's legal representative to perform a juridical act; provided, however, that this does not apply to a juridical act for merely acquiring a right or being released from an obligation.\n(2) A juridical act in contravention of the provisions of the preceding paragraph is voidable.\n(3) Notwithstanding the provisions of paragraph (1), a minor may freely dispose of property that the legal representative has permitted the minor to dispose of for a specified purpose, to an extent that falls within the scope of that purpose. The same applies if the minor disposes of property that the legal representative has permitted the minor to dispose of without specifying a purpose.\n(Permission for Minors to Conduct Business)",
+  "variables": [
+    {
+      "variable_name": "Minor",
+      "description": "A person under the age of majority.",
+      "supporting_span": "minor"
+    },
+    {
+      "variable_name": "LegalRepresentative",
+      "description": "The legal representative of a minor.",
+      "supporting_span": "legal representative"
+    },
+    {
+      "variable_name": "JuridicalAct",
+      "description": "An act involving legal rights or obligations.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "RightAcquisition",
+      "description": "A juridical act for merely acquiring a right.",
+      "supporting_span": "juridical act for merely acquiring a right"
+    },
+    {
+      "variable_name": "ObligationRelease",
+      "description": "Being released from an obligation.",
+      "supporting_span": "being released from an obligation"
+    },
+    {
+      "variable_name": "VoidableAct",
+      "description": "An act that is voidable due to lack of consent.",
+      "supporting_span": "voidable"
+    },
+    {
+      "variable_name": "PermittedProperty",
+      "description": "Property the legal representative has permitted the minor to dispose of.",
+      "supporting_span": "property that the legal representative has permitted the minor to dispose of"
+    },
+    {
+      "variable_name": "SpecifiedPurpose",
+      "description": "A purpose for which a minor is allowed to disposition of property.",
+      "supporting_span": "specified purpose"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "minor_performing_juridical_act",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Minor",
+        "JuridicalAct"
+      ],
+      "description": "A minor performing a juridical act.",
+      "supporting_span": "A minor must obtain the consent of the minor's legal representative to perform a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "consent_given_by_legal_representative",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Minor",
+        "LegalRepresentative"
+      ],
+      "description": "Consent given by the legal representative for the minor to perform a juridical act.",
+      "supporting_span": "A minor must obtain the consent of the minor's legal representative to perform a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "right_acquisition_act",
+      "predicate_type": "definition",
+      "arguments": [
+        "RightAcquisition"
+      ],
+      "description": "A juridical act for merely acquiring a right.",
+      "supporting_span": "juridical act for merely acquiring a right",
+      "constants": {}
+    },
+    {
+      "predicate_name": "obligation_release_act",
+      "predicate_type": "definition",
+      "arguments": [
+        "ObligationRelease"
+      ],
+      "description": "Being released from an obligation.",
+      "supporting_span": "being released from an obligation",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_voidable",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act that is voidable due to lack of consent.",
+      "supporting_span": "A juridical act in contravention of the provisions of the preceding paragraph is voidable.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "permitted_property_disposition",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PermittedProperty"
+      ],
+      "description": "Disposition of property permitted by a legal representative.",
+      "supporting_span": "a minor may freely dispose of property that the legal representative has permitted the minor to dispose of for a specified purpose, to an extent that falls within the scope of that purpose.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "permitted_property_without_purpose",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PermittedProperty"
+      ],
+      "description": "Disposition of property permitted by legal representative without specifying a purpose.",
+      "supporting_span": "The same applies if the minor disposes of property that the legal representative has permitted the minor to dispose of without specifying a purpose.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "property_disposition_within_scope",
+      "predicate_type": "status",
+      "arguments": [
+        "PermittedProperty",
+        "SpecifiedPurpose"
+      ],
+      "description": "Disposition of property within the scope of a specified purpose.",
+      "supporting_span": "to an extent that falls within the scope of that purpose.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_5_rule_1",
+      "conditions": [
+        "minor_performing_juridical_act(Minor, JuridicalAct)",
+        "NOT right_acquisition_act(RightAcquisition)",
+        "NOT obligation_release_act(ObligationRelease)"
+      ],
+      "conclusion": "consent_given_by_legal_representative(Minor, LegalRepresentative)",
+      "constants": {},
+      "supporting_span": "A minor must obtain the consent of the minor's legal representative to perform a juridical act; provided, however, that this does not apply to a juridical act for merely acquiring a right or being released from an obligation.",
+      "explanation": "A minor needs consent from their legal representative for most acts, except those involving only gaining rights or being freed from obligations."
+    },
+    {
+      "rule_id": "article_5_rule_3",
+      "conditions": [
+        "minor_performing_juridical_act(Minor, JuridicalAct)"
+      ],
+      "conclusion": "juridical_act_voidable(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act in contravention of the provisions of the preceding paragraph is voidable.",
+      "explanation": "Acts performed by minors without required consent are voidable."
+    },
+    {
+      "rule_id": "article_5_rule_5",
+      "conditions": [
+        "permitted_property_without_purpose(PermittedProperty)"
+      ],
+      "conclusion": "permitted_property_disposition(PermittedProperty)",
+      "constants": {},
+      "supporting_span": "The same applies if the minor disposes of property that the legal representative has permitted the minor to dispose of without specifying a purpose.",
+      "explanation": "A minor can freely dispose of property even if no specific purpose was stated, provided it was permitted by the legal representative."
+    }
+  ],
+  "warnings": []
+}

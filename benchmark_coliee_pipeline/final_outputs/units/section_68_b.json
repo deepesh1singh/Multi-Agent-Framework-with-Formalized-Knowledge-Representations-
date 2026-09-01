@@ -1,0 +1,160 @@
+{
+  "unit_id": "section_68_b",
+  "section_id": "section_68",
+  "unit_label": "68(b)",
+  "statute_text": "\u00a768. Overall limitation on itemized deductions\n\n(b) Applicable amount\n\n(1) In general\n\nFor purposes of this section, the term \"applicable amount\" means-\n\n(A) $300,000 in the case of a joint return or a surviving spouse (as defined in section 2(a)),\n\n(B) $275,000 in the case of a head of household (as defined in section 2(b)),\n\n(C) $250,000 in the case of an individual who is not married and who is not a surviving spouse or head of household, and\n\n(D) 1/2 the amount applicable under subparagraph (A) in the case of a married individual filing a separate return.\n\nFor purposes of this paragraph, marital status shall be determined under section 7703.",
+  "variables": [
+    {
+      "variable_name": "ApplicableAmount",
+      "description": "The total amount allowed for itemized deductions based on filing status.",
+      "supporting_span": "the term \"applicable amount\""
+    },
+    {
+      "variable_name": "JointReturn",
+      "description": "A tax return filed jointly by a married couple.",
+      "supporting_span": "joint return"
+    },
+    {
+      "variable_name": "SurvivingSpouse",
+      "description": "A spouse who is the sole survivor of their deceased spouse.",
+      "supporting_span": "surviving spouse (as defined in section 2(a))"
+    },
+    {
+      "variable_name": "HeadOfHousehold",
+      "description": "A filing status for a single person with dependents.",
+      "supporting_span": "head of household (as defined in section 2(b))"
+    },
+    {
+      "variable_name": "MarriedIndividualFilingSeparateReturn",
+      "description": "An individual who is married but files a separate tax return.",
+      "supporting_span": "married individual filing a separate return"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "applicable_amount_for_joint_return",
+      "predicate_type": "definition",
+      "arguments": [
+        "ApplicableAmount",
+        "JointReturn"
+      ],
+      "description": "The applicable amount for a joint return or surviving spouse.",
+      "supporting_span": "$300,000 in the case of a joint statement or a surviving spouse (as defined in section 2(a))",
+      "constants": {}
+    },
+    {
+      "predicate_name": "applicable_amount_for_head_of_household",
+      "predicate_type": "definition",
+      "arguments": [
+        "ApplicableAmount",
+        "HeadOfHousehold"
+      ],
+      "description": "The applicable amount for a head of household.",
+      "supporting_span": "$275,000 in the case of a head of household (as defined in section 2(b))",
+      "constants": {}
+    },
+    {
+      "predicate_name": "applicable_amount_for_single_individual",
+      "predicate_type": "definition",
+      "arguments": [
+        "ApplicableAmount"
+      ],
+      "description": "The applicable amount for an individual who is not married and who is not a surviving spouse or head of household.",
+      "supporting_span": "$250,000 in the case of an individual who is not married and who is not a surviving spouse or head of household,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "applicable_amount_for_married_separate_return",
+      "predicate_type": "definition",
+      "arguments": [
+        "ApplicableAmount",
+        "MarriedIndividualFilingSeparateReturn"
+      ],
+      "description": "The applicable amount for a married individual filing a separate return.",
+      "supporting_span": "1/2 the amount applicable under subparagraph (A) in the case of a married individual filing a separate return.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_68_b_1_a",
+      "conditions": [
+        "applicable_amount_for_joint_return(ApplicableAmount, JointReturn)"
+      ],
+      "conclusion": "applicable_amount_for_joint_return(ApplicableAmount, JointReturn)",
+      "constants": {},
+      "supporting_span": "$300,000 in the case of a joint return or a surviving spouse (as defined in section 2(a))",
+      "explanation": "Defines the applicable amount for a joint return or a surviving spouse as $300,000."
+    },
+    {
+      "rule_id": "section_68_b_1_b",
+      "conditions": [
+        "applicable_amount_for_head_of_household(ApplicableAmount, HeadOfHousehold)"
+      ],
+      "conclusion": "applicable_amount_for_head_of_household(ApplicableAmount, HeadOfHousehold)",
+      "constants": {},
+      "supporting_span": "$275,000 in the case of a head of household (as defined in section 1.b)",
+      "explanation": "Defines the applicable amount for a head of household as $275,000."
+    },
+    {
+      "rule_id": "section_68_b_1_c",
+      "conditions": [
+        "applicable_amount_for_single_individual(ApplicableAmount)"
+      ],
+      "conclusion": "applicable_amount_for_single_individual(ApplicableAmount)",
+      "constants": {},
+      "supporting_span": "$250,000 in the case of an individual who is not married and who is not a surviving spouse or head of household,",
+      "explanation": "Defines the applicable amount for an individual who is not married and who is not a surviving spouse or head of household as $250,000."
+    },
+    {
+      "rule_id": "section_68_b_1_d",
+      "conditions": [
+        "applicable_amount_for_married_separate_return(ApplicableAmount, MarriedIndividualFilingSeparateReturn)"
+      ],
+      "conclusion": "applicable_amount_for_married_separate_return(ApplicableAmount, MarriedIndividualFilingSeparateReturn)",
+      "constants": {},
+      "supporting_span": "1/2 the amount applicable under subparagraph (A) in the case of a married individual filing a separate return.",
+      "explanation": "Defines the applicable amount for a married individual filing a separate return as 1/2 the amount applicable under subparagraph (A)."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_68_b",
+      "rule_id": "section_68_b_1_a",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "applicable_amount_for_joint_return(ApplicableAmount, JointReturn)"
+    },
+    {
+      "unit_id": "section_68_b",
+      "rule_id": "section_68_b_1_b",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "applicable_amount_for_head_of_household(ApplicableAmount, HeadOfHousehold)"
+    },
+    {
+      "unit_id": "section_68_b",
+      "rule_id": "section_68_b_1_c",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "applicable_amount_for_single_individual(ApplicableAmount)"
+    },
+    {
+      "unit_id": "section_68_b",
+      "rule_id": "section_68_b_1_d",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "applicable_amount_for_married_separate_return(ApplicableAmount, MarriedIndividualFilingSeparateReturn)"
+    },
+    {
+      "unit_id": "section_68_b",
+      "stage": "predicates",
+      "index": 0,
+      "supporting_span": "$300,000 in the case of a joint statement or a surviving spouse (as defined in section 2(a))",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_68_b",
+      "stage": "rules",
+      "index": 1,
+      "supporting_span": "$275,000 in the case of a head of household (as defined in section 1.b)",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

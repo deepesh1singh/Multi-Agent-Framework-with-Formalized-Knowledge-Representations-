@@ -1,0 +1,158 @@
+CRITICAL OUTPUT RULES:
+You must output JSON only.
+Do not explain.
+Do not reason aloud.
+Do not include thoughts, notes, markdown, or comments.
+Do not include fields outside the schema.
+No duplicate keys.
+No trailing commas.
+If unsure, return fewer rules, but keep JSON valid.
+
+You are building SOLAR-inspired legal rules for a COLIEE civil-code benchmark dataset.
+
+You are given:
+1. Statute text
+2. Approved VARIABLES
+3. Approved PREDICATES
+
+Your task is to extract legal rules from the statute.
+
+Rules must use ONLY approved predicate_name values from PREDICATES.
+Do NOT invent new predicates.
+Do NOT invent new variables.
+Do NOT copy example predicates into the output.
+Do NOT use predicates from examples unless they appear in the APPROVED PREDICATES list.
+If the statute is a direct rule like "private rights commence at birth", use an input predicate from the same statute, not juridical_act_made_by_person.
+Never return a "thought" key.
+Never return tool markers like <|tool_response>.
+If you cannot find many predicates, still return the required schema with at least one predicate.
+
+IMPORTANT RULE FORMAT:
+Use "conditions" as a list of strings.
+The conditions array represents logical AND.
+Each string inside conditions is one required condition.
+
+Use NOT like this:
+"NOT has_mental_capacity(Person)"
+
+Use OR like this:
+"(person_is_minor(Person) OR person_is_adult_ward(Person))"
+
+Do NOT use condition_logic.
+Do NOT output nested JSON logic.
+Do NOT write AND inside one condition string.
+Use separate strings for AND conditions.
+
+GOOD:
+"conditions": [
+  "juridical_act_made_by_person(JuridicalAct, Person)",
+  "NOT has_mental_capacity(Person)"
+]
+
+GOOD:
+"conditions": [
+  "(person_is_minor(Person) OR person_is_adult_ward(Person))",
+  "juridical_act_made_by_person(JuridicalAct, Person)"
+]
+
+BAD:
+"conditions": [
+  "A(X) AND B(X)"
+]
+
+BAD:
+"condition_logic": {
+  "AND": []
+}
+
+IMPORTANT VARIABLE BINDING RULE:
+The conclusion should share at least one symbolic argument with the conditions.
+Every symbolic argument in the conclusion should preferably appear in the conditions.
+Numeric constants like 0.06, 36900, true, false are allowed.
+
+Thresholds, constants, rates, limits, exceptions, and formulas belong in rules.
+
+Rules SHOULD capture:
+- eligibility conditions
+- definitions
+- exceptions
+- exclusions
+- threshold logic
+- numeric limits
+- rate formulas
+- calculation formulas
+- legal consequences
+- permissions
+- prohibitions
+- voidness
+- cancellation
+- validity
+
+Do NOT create tautological rules:
+- P -> P
+- same predicate in condition and conclusion with no legal transformation
+
+For legal commands like "must", "must not", "is void", "may cancel", "is not permitted":
+- conditions should represent the subject or triggering situation
+- conclusion should represent the legal consequence
+
+Bad:
+"conditions": ["juridical_act_void(JuridicalAct)"]
+"conclusion": "juridical_act_void(JuridicalAct)"
+
+Good:
+"conditions": [
+  "juridical_act_made_by_person(JuridicalAct, Person)",
+  "NOT has_mental_capacity(Person)"
+]
+"conclusion": "juridical_act_void(JuridicalAct)"
+
+Bad:
+"conditions": ["private_right_congruent_with_public_welfare(PrivateRight, PublicWelfare)"]
+"conclusion": "private_right_congruent_with_public_welfare(PrivateRight, PublicWelfare)"
+
+Good:
+"conditions": ["private_right_exists(PrivateRight)"]
+"conclusion": "private_right_must_be_congruent_with_public_welfare(PrivateRight, PublicWelfare)"
+
+Each rule must contain:
+- rule_id
+- conditions
+- conclusion
+- constants
+- supporting_span
+- explanation
+
+conditions must be a list of predicate/logical expression strings.
+conclusion must be one approved predicate expression or calculation expression using approved predicates.
+supporting_span must be an exact excerpt from the statute.
+supporting_span must be copied exactly from STATUTE with no changes, no correction, no paraphrasing.
+constants must include every numeric threshold, amount, percentage, rate, or formula value used in the rule.
+
+Return ONLY JSON:
+{
+  "unit_id": "{{unit_id}}",
+  "rules": [
+    {
+      "rule_id": "{{unit_id}}_rule_1",
+      "conditions": [
+        "approved_predicate_name(X, Y)",
+        "NOT approved_predicate_name(X)",
+        "(approved_predicate_name(X) OR approved_predicate_name(Y))"
+      ],
+      "conclusion": "approved_predicate_name(X, Y)",
+      "constants": {},
+      "supporting_span": "exact statute text",
+      "explanation": "Short explanation of the legal rule."
+    }
+  ]
+}
+
+VARIABLES:
+{{variables_json}}
+
+PREDICATES:
+{{predicates_json}}
+
+STATUTE:
+{{statute_text}}

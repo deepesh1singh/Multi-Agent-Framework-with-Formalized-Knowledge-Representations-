@@ -1,0 +1,134 @@
+{
+  "unit_id": "section_63_b",
+  "section_id": "section_63",
+  "unit_label": "63(b)",
+  "statute_text": "\u00a763. Taxable income defined\n\n(b) Individuals who do not itemize their deductions\n\nIn the case of an individual who does not elect to itemize his deductions for the taxable year, for purposes of this subtitle, the term \"taxable income\" means adjusted gross income, minus-\n\n(1) the standard deduction, and\n\n(2) the deduction for personal exemptions provided in section 151.",
+  "variables": [
+    {
+      "variable_name": "Individual",
+      "description": "A person who is subject to tax rules.",
+      "supporting_span": "Individuals"
+    },
+    {
+      "variable_name": "TaxableIncome",
+      "description": "The amount of income that is subject to taxation.",
+      "supporting_span": "\"taxable income\""
+    },
+    {
+      "variable_name": "AdjustedGrossIncome",
+      "description": "The gross income adjusted for certain deductions or exclusions.",
+      "supporting_span": "adjusted gross income"
+    },
+    {
+      "variable_name": "StandardDeduction",
+      "description": "A fixed amount deducted from the adjusted gross income to determine taxable income.",
+      "supporting_span": "the standard deduction"
+    },
+    {
+      "variable_name": "PersonalExemption",
+      "description": "An exemption for personal expenses or dependents.",
+      "supporting_span": "deduction for personal exemptions"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "is_individual_non_itemizer",
+      "predicate_type": "status",
+      "arguments": [
+        "Individual"
+      ],
+      "description": "An individual who does not elect to itemize their deductions.",
+      "supporting_span": "Individuals who do not itemize their deductions",
+      "constants": {}
+    },
+    {
+      "predicate_name": "taxable_income_definition_for_non_itemizer",
+      "predicate_type": "definition",
+      "arguments": [
+        "TaxableIncome"
+      ],
+      "description": "The definition of taxable income for an individual who does not itemize.",
+      "supporting_span": "the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_standard_deduction",
+      "predicate_type": "datatype",
+      "arguments": [
+        "StandardDeduction"
+      ],
+      "description": "The amount of the standard deduction.",
+      "supporting_span": "the standard deduction",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_personal_exemption",
+      "predicate_type": "datatype",
+      "arguments": [
+        "PersonalExemption"
+      ],
+      "description": "The deduction for personal exemptions provided in section 151.",
+      "supporting_span": "the deduction for personal exemptions provided in section 151.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "cross_reference_section_151",
+      "predicate_type": "cross_reference",
+      "arguments": [
+        "PersonalExemption"
+      ],
+      "description": "Reference to section 151 regarding personal exemptions.",
+      "supporting_span": "provided in section 151",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_63_b_rule_1",
+      "conditions": [
+        "is_individual_non_itemizer(Individual)"
+      ],
+      "conclusion": "taxable_income_definition_for_non_itemizer(TaxableIncome)",
+      "constants": {},
+      "supporting_span": "the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+      "explanation": "Defines taxable income for individuals who do not itemize their deductions."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_63_b",
+      "rule_id": "section_63_b_rule_1",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "Individual"
+      ],
+      "rhs_args": [
+        "TaxableIncome"
+      ],
+      "rule": {
+        "rule_id": "section_63_b_rule_1",
+        "conditions": [
+          "is_individual_non_itemizer(Individual)"
+        ],
+        "conclusion": "taxable_income_definition_for_non_itemizer(TaxableIncome)",
+        "constants": {},
+        "supporting_span": "the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+        "explanation": "Defines taxable income for individuals who do not itemize their deductions."
+      }
+    },
+    {
+      "unit_id": "section_63_b",
+      "stage": "predicates",
+      "index": 1,
+      "supporting_span": "the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_63_b",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "the term \"taxable income\" means adjusted gross income, minus- (1) the standard deduction, and (2) the deduction for personal exemptions provided in section 151.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

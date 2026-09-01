@@ -1,0 +1,157 @@
+{
+  "unit_id": "section_1_a",
+
+  "classes": [
+    {
+      "class_name": "MarriedIndividual",
+      "description": "A married individual as defined in section 7703.",
+      "supporting_span": "every married individual (as defined in section 7703)"
+    },
+    {
+      "class_name": "SurvivingSpouse",
+      "description": "A surviving spouse as defined in section 2(a).",
+      "supporting_span": "every surviving spouse (as defined in section 2(a))"
+    },
+    {
+      "class_name": "TaxableIncome",
+      "description": "The income subject to tax.",
+      "supporting_span": "taxable income"
+    },
+    {
+      "class_name": "TaxAmount",
+      "description": "The amount of tax imposed on taxable income.",
+      "supporting_span": "a tax determined in accordance with the following"
+    }
+  ],
+
+  "predicates": [
+    {
+      "predicate_name": "is_married_individual",
+      "predicate_type": "status",
+      "arguments": ["MarriedIndividual"],
+      "description": "A married individual as defined in section 7703.",
+      "supporting_span": "every married individual (as defined in section 7703)",
+      "constants": {}
+    },
+    {
+      "predicate_name": "is_surviving_spouse",
+      "predicate_type": "status",
+      "arguments": ["SurvivingSpouse"],
+      "description": "A surviving spouse as defined in section 2(a).",
+      "supporting_span": "every surviving spouse (as defined in section 2(a))",
+      "constants": {}
+    },
+    {
+      "predicate_name": "files_joint_return",
+      "predicate_type": "relationship",
+      "arguments": ["MarriedIndividual", "Spouse"],
+      "description": "A married individual filing a joint return with a spouse.",
+      "supporting_span": "who makes a single return jointly with his spouse",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_taxable_income",
+      "predicate_type": "datatype",
+      "arguments": ["TaxableIncome", "decimal"],
+      "description": "The amount of taxable income.",
+      "supporting_span": "taxable income",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_tax_amount",
+      "predicate_type": "datatype",
+      "arguments": ["TaxAmount", "decimal"],
+      "description": "The amount of tax determined under the statute.",
+      "supporting_span": "a tax determined in accordance with the following",
+      "constants": {}
+    }
+  ],
+
+  "rules": [
+    {
+      "rule_id": "section_1_a_i",
+      "conditions": [
+        "((is_married_individual(taxpayer) AND files_joint_return(taxpayer, spouse)) OR is_surviving_spouse(taxpayer))",
+        "has_taxable_income(taxpayer, income)",
+        "income <= 36900"
+      ],
+      "conclusion": "has_tax_amount(taxpayer) = 0.15 * income",
+      "constants": {
+        "upper_income_limit": 36900,
+        "tax_rate": 0.15
+      },
+      "supporting_span": "15% of taxable income if the taxable income is not over $36,900",
+      "explanation": "First tax bracket."
+    },
+    {
+      "rule_id": "section_1_a_ii",
+      "conditions": [
+        "((is_married_individual(taxpayer) AND files_joint_return(taxpayer, spouse)) OR is_surviving_spouse(taxpayer))",
+        "has_taxable_income(taxpayer, income)",
+        "income > 36900",
+        "income <= 89150"
+      ],
+      "conclusion": "has_tax_amount(taxpayer) = 5535 + (0.28 * (income - 36900))",
+      "constants": {
+        "lower_income_limit": 36900,
+        "upper_income_limit": 89150,
+        "base_tax": 5535,
+        "tax_rate": 0.28
+      },
+      "supporting_span": "$5,535, plus 28% of the excess over $36,900 if the taxable income is over $36,900 but not over $89,150",
+      "explanation": "Second tax bracket."
+    },
+    {
+      "rule_id": "section_1_a_iii",
+      "conditions": [
+        "((is_married_individual(taxpayer) AND files_joint_return(taxpayer, spouse)) OR is_surviving_spouse(taxpayer))",
+        "has_taxable_income(taxpayer, income)",
+        "income > 89150",
+        "income <= 140000"
+      ],
+      "conclusion": "has_tax_amount(taxpayer) = 20165 + (0.31 * (income - 89150))",
+      "constants": {
+        "lower_income_limit": 89150,
+        "upper_income_limit": 140000,
+        "base_tax": 20165,
+        "tax_rate": 0.31
+      },
+      "supporting_span": "$20,165, plus 31% of the excess over $89,150 if the taxable income is over $89,150 but not over $140,000",
+      "explanation": "Third tax bracket."
+    },
+    {
+      "rule_id": "section_1_a_iv",
+      "conditions": [
+        "((is_married_individual(taxpayer) AND files_joint_return(taxpayer, spouse)) OR is_surviving_spouse(taxpayer))",
+        "has_taxable_income(taxpayer, income)",
+        "income > 140000",
+        "income <= 250000"
+      ],
+      "conclusion": "has_tax_amount(taxpayer) = 35928.50 + (0.36 * (income - 140000))",
+      "constants": {
+        "lower_income_limit": 140000,
+        "upper_income_limit": 250000,
+        "base_tax": 35928.50,
+        "tax_rate": 0.36
+      },
+      "supporting_span": "$35,928.50, plus 36% of the excess over $140,000 if the taxable income is over $140,000 but not over $250,000",
+      "explanation": "Fourth tax bracket."
+    },
+    {
+      "rule_id": "section_1_a_v",
+      "conditions": [
+        "((is_married_individual(taxpayer) AND files_joint_return(taxpayer, spouse)) OR is_surviving_spouse(taxpayer))",
+        "has_taxable_income(taxpayer, income)",
+        "income > 250000"
+      ],
+      "conclusion": "has_tax_amount(taxpayer) = 75528.50 + (0.396 * (income - 250000))",
+      "constants": {
+        "lower_income_limit": 250000,
+        "base_tax": 75528.50,
+        "tax_rate": 0.396
+      },
+      "supporting_span": "$75,528.50, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000",
+      "explanation": "Fifth tax bracket."
+    }
+  ]
+}

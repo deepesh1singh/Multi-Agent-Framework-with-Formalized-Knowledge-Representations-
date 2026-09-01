@@ -1,0 +1,125 @@
+{
+  "unit_id": "section_7703_a",
+  "section_id": "section_7703",
+  "unit_label": "7703(a)",
+  "statute_text": "\u00a77703. Determination of marital status\n\n(a) General rule\n\n(1) the determination of whether an individual is married shall be made as of the close of his taxable year; except that if his spouse dies during his taxable year such determination shall be made as of the time of such death; and\n\n(2) an individual legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married.",
+  "variables": [
+    {
+      "variable_name": "Individual",
+      "description": "A person whose marital status is being determined.",
+      "supporting_span": "individual"
+    },
+    {
+      "variable_name": "TaxableYear",
+      "description": "The tax year for which the individual's status is being determined.",
+      "supporting_span": "taxable year"
+    },
+    {
+      "variable_name": "Spouse",
+      "description": "The legal spouse of an individual.",
+      "supporting_span": "spouse"
+    },
+    {
+      "variable_name": "DeathDate",
+      "description": "The date or time at which a spouse's death occurs.",
+      "supporting_span": "time of such death"
+    },
+    {
+      "variable_name": "LegalSeparationDecree",
+      "description": "A decree of divorce or separate maintenance resulting in legal separation.",
+      "supporting_span": "decree of divorce or of separate maintenance"
+    },
+    {
+      "variable_name": "MarriedStatus",
+      "description": "The determination of whether an individual is married.",
+      "supporting_span": "determination of whether an individual is married"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "marriage_status_determined_at_time",
+      "predicate_type": "status",
+      "arguments": [
+        "Individual",
+        "TaxableYear"
+      ],
+      "description": "The determination of whether an individual is married as of the close of their taxable year.",
+      "supporting_span": "the determination of whether an individual is married shall be made as of the close of his taxable year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "marriage_status_at_death_exception",
+      "predicate_type": "exception",
+      "arguments": [
+        "Individual",
+        "DeathDate"
+      ],
+      "description": "Exception where marriage status is determined at the time of spouse's death if they died during the taxable year.",
+      "supporting_span": "except that if his spouse dies during his taxable year such determination shall be made as of the time of such death",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_separation_exclusion",
+      "predicate_type": "exception",
+      "arguments": [
+        "Individual",
+        "LegalSeparationDecree"
+      ],
+      "description": "An individual legally separated from their spouse under a decree of divorce or separate maintenance is not considered married.",
+      "supporting_span": "an individual legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_7703_a1_rule_1",
+      "conditions": [
+        "marriage_status_determined_at_time(Individual, TaxableYear)"
+      ],
+      "conclusion": "marriage_status_determined_at_time(Individual, TaxableYear)",
+      "constants": {},
+      "supporting_span": "the determination of whether an individual is married shall be made as of the close of his taxable year",
+      "explanation": "The default rule for determining marital status at the end of a taxable year."
+    },
+    {
+      "rule_id": "section_7703_a1_rule_2",
+      "conditions": [
+        "marriage_status_at_death_exception(Individual, DeathDate)"
+      ],
+      "conclusion": "marriage_status_at_death_exception(Individual, DeathDate)",
+      "constants": {},
+      "supporting_span": "except that if his spouse dies during his taxable year such determination shall be made as of the time of such death",
+      "explanation": "Exception where marital status is determined at the time of a spouse's death during the taxable year."
+    },
+    {
+      "rule_id": "section_7703_a2_rule_1",
+      "conditions": [
+        "legal_separation_exclusion(Individual, LegalSeparationDecree)"
+      ],
+      "conclusion": "legal_separation_exclusion(Individual, LegalSeparationDecree)",
+      "constants": {},
+      "supporting_span": "an individual legally separated from his spouse under a decree of divorce or of separate maintenance shall not be considered as married.",
+      "explanation": "Exclusion for individuals who are legally separated by a decree of divorce or separate maintenance."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_7703_a",
+      "rule_id": "section_7703_a1_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "marriage_status_determined_at_time(Individual, TaxableYear)"
+    },
+    {
+      "unit_id": "section_7703_a",
+      "rule_id": "section_7703_a1_rule_2",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "marriage_status_at_death_exception(Individual, DeathDate)"
+    },
+    {
+      "unit_id": "section_7703_a",
+      "rule_id": "section_7703_a2_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "legal_separation_exclusion(Individual, LegalSeparationDecree)"
+    }
+  ]
+}

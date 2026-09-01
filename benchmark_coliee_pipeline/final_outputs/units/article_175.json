@@ -1,0 +1,49 @@
+{
+  "unit_id": "article_175",
+  "article_number": "175",
+  "unit_label": "Article 175",
+  "title": "Article 175 Article 175  No real right may be established other than those prescribed by laws including this Code.",
+  "statute_text": "Article 175 Article 175  No real right may be established other than those prescribed by laws including this Code.\n(Creation and Transfer of Real Rights)",
+  "variables": [
+    {
+      "variable_name": "RealRight",
+      "description": "A legal right over property that is not a personal right.",
+      "supporting_span": "No real right may be established other than those prescribed by laws including this Code."
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "real_right_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "RealRight"
+      ],
+      "description": "Existence of a real right over property.",
+      "supporting_span": "No real right may be established other than those prescribed by laws including this Code.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "law_prescribed_right",
+      "predicate_type": "definition",
+      "arguments": [
+        "RealRight"
+      ],
+      "description": "A real right prescribed by law or the Code.",
+      "supporting_span": "No real right may be established other than those prescribed by laws including this Code.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_175_rule_1",
+      "conditions": [
+        "real_right_exists(RealRight)"
+      ],
+      "conclusion": "law_prescribed_right(RealRight)",
+      "constants": {},
+      "supporting_span": "No real right may be established other than those prescribed by laws including this Code.",
+      "explanation": "A real right must be prescribed by law or the Code to be valid."
+    }
+  ],
+  "warnings": []
+}

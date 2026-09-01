@@ -1,0 +1,67 @@
+{
+  "unit_id": "section_63_d",
+  "section_id": "section_63",
+  "unit_label": "63(d)",
+  "statute_text": "\u00a763. Taxable income defined\n\n(d) Itemized deductions\n\nFor purposes of this subtitle, the term \"itemized deductions\" means the deductions allowable under this chapter other than-\n\n(1) the deductions allowable in arriving at adjusted gross income, and\n\n(2) the deduction for personal exemptions provided by section 151.",
+  "variables": [
+    {
+      "variable_name": "ItemizedDeductions",
+      "description": "The deductions allowable under this chapter other than those used to determine adjusted gross income or personal exemptions.",
+      "supporting_span": "the term \"itemized deductions\" means the deductions allowable under this chapter other than-"
+    },
+    {
+      "variable_name": "AdjustedGrossIncome",
+      "description": "The amount of income calculated before applying itemized deductions.",
+      "supporting_span": "deductions allowable in arriving at adjusted gross income"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "itemized_deductions_definition",
+      "predicate_type": "definition",
+      "arguments": [
+        "ItemizedDeductions"
+      ],
+      "description": "Definition of itemized deductions as the deductions allowable under this chapter other than those used to determine adjusted gross income or personal exemptions.",
+      "supporting_span": "the term \"itemized deductions\" means the deductions allowable under this chapter other than-",
+      "constants": {}
+    },
+    {
+      "predicate_name": "adjusted_gross_income_definition",
+      "predicate_type": "definition",
+      "arguments": [
+        "AdjustedGrossIncome"
+      ],
+      "description": "Definition of adjusted gross income as the amount of income calculated before applying itemized deductions.",
+      "supporting_span": "deductions allowable in arriving as at adjusted gross income",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_63_d_rule_1",
+      "conditions": [
+        "itemized_deductions_definition(ItemizedDeductions)"
+      ],
+      "conclusion": "itemized_deductions_definition(ItemizedDeductions)",
+      "constants": {},
+      "supporting_span": "the term \"itemized deductions\" means the deductions allowable under this chapter other than-",
+      "explanation": "Defines itemized deductions as those not used for adjusted gross income or personal exemptions."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_63_d",
+      "rule_id": "section_63_d_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "itemized_deductions_definition(ItemizedDeductions)"
+    },
+    {
+      "unit_id": "section_63_d",
+      "stage": "predicates",
+      "index": 1,
+      "supporting_span": "deductions allowable in arriving as at adjusted gross income",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

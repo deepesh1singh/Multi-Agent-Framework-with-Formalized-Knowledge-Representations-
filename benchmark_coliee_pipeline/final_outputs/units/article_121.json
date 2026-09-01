@@ -1,0 +1,49 @@
+{
+  "unit_id": "article_121",
+  "article_number": "121",
+  "unit_label": "Article 121",
+  "title": "Article 121 Article 121  An act that has been rescinded is deemed void ab initio.",
+  "statute_text": "Article 121 Article 121  An act that has been rescinded is deemed void ab initio.\n(Obligation of Restoration)",
+  "variables": [
+    {
+      "variable_name": "RescindedAct",
+      "description": "An act that has been rescinded.",
+      "supporting_span": "An act that has been rescinded"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "rescinded_act_status",
+      "predicate_type": "status",
+      "arguments": [
+        "RescindedAct"
+      ],
+      "description": "An act that has been rescinded.",
+      "supporting_span": "An act that has been rescinded",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_void_ab_initio",
+      "predicate_type": "status",
+      "arguments": [
+        "RescindedAct"
+      ],
+      "description": "An act that has been rescinded is deemed void ab initio.",
+      "supporting_span": "An act that has been rescinded is deemed void ab initio.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_121_rule_1",
+      "conditions": [
+        "rescinded_act_status(RescindedAct)"
+      ],
+      "conclusion": "juridical_act_void_ab_initio(RescindedAct)",
+      "constants": {},
+      "supporting_span": "An act that has been rescinded is deemed void ab initio.",
+      "explanation": "A rescinded act is considered void from the beginning."
+    }
+  ],
+  "warnings": []
+}

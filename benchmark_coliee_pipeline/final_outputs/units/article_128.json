@@ -1,0 +1,101 @@
+{
+  "unit_id": "article_128",
+  "article_number": "128",
+  "unit_label": "Article 128",
+  "title": "Article 128 Article 128  While it is uncertain whether or not a condition will be fulfilled, a party to a juridical act that is subject to a condition may not prejudice the other party's interests that would arise from the juridical act upon fulfillment of the condition.",
+  "statute_text": "Article 128 Article 128  While it is uncertain whether or not a condition will be fulfilled, a party to a juridical act that is subject to a condition may not prejudice the other party's interests that would arise from the juridical act upon fulfillment of the condition.\n(Disposition of Rights Pending Fulfillment of Conditions)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal act or transaction involving parties.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "Condition",
+      "description": "A future event or circumstance that must occur for a condition to be fulfilled.",
+      "supporting_span": "condition"
+    },
+    {
+      "variable_name": "Party",
+      "description": "An entity involved in a juridical act.",
+      "supporting_span": "party"
+    },
+    {
+      "variable_name": "Interest",
+      "description": "A legal right, claim, or advantage of a party.",
+      "supporting_span": "interests"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "condition_uncertainty_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Condition"
+      ],
+      "description": "The status of a condition's fulfillment as uncertain.",
+      "supporting_span": "While it is uncertain whether or not a condition will be fulfilled",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_subject_to_condition",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "Condition"
+      ],
+      "description": "A juridical act that is subject to a condition.",
+      "supporting_span": "a juridical act that is subject to a condition",
+      "constants": {}
+    },
+    {
+      "predicate_name": "party_to_juridical_act",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Party",
+        "JuridicalAct"
+      ],
+      "description": "A party involved in a juridical act.",
+      "supporting_span": "a party to a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "party_interests_prejudiced",
+      "predicate_type": "status",
+      "arguments_count": 2,
+      "arguments": [
+        "Party",
+        "Interest"
+      ],
+      "description": "The prejudice of another party's interests.",
+      "supporting_span": "may not prejudice the other party's interests",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_fulfillment_status",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct",
+        "Condition"
+      ],
+      "description": "The status of a juridical act upon fulfillment of the condition.",
+      "supporting_span": "upon fulfillment of the condition",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_128_rule_1",
+      "conditions": [
+        "party_to_juridical_act(Party, JuridicalAct)",
+        "condition_uncertainty_status(Condition)",
+        "juridical_act_subject_to_condition(JuridicalAct, Condition)"
+      ],
+      "conclusion": "NOT party_interests_prejudiced(Party, Interest)",
+      "constants": {},
+      "supporting_span": "While it is uncertain whether or not a condition will be fulfilled, a party to a juridical act that is subject to a condition may not prejudice the other party's interests that would arise from the juridical act upon fulfillment of the condition.",
+      "explanation": "A party involved in a juridical act subject to an uncertain condition must not prejudice the other party's interests arising from the act's fulfillment."
+    }
+  ],
+  "warnings": []
+}

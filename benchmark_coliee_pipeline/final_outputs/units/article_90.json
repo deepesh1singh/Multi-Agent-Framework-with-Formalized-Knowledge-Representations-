@@ -1,0 +1,66 @@
+{
+  "unit_id": "article_90",
+  "article_number": "90",
+  "unit_label": "Article 90",
+  "title": "Article 90 Article 90  A juridical act that is against public policy is void.",
+  "statute_text": "Article 90 Article 90  A juridical act that is against public policy is void.\n(Manifestations of Intention Inconsistent with Default Rules)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "An act performed by a person or entity for legal effect.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "PublicPolicy",
+      "description": "The set of principles and rules that govern the conduct of law-abiding citizens.",
+      "supporting_span": "public policy"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act exists.",
+      "supporting_span": "juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "against_public_policy",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "PublicPolicy"
+      ],
+      "description": "The juridical act is against public policy.",
+      "supporting_span": "juridical act that is against public policy",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_void",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The juridical act is void.",
+      "supporting_span": "is void",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_90_rule_1",
+      "conditions": [
+        "juridical_act_exists(JuridicalAct)",
+        "against_public_policy(JuridicalAct, PublicPolicy)"
+      ],
+      "conclusion": "juridical_act_void(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act that is against public policy is void.",
+      "explanation": "A juridical act is considered void if it is found to be in conflict with public policy."
+    }
+  ],
+  "warnings": []
+}

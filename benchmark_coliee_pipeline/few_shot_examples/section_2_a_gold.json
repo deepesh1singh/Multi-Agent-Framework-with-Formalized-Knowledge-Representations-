@@ -1,0 +1,184 @@
+{
+  "unit_id": "section_2_a",
+  "classes": [
+    {
+      "class_name": "Taxpayer",
+      "description": "A taxpayer who may qualify as a surviving spouse.",
+      "supporting_span": "the term \"surviving spouse\" means a taxpayer"
+    },
+    {
+      "class_name": "SurvivingSpouse",
+      "description": "A taxpayer satisfying the statutory surviving-spouse conditions.",
+      "supporting_span": "surviving spouse"
+    },
+    {
+      "class_name": "Spouse",
+      "description": "The spouse of the taxpayer.",
+      "supporting_span": "spouse"
+    },
+    {
+      "class_name": "Dependent",
+      "description": "A dependent described by section 152.",
+      "supporting_span": "a dependent"
+    },
+    {
+      "class_name": "Household",
+      "description": "Household maintained by the taxpayer as a principal place of abode for a dependent.",
+      "supporting_span": "maintains as his home a household"
+    },
+    {
+      "class_name": "TaxableYear",
+      "description": "The taxable year relevant to surviving-spouse determination.",
+      "supporting_span": "taxable year"
+    },
+    {
+      "class_name": "JointReturn",
+      "description": "A single joint return of income taxes.",
+      "supporting_span": "a single return jointly"
+    },
+    {
+      "class_name": "NonresidentAlien",
+      "description": "A husband or wife who is a nonresident alien during the taxable year.",
+      "supporting_span": "nonresident alien"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "spouse_died_within_two_years",
+      "predicate_type": "status",
+      "arguments": ["Taxpayer"],
+      "description": "Taxpayer's spouse died during either of the two years immediately preceding the taxable year.",
+      "supporting_span": "whose spouse died during either of the two years immediately preceding the taxable year",
+      "constants": {
+        "lookback_years": 2
+      }
+    },
+    {
+      "predicate_name": "maintains_household",
+      "predicate_type": "relationship",
+      "arguments": ["Taxpayer", "Household"],
+      "description": "Taxpayer maintains a household as home.",
+      "supporting_span": "maintains as his home a household",
+      "constants": {}
+    },
+    {
+      "predicate_name": "household_is_principal_abode_of_dependent",
+      "predicate_type": "relationship",
+      "arguments": ["Household", "Dependent"],
+      "description": "Household is the dependent's principal place of abode for the taxable year.",
+      "supporting_span": "constitutes for the taxable year the principal place of abode ... of a dependent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "dependent_is_child_or_stepchild",
+      "predicate_type": "status",
+      "arguments": ["Dependent"],
+      "description": "Dependent is a son, stepson, daughter, or stepdaughter of the taxpayer.",
+      "supporting_span": "is a son, stepson, daughter, or stepdaughter of the taxpayer",
+      "constants": {}
+    },
+    {
+      "predicate_name": "taxpayer_entitled_to_dependent_deduction",
+      "predicate_type": "relationship",
+      "arguments": ["Taxpayer", "Dependent"],
+      "description": "Taxpayer is entitled to a deduction for the dependent under section 151.",
+      "supporting_span": "with respect to whom the taxpayer is entitled to a deduction for the taxable year under section 151",
+      "constants": {}
+    },
+    {
+      "predicate_name": "furnished_over_half_household_cost",
+      "predicate_type": "status",
+      "arguments": ["Taxpayer"],
+      "description": "Taxpayer furnished over half the cost of maintaining the household.",
+      "supporting_span": "over half of the cost of maintaining the household during the taxable year is furnished by such individual",
+      "constants": {
+        "minimum_cost_share": 0.5
+      }
+    },
+    {
+      "predicate_name": "taxpayer_remarried_before_close_of_taxable_year",
+      "predicate_type": "status",
+      "arguments": ["Taxpayer"],
+      "description": "Taxpayer remarried before the close of the taxable year.",
+      "supporting_span": "if the taxpayer has remarried at any time before the close of the taxable year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "joint_return_could_have_been_made_in_year_of_spouse_death",
+      "predicate_type": "status",
+      "arguments": ["Taxpayer"],
+      "description": "A joint return could have been made for the taxable year during which the spouse died.",
+      "supporting_span": "unless, for the taxpayer's taxable year during which his spouse died, a joint return could have been made",
+      "constants": {}
+    },
+    {
+      "predicate_name": "spouse_is_nonresident_alien",
+      "predicate_type": "status",
+      "arguments": ["Spouse"],
+      "description": "Either spouse is a nonresident alien during the taxable year.",
+      "supporting_span": "no joint return shall be made if either the husband or wife at any time during the taxable year is a nonresident alien",
+      "constants": {}
+    },
+    {
+      "predicate_name": "is_surviving_spouse",
+      "predicate_type": "status",
+      "arguments": ["Taxpayer"],
+      "description": "Taxpayer qualifies as a surviving spouse for purposes of section 1.",
+      "supporting_span": "the term \"surviving spouse\" means a taxpayer",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_2_a_1",
+      "conditions": [
+        "spouse_died_within_two_years(taxpayer)",
+        "maintains_household(taxpayer, household)",
+        "household_is_principal_abode_of_dependent(household, dependent)",
+        "dependent_is_child_or_stepchild(dependent)",
+        "taxpayer_entitled_to_dependent_deduction(taxpayer, dependent)",
+        "furnished_over_half_household_cost(taxpayer)",
+        "NOT taxpayer_remarried_before_close_of_taxable_year(taxpayer)",
+        "joint_return_could_have_been_made_in_year_of_spouse_death(taxpayer)",
+        "NOT spouse_is_nonresident_alien(spouse)"
+      ],
+      "conclusion": "is_surviving_spouse(taxpayer)",
+      "constants": {
+        "lookback_years": 2,
+        "minimum_household_cost_share": 0.5
+      },
+      "supporting_span": "the term \"surviving spouse\" means a taxpayer- (A) whose spouse died during either of the two years immediately preceding the taxable year, and (B) who maintains as his home a household ... of a dependent ... with respect to whom the taxpayer is entitled to a deduction ...",
+      "explanation": "Main surviving-spouse qualification rule with household, dependent, deduction, remarriage, joint-return, and nonresident-alien limitations."
+    },
+    {
+      "rule_id": "section_2_a_2_A",
+      "conditions": [
+        "taxpayer_remarried_before_close_of_taxable_year(taxpayer)"
+      ],
+      "conclusion": "NOT is_surviving_spouse(taxpayer)",
+      "constants": {},
+      "supporting_span": "a taxpayer shall not be considered to be a surviving spouse- (A) if the taxpayer has remarried at any time before the close of the taxable year",
+      "explanation": "Remarriage before the close of taxable year prevents surviving-spouse status."
+    },
+    {
+      "rule_id": "section_2_a_2_B",
+      "conditions": [
+        "NOT joint_return_could_have_been_made_in_year_of_spouse_death(taxpayer)"
+      ],
+      "conclusion": "NOT is_surviving_spouse(taxpayer)",
+      "constants": {},
+      "supporting_span": "unless, for the taxpayer's taxable year during which his spouse died, a joint return could have been made",
+      "explanation": "Surviving-spouse status requires that a joint return could have been made in the year of spouse's death."
+    },
+    {
+      "rule_id": "section_2_a_joint_return_nonresident_alien",
+      "conditions": [
+        "spouse_is_nonresident_alien(spouse)"
+      ],
+      "conclusion": "NOT joint_return_could_have_been_made_in_year_of_spouse_death(taxpayer)",
+      "constants": {},
+      "supporting_span": "no joint return shall be made if either the husband or wife at any time during the taxable year is a nonresident alien",
+      "explanation": "Nonresident-alien status prevents a joint return."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "unit_id": "article_85",
+  "article_number": "85",
+  "unit_label": "Article 85",
+  "title": "Article 85 Article 85  The term \"things\" as used in this Code means tangible objects.",
+  "statute_text": "Article 85 Article 85  The term \"things\" as used in this Code means tangible objects.\n(Immovables and Movables)",
+  "variables": [
+    {
+      "variable_name": "Things",
+      "description": "Tangible objects defined as the scope of 'things'.",
+      "supporting_span": "\"things\" as used in this Code means tangible objects."
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "thing_definition_exists",
+      "predicate_type": "definition",
+      "arguments": [
+        "Thing"
+      ],
+      "description": "The term 'things' as used in this Code.",
+      "supporting_span": "\"things\" as used in this Code",
+      "constants": {}
+    },
+    {
+      "predicate_name": "thing_is_tangible_object",
+      "predicate_type": "datatype",
+      "arguments": [
+        "Thing"
+      ],
+      "description": "Definition of a thing as a tangible object.",
+      "supporting_span": "means tangible objects.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "thing_category_classification",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Thing"
+      ],
+      "description": "Classification of things into immovables and movables.",
+      "supporting_span": "(Immovables and Movables)",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_85_rule_1",
+      "conditions": [
+        "thing_definition_exists(Thing)"
+      ],
+      "conclusion": "thing_is_tangible_object(Thing)",
+      "constants": {},
+      "supporting_span": "\"things\" as used in this Code means tangible objects.",
+      "explanation": "Defines 'things' as tangible objects."
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,134 @@
+{
+  "unit_id": "article_105",
+  "article_number": "105",
+  "unit_label": "Article 105",
+  "title": "Article 105 Article 105  A legal representative may appoint a subagent on its own responsibility. In such a case, if there is a compelling reason to do so, the legal representative is only liable to the principal for the appointment and supervision of the subagent.",
+  "statute_text": "Article 105 Article 105  A legal representative may appoint a subagent on its own responsibility. In such a case, if there is a compelling reason to do so, the legal representative is only liable to the principal for the appointment and supervision of the subagent.\n(Authority of Subagents)",
+  "variables": [
+    {
+      "variable_name": "LegalRepresentative",
+      "description": "A person or entity authorized to act on behalf of another.",
+      "supporting_span": "legal representative"
+    },
+    {
+      "variable_name": "Subagent",
+      "description": "An agent appointed by a legal representative for specific tasks.",
+      "supporting_span": "subagent"
+    },
+    {
+      "variable_name": "Principal",
+      "description": "The person or entity to whom the legal representative is accountable.",
+      "supporting_span": "principal"
+    },
+    {
+      "variable_name": "Liability",
+      "description": "The extent of responsibility for actions taken by a term-appointed agent.",
+      "supporting_span": "liable"
+    },
+    {
+      "variable_name": "Appointment",
+      "description": "The act of appointing an agent or subagent.",
+      "supporting_span": "appointment"
+    },
+    {
+      "variable_name": "Supervision",
+      "description": "100% match to the text 'supervision' in the statement regarding liability limits.",
+      "supporting_span": "supervision"
+    },
+    {
+      "variable_name": "CompellingReason",
+      "description": "A specific justification required for limited liability.",
+      "supporting_span": "compelling reason"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "legal_representative_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "LegalRepresentative"
+      ],
+      "description": "A legal representative exists.",
+      "supporting_span": "A legal representative may appoint a subagent on its own responsibility.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "subagent_appointment_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Subagent"
+      ],
+      "description": "A subagent is appointed.",
+      "supporting_span": "A legal representative may appoint a subagent on its own responsibility.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_representative_appoints_subagent",
+      "predicate_type": "relationship",
+      "arguments": [
+        "LegalRepresentative",
+        "Subagent"
+      ],
+      "description": "The legal representative appoints the subagent.",
+      "supporting_span": "A legal representative may appoint a subagent on its own responsibility.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "compelling_reason_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "CompellingReason"
+      ],
+      "description": "There is a compelling reason for the action.",
+      "supporting_span": "if there is a compelling reason to do so",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_representative_liability_limited",
+      "predicate_type": "exception",
+      "arguments": [
+        "LegalRepresentative",
+        "Liability"
+      ],
+      "description": "The legal representative's liability is limited under specific conditions.",
+      "supporting_span": "the legal representative is only liable to the principal for the appointment and supervision of the subagent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "principal_liability_context",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Principal"
+      ],
+      "description": "The context of liability to the principal.",
+      "supporting_span": "the legal representative is only liable to the principal for the appointment and supervision of the subagent.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_105_rule_1",
+      "conditions": [
+        "legal_representative_exists(LegalRepresentative)",
+        "subagent_appointment_exists(Subagent)"
+      ],
+      "conclusion": "legal_representative_appoints_subagent(LegalRepresentative, Subagent)",
+      "constants": {},
+      "supporting_span": "A legal representative may appoint a subagent on its own responsibility.",
+      "explanation": "A legal representative is permitted to appoint a subagent."
+    },
+    {
+      "rule_id": "article_105_rule_2",
+      "conditions": [
+        "legal_representative_exists(LegalRepresentative)",
+        "subagent_appointment_exists(Subagent)",
+        "compelling_reason_exists(CompellingReason)"
+      ],
+      "conclusion": "legal_representative_liability_limited(LegalRepresentative, Liability)",
+      "constants": {},
+      "supporting_span": "In such a case, if there is a compelling reason to do so, the legal representative is only liable to the principal for the appointment and supervision of the subagent.",
+      "explanation": "The liability of the legal representative is limited when a compelling reason exists."
+    }
+  ],
+  "warnings": []
+}

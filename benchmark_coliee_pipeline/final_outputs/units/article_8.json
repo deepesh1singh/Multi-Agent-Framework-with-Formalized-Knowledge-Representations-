@@ -1,0 +1,91 @@
+{
+  "unit_id": "article_8",
+  "article_number": "8",
+  "unit_label": "Article 8",
+  "title": "Article 8 Article 8  A person subject to a decision for commencement of guardianship becomes an adult ward, and an adult guardian is appointed for that person.",
+  "statute_text": "Article 8 Article 8  A person subject to a decision for commencement of guardianship becomes an adult ward, and an adult guardian is appointed for that person.\n(Juridical Acts by Adult Wards under Guardianship)",
+  "variables": [
+    {
+      "variable_name": "Person",
+      "description": "A person subject to a decision for commencement of guardianship.",
+      "supporting_span": "A person subject to a decision for commencement of guardianship"
+    },
+    {
+      "variable_name": "AdultWard",
+      "description": "An adult ward who is the result of a decision for commencement of guardianship.",
+      "supporting_span": "becomes an adult ward"
+    },
+    {
+      "variable_name": "AdultGuardian",
+      "description": "An adult guardian appointed for a person under guardianship.",
+      "supporting_span": "an adult guardian is appointed for that person"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "person_subject_to_guardianship_decision",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "A person subject to a decision for commencement of guardianship.",
+      "supporting_span": "A person subject to a decision for commencement of guardianship",
+      "constants": {}
+    },
+    {
+      "predicate_name": "adult_ward_status",
+      "predicate_type": "status",
+      "arguments": [
+        "AdultWard"
+      ],
+      "description": "An adult ward who is the result of a decision for commencement of guardianship.",
+      "supporting_span": "becomes an adult ward",
+      "constants": {}
+    },
+    {
+      "predicate_name": "adult_guardian_appointed",
+      "predicate_type": "relationship",
+      "arguments": [
+        "AdultGuardian"
+      ],
+      "description": "An adult guardian is appointed for that person.",
+      "supporting_span": "an adult guardian is appointed for that person",
+      "constants": {}
+    },
+    {
+      "predicate_name": "person_becomes_adult_ward",
+      "predicate_type": "status",
+      "arguments": [
+        "Person",
+        "AdultWard"
+      ],
+      "description": "A person subject to a decision for commencement of guardianship becomes an adult ward.",
+      "supporting_span": "A person subject to a decision for commencement of guardianship becomes an adult ward",
+      "constants": {}
+    },
+    {
+      "predicate_name": "guardian_appointed_for_person",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "AdultGuardian"
+      ],
+      "description": "An adult guardian is appointed for that person.",
+      "supporting_span": "an adult guardian is appointed for that person",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_8_rule_1",
+      "conditions": [
+        "person_subject_to_guardianship_decision(Person)"
+      ],
+      "conclusion": "person_becomes_adult_ward(Person, AdultWard)",
+      "constants": {},
+      "supporting_span": "A person subject to a decision for commencement of guardianship becomes an adult ward",
+      "explanation": "A person subject to a decision for commencement of guardianship becomes an adult ward."
+    }
+  ],
+  "warnings": []
+}

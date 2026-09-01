@@ -1,0 +1,161 @@
+{
+  "unit_id": "article_96",
+  "article_number": "96",
+  "unit_label": "Article 96",
+  "title": "Article 96 Article 96  (1) A manifestation of intention based on fraud or duress is voidable.",
+  "statute_text": "Article 96 Article 96  (1) A manifestation of intention based on fraud or duress is voidable.\n(2) If a third party commits a fraud inducing a first party to make a manifestation of intention to a second party, that manifestation of intention is voidable only if the second party knew or could have known that fact.\n(3) The rescission of a manifestation of intention induced by fraud under the provisions of the preceding two paragraphs may not be duly asserted against a third party in good faith acting without negligence.\n(Timing of Entry into Effect of Manifestations of Intention)",
+  "variables": [
+    {
+      "variable_name": "ManifestationOfIntention",
+      "description": "A declaration of intent to create a legal relationship.",
+      "supporting_span": "manifestation of intention"
+    },
+    {
+      "variable_name": "Fraud",
+      "description": "The act of deceiving someone into taking an action.",
+      "supporting_span": "fraud"
+    },
+    {
+      "variable_name": "Duress",
+      "description": "Threats or pressure that force a person to act against their will.",
+      "supporting_span": "duress"
+    },
+    {
+      "variable_name": "ThirdParty",
+      "description": "A party involved in the transaction who is not one of the primary parties.",
+      "supporting_span": "third party"
+    },
+    {
+      "variable_name": "FirstParty",
+      "description": "The primary party making a declaration of intent.",
+      "supporting_span": "first party"
+    },
+    {
+      "variable_name": "GoodFaith",
+      "description": "Acting without deceptive intent or malice.",
+      "supporting_span": "good faith"
+    },
+    {
+      "variable_name": "Negligence",
+      "description": "Failure to take proper care in a situation.",
+      "supporting_span": "negligence"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "manifestation_of_intention_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "A manifestation of intention exists.",
+      "supporting_span": "manifestation of intention",
+      "constants": {}
+    },
+    {
+      "predicate_name": "duress_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "Duress"
+      ],
+      "description": "Threats or pressure that force a person to act against their will.",
+      "supporting_span": "duress",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifestation_of_intention_voidable_due_to_fraud_or_duress",
+      "predicate_type": "exception",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "A manifestation of intention based on fraud or duress is voidable.",
+      "supporting_span": "A manifestation of intention based on fraud or duress is voidable.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "third_party_fraud_involved",
+      "predicate_type": "status",
+      "arguments": [
+        "ThirdParty"
+      ],
+      "description": "A third party commits a fraud.",
+      "supporting_span": "third party",
+      "constants": {}
+    },
+    {
+      "predicate_name": "third_party_fraud_inducing_manifestation",
+      "predicate_type": "relationship",
+      "arguments": [
+        "ThirdParty",
+        "ManifestationOfIntention"
+      ],
+      "description": "A third party commits a fraud inducing a first party to make a manifestation of intention.",
+      "supporting_span": "a third party commits a fraud inducing a first party to make a manifestation of intention to a second party",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifestation_of_intention_voidable_only_if_second_party_knows",
+      "predicate_type": "exception",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The manifestation of intention is voidable only if the second party knew or could have known that fact.",
+      "supporting_span": "that manifestation of intention is voidable only if the second party knew or could have known that fact.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "third_party_in_good_faith",
+      "predicate_type": "status",
+      "arguments": [
+        "ThirdParty"
+      ],
+      "description": "A third party acting in good faith.",
+      "supporting_span": "third party in good faith",
+      "constants": {}
+    },
+    {
+      "predicate_name": "third_party_acting_without_negligence",
+      "predicate_type": "status",
+      "arguments": [
+        "ThirdParty"
+      ],
+      "description": "A third party acting without negligence.",
+      "supporting_span": "acting without negligence",
+      "constants": {}
+    },
+    {
+      "predicate_name": "rescission_not_asserted_against_third_party",
+      "predicate_type": "exception",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The rescission of a manifestation of intention induced by fraud may not be duly asserted against a third party in good faith acting without negligence.",
+      "supporting_span": "The rescission of a manifestation of intention induced by fraud under the provisions of the preceding two paragraphs may not be duly asserted against a third party in good faith acting without negligence.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_96_rule_1",
+      "conditions": [
+        "manifestation_of_intention_exists(ManifestationOfIntention)"
+      ],
+      "conclusion": "manifestation_of_intention_voidable_due_to_fraud_or_duress(ManifestationOfIntention)",
+      "constants": {},
+      "supporting_span": "A manifestation of intention based on fraud or duress is voidable.",
+      "explanation": "A manifestation of intention based on fraud or duress is voidable."
+    },
+    {
+      "rule_id": "article_96_rule_2",
+      "conditions": [
+        "third_party_fraud_inducing_manifestation(ThirdParty, ManifestationOfIntention)",
+        "NOT manifestation_of_intention_voidable_only_if_second_party_knows(ManifestationOfIntention)"
+      ],
+      "conclusion": "manifestation_of_intention_voidable_due_to_fraud_or_duress(ManifestationOfIntention)",
+      "constants": {},
+      "supporting_span": "If a third party commits a fraud inducing a first party to make a manifestation of intention to a second party, that manifestation of intention is voidable only if the second party knew or could have known that fact.",
+      "explanation": "A manifestation of intention induced by a third party's fraud is voidable only if the second party had knowledge of the fraud."
+    }
+  ],
+  "warnings": []
+}

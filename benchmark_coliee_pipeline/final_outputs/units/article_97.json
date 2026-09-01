@@ -1,0 +1,153 @@
+{
+  "unit_id": "article_97",
+  "article_number": "97",
+  "unit_label": "Article 97",
+  "title": "Article 97 Article 97  (1) A manifestation of intention becomes effective at the time notice thereof reaches the other party.",
+  "statute_text": "Article 97 Article 97  (1) A manifestation of intention becomes effective at the time notice thereof reaches the other party.\n(2) If the other party prevents notice of a manifestation of intention from reaching them without a legitimate reason, the notice is deemed to have reached that party at the time it would have normally reached them.\n(3) The effect of a manifestation of intention is not impaired even if the person making it dies, loses mental capacity, or becomes subject to restrictions on their legal capacity to act after having sent the notice.\n(Manifestation of Intention by Public Notice)",
+  "variables": [
+    {
+      "variable_name": "ManifestationOfIntention",
+      "description": "A declaration or communication of intent.",
+      "supporting_span": "manifestation of intention"
+    },
+    {
+      "variable_name": "Notice",
+      "description": "The notification of a manifestation of intention.",
+      "supporting_span": "notice thereof"
+    },
+    {
+      "variable_name": "OtherParty",
+      "description": "The recipient of the notice.",
+      "supporting_span": "other party"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "manifestation_of_intention_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "A manifestation of intention exists.",
+      "supporting_span": "A manifestation of intention",
+      "constants": {}
+    },
+    {
+      "predicate_name": "notice_reaches_other_party",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Notice",
+        "OtherParty"
+      ],
+      "description": "The notice reaches the other party.",
+      "supporting_span": "notice thereof reaches the other party",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifestation_of_intention_becomes_effective",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "A manifestation of intention becomes effective.",
+      "supporting_span": "A manifestation of intention becomes effective",
+      "constants": {}
+    },
+    {
+      "predicate_name": "notice_prevented_by_other_party",
+      "predicate_type": "exception",
+      "arguments": [
+        "Notice",
+        "OtherParty"
+      ],
+      "description": "The notice is prevented from reaching the other party by that party.",
+      "supporting_span": "the other party prevents notice of a manifestation of intention from reaching them",
+      "constants": {}
+    },
+    {
+      "predicate_name": "notice_deemed_to_have_reached_party",
+      "predicate_type": "status",
+      "arguments": [
+        "Notice"
+      ],
+      "description": "The notice is deemed to have reached the other party.",
+      "supporting_span": "the notice is deemed to have reached that party",
+      "constants": {}
+    },
+    {
+      "predicate_name": "not_impaired_by_death",
+      "predicate_statement": "The effect of a manifestation of intention is not impaired even if the person making it dies.",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The effect of is not impaired by death.",
+      "supporting_span": "The effect of a manifestation of intention is not impaired even if the person making it dies",
+      "constants": {}
+    },
+    {
+      "predicate_name": "not_impaired_by_loss_of_mental_capacity",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The effect of a manifestation of intention is not impaired by loss of mental capacity.",
+      "supporting_span": "is not impaired even if the person making it dies, loses mental capacity",
+      "constants": {}
+    },
+    {
+      "predicate_name": "not_impaired_by_restrictions_on_legal_capacity",
+      "predicate_type": "status",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "The effect of is not impaired by restrictions on legal capacity.",
+      "supporting_span": "is not impaired even if the person making it dies, loses mental capacity, or becomes subject to restrictions on their legal capacity to act after having sent the notice.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifestation_of_intention_by_public_notice",
+      "predicate_type": "definition",
+      "arguments": [
+        "ManifestationOfIntention"
+      ],
+      "description": "A manifestation of intention by public notice.",
+      "supporting_span": "Manifestation of Intention by Public Notice",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_97_rule_1",
+      "conditions": [
+        "manifestation_of_intention_exists(ManifestationOfIntention)"
+      ],
+      "conclusion": "manifestation_of_intention_becomes_effective(ManifestationOfIntention)",
+      "constants": {},
+      "supporting_span": "A manifestation of intention becomes effective at the time notice thereof reaches the other party.",
+      "explanation": "A manifestation of intention becomes effective when the notice reaches the other party."
+    },
+    {
+      "rule_id": "article_97_rule_2",
+      "conditions": [
+        "notice_prevented_by_other_party(Notice, OtherParty)",
+        "not_impaired_by_death(ManifestationOfIntention)"
+      ],
+      "conclusion": "notice_deemed_to_have_reached_party(Notice)",
+      "constants": {},
+      "supporting_span": "If the other party prevents notice of a manifestation of intention from reaching them without a legitimate reason, the notice is deemed to have reached that party at the time it would have normally reached them.",
+      "explanation": "If the other party intentionally blocks the notice, it is deemed to have reached them."
+    },
+    {
+      "rule_id": "article_97_rule_3",
+      "conditions": [
+        "manifestation_of_intention_exists(ManifestationOfIntention)"
+      ],
+      "conclusion": "not_impaired_by_restrictions_on_legal_capacity(ManifestationOfIntention)",
+      "constants": {},
+      "supporting_span": "The effect of a manifestation of intention is not impaired even if the person making it dies, loses mental capacity, or becomes subject to restrictions on their legal capacity to act after having sent the notice.",
+      "explanation": "The effectiveness of a manifestation of intention remains intact despite death, loss of mental capacity, or legal restrictions."
+    }
+  ],
+  "warnings": []
+}

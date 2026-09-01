@@ -1,0 +1,87 @@
+{
+  "unit_id": "article_3_2",
+  "article_number": "3-2",
+  "unit_label": "Article 3-2",
+  "title": "Article 3-2 Article 3-2  If the person making a juridical act did not have mental capacity when manifesting the relevant intention, the juridical act is void.",
+  "statute_text": "Article 3-2 Article 3-2  If the person making a juridical act did not have mental capacity when manifesting the relevant intention, the juridical act is void.\nSection 3 Capacity to Act\n(Age of Majority)",
+  "variables": [
+    {
+      "variable_name": "Person",
+      "description": "The individual performing a legal action.",
+      "supporting_span": "person"
+    },
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal act performed by an individual.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "MentalCapacity",
+      "description": "The mental ability to understand and perform a legal action.",
+      "supporting_span": "mental capacity"
+    },
+    {
+      "variable_name": "Intention",
+      "description": "The intent behind the legal action.",
+      "supporting_span": "relevant intention"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_made_by_person",
+      "predicate_type": "relationship",
+      "arguments": [
+        "JuridicalAct",
+        "Person"
+      ],
+      "description": "The juridical act performed by a person.",
+      "supporting_span": "the person making a juridical act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_mental_capacity",
+      "predicate_type": "status",
+      "arguments": [
+        "Person"
+      ],
+      "description": "Whether the person has mental capacity.",
+      "supporting_span": "did not have mental capacity",
+      "constants": {}
+    },
+    {
+      "predicate_name": "manifests_relevant_intention",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Person",
+        "Intention"
+      ],
+      "description": "The act of manifesting the relevant intention.",
+      "supporting_span": "when manifesting the relevant intention",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_void",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The juridical act is void.",
+      "supporting_span": "the juridical act is void",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_3_2_rule_1",
+      "conditions": [
+        "juridical_act_made_by_person(JuridicalAct, Person)",
+        "NOT has_mental_capacity(Person)"
+      ],
+      "conclusion": "juridical_act_void(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "If the person making a juridical act did not have mental capacity when manifesting the relevant intention, the juridical act is void.",
+      "explanation": "A juridical act performed by a person without mental capacity at the time of expressing intent is considered void."
+    }
+  ],
+  "warnings": []
+}

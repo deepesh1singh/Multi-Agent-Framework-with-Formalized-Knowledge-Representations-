@@ -1,0 +1,224 @@
+{
+  "unit_id": "article_111",
+  "article_number": "111",
+  "unit_label": "Article 111",
+  "title": "Article 111 Article 111  (1) The authority to represent ceases to exist upon:",
+  "statute_text": "Article 111 Article 111  (1) The authority to represent ceases to exist upon:\n(i) death of the principal; and\n(ii) death of the agent, or being given an order commencing bankruptcy proceeding or a decision for commencement of guardianship against the agent.\n(2) The authority to represent by mandate ceases to exist, other than on the grounds set forth in the respective items of the preceding paragraph, upon the termination of the mandate.\n(Apparent Authority After Extinction of Authority to Represent)",
+  "variables": [
+    {
+      "variable_name": "AuthorityToRepresent",
+      "description": "The legal power or right to act on behalf of another.",
+      "supporting_span": "authority to represent"
+    },
+    {
+      "variable_name": "Principal",
+      "description": "The person or entity whose authority is being represented.",
+      "supporting_span": "principal"
+    },
+    {
+      "variable_name": "Agent",
+      "description": "The individual or entity acting on behalf of the principal.",
+      "supporting_span": "agent"
+    },
+    {
+      "variable_name": "Death",
+      "description": "The legal state of passing away.",
+      "supporting_span": "death"
+    },
+    {
+      "variable_name": "BankruptcyProceeding",
+      "description": "A legal proceeding to determine if a debtor is insolvent.",
+      "supporting_span": "bankruptcy proceeding"
+    },
+    {
+      "variable_name": "Guardianship",
+      "description": "A legal status where a person's assets or actions are managed by another.",
+      "supporting_span": "guardianship"
+    },
+    {
+      "variable_name": "Mandate",
+      "description": "The specific authorization or agreement to act on behalf of another.",
+      "supporting_span": "mandate"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "authority_to_represent_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "AuthorityToRepresent"
+      ],
+      "description": "The existence of the authority to represent.",
+      "supporting_span": "The authority to represent ceases to exist upon:",
+      "constants": {}
+    },
+    {
+      "predicate_name": "death_of_principal",
+      "predicate_type": "status",
+      "arguments": [
+        "Principal",
+        "Death"
+      ],
+      "description": "The death of the principal.",
+      "supporting_span": "death of the principal;",
+      "constants": {}
+    },
+    {
+      "predicate_name": "death_of_agent",
+      "predicate_type": "status",
+      "arguments": [
+        "Agent",
+        "Death"
+      ],
+      "description": "The death of the agent.",
+      "supporting_span": "death of the agent,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "bankruptcy_proceeding_ordered",
+      "predicate_type": "status",
+      "arguments": [
+        "Agent",
+        "BankruptcyProceeding"
+      ],
+      "description": "An order commencing bankruptcy proceeding against the agent.",
+      "supporting_span": "being given an order commencing bankruptcy proceeding",
+      "constants": {}
+    },
+    {
+      "predicate_name": "guardianship_decided_against_agent",
+      "predicate_type": "status",
+      "arguments": [
+        "Agent",
+        "Guardianship"
+      ],
+      "description": "A decision for commencement of guardianship against the agent.",
+      "supporting_span": "a decision for commencement of guardianship against the agent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "authority_to_represent_ceases_on_death_of_principal",
+      "predicate_type": "exception",
+      "arguments": [
+        "AuthorityToRepresent",
+        "Principal"
+      ],
+      "description": "The authority to represent ceases to exist upon death of the principal.",
+      "supporting_reason": "Rule-based logic for termination of representation.",
+      "supporting_span": "death of the principal;",
+      "constants": {}
+    },
+    {
+      "predicate_name": "authority_to_represent_ceases_on_death_of_agent",
+      "predicate_type": "exception",
+      "arguments": [
+        "AuthorityToRepresent",
+        "Agent"
+      ],
+      "description": "The authority to represent ceases to exist upon death of the agent.",
+      "supporting_span": "death of the agent,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "authority_to_represent_ceases_on_bankruptcy_order",
+      "predicate_type": "exception",
+      "arguments": [
+        "AuthorityToRepresent",
+        "BankruptcyProceeding"
+      ],
+      "description": "The authority to represent ceases to exist upon an order for bankruptcy proceeding against the agent.",
+      "supporting_span": "being given an order commencing bankruptcy proceeding",
+      "constants": {}
+    },
+    {
+      "predicate_name": "authority_to_represent_ceases_on_guardianship_decision",
+      "predicate_type": "exception",
+      "arguments": [
+        "AuthorityToRepresent",
+        "Guardianship"
+      ],
+      "description": "The authority to represent ceases to exist upon a decision for commencement of guardianship against the agent.",
+      "supporting_span": "a decision for commencement of guardianship against the agent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "mandate_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Mandate"
+      ],
+      "description": "The existence of a mandate.",
+      "supporting_span": "The authority to represent by mandate ceases to exist, other than on the grounds set forth in the respective items of the preceding paragraph, upon the termination of the mandate.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "authority_to_represent_by_mandate_ceases_on_termination",
+      "predicate_type": "exception",
+      "arguments": [
+        "AuthorityToRepresent",
+        "Mandate"
+      ],
+      "description": "The authority to represent by mandate ceases to exist upon the termination of the mandate.",
+      "supporting_span": "upon the termination of the mandate.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_111_rule_1",
+      "conditions": [
+        "death_of_principal(Principal, Death)",
+        "NOT authority_to_represent_exists(AuthorityToRepresent)"
+      ],
+      "conclusion": "authority_to_represent_ceases_on_death_of_principal(AuthorityToRepresent, Principal)",
+      "constants": {},
+      "supporting_span": "death of the principal;",
+      "explanation": "The authority to represent ceases to exist upon death of the principal."
+    },
+    {
+      "rule_id": "article_111_rule_2",
+      "conditions": [
+        "death_of_agent(Agent, Death)",
+        "NOT authority_to_represent_exists(AuthorityToRepresent)"
+      ],
+      "conclusion": "authority_to_represent_ceases_on_death_of_agent(AuthorityToRepresent, Agent)",
+      "constants": {},
+      "supporting_span": "death of the agent,",
+      "explanation": "The authority to represent ceases to exist upon death of the agent."
+    },
+    {
+      "rule_id": "article_111_rule_3",
+      "conditions": [
+        "bankruptcy_proceeding_ordered(Agent, BankruptcyProceeding)",
+        "NOT authority_to_represent_exists(AuthorityToRepresent)"
+      ],
+      "conclusion": "authority_to_represent_ceases_on_bankruptcy_order(AuthorityToRepresent, BankruptcyProceeding)",
+      "constants": {},
+      "supporting_span": "being given an order commencing bankruptcy proceeding",
+      "explanation": "The authority to represent ceases to exist upon being given an order commencing bankruptcy proceeding."
+    },
+    {
+      "rule_id": "article_111_rule_4",
+      "conditions": [
+        "guardianship_decided_against_agent(Agent, Guardianship)",
+        "NOT authority_to_represent_exists(AuthorityToRepresent)"
+      ],
+      "conclusion": "authority_to_represent_ceases_on_guardianship_decision(AuthorityToRepresent, Guardianship)",
+      "constants": {},
+      "supporting_span": "a decision for commencement of guardianship against the agent.",
+      "explanation": "The authority to represent ceases to exist upon a decision for commencement of guardianship against the agent."
+    },
+    {
+      "rule_id": "article_111_rule_5",
+      "conditions": [
+        "mandate_exists(Mandate)",
+        "NOT authority_to_represent_exists(AuthorityToRepresent)"
+      ],
+      "conclusion": "authority_to_represent_by_mandate_ceases_on_termination(AuthorityToRepresent, Mandate)",
+      "constants": {},
+      "supporting_span": "upon the termination of the mandate.",
+      "explanation": "The authority to represent by mandate ceases to exist upon the termination of the mandate."
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,109 @@
+{
+  "unit_id": "article_119",
+  "article_number": "119",
+  "unit_label": "Article 119",
+  "title": "Article 119 Article 119  A void act does not become effective by ratification; provided, however, that if a party ratifies an act knowing that the act is void, it is deemed that the party did a new act.",
+  "statute_text": "Article 119 Article 119  A void act does not become effective by ratification; provided, however, that if a party ratifies an act knowing that the act is void, it is deemed that the party did a new act.\n(Holder of Right to Rescind)",
+  "variables": [
+    {
+      "variable_name": "VoidAct",
+      "description": "An act that is legally null and void.",
+      "supporting_span": "void act"
+    },
+    {
+      "variable_name": "Ratification",
+      "description": "The act of ratifying or confirming a previous action.",
+      "supporting_span": "ratifies"
+    },
+    {
+      "variable_name": "Party",
+      "description": "A person or entity involved in the legal transaction.",
+      "supporting_span": "party"
+    },
+    {
+      "variable_name": "NewAct",
+      "description": "A new legal act performed by a party.",
+      "supporting_span": "new act"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "void_act_status",
+      "predicate_type": "status",
+      "arguments": [
+        "VoidAct"
+      ],
+      "description": "The status of an act as being legally null and void.",
+      "supporting_span": "A void act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "ratification_action",
+      "predicate_type": "status",
+      "arguments": [
+        "Ratification"
+      ],
+      "description": "The action of ratifying or confirming a previous act.",
+      "supporting_span": "ratifies",
+      "constants": {}
+    },
+    {
+      "predicate_name": "ratification_of_void_act_not_effective",
+      "predicate_type": "exception",
+      "arguments": [
+        "VoidAct",
+        "Ratification"
+      ],
+      "description": "A void act does not become effective by ratification.",
+      "supporting_span": "A void act does not become effective by ratification",
+      "constants": {}
+    },
+    {
+      "predicate_name": "party_knows_act_is_void",
+      "predicate_type": "status",
+      "arguments": [
+        "Party",
+        "VoidAct"
+      ],
+      "description": "The condition where a party knows that the act is void.",
+      "supporting_span": "a party ratifies an act knowing that the act is void",
+      "constants": {}
+    },
+    {
+      "predicate_name": "new_act_deemed_at_ratification_relationship",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Party",
+        "NewAct"
+      ],
+      "description": "The relationship between a party and a new act performed upon ratification of a void act with knowledge.",
+      "supporting_span": "it is deemed that the party did a new act.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_119_rule_1",
+      "conditions": [
+        "void_act_status(VoidAct)",
+        "ratification_action(Ratification)"
+      ],
+      "conclusion": "ratification_of_void_act_not_effective(VoidAct, Ratification)",
+      "constants": {},
+      "supporting_span": "A void act does not become effective by ratification",
+      "explanation": "A void act remains ineffective even if ratified."
+    },
+    {
+      "rule_id": "article_119_rule_2",
+      "conditions": [
+        "party_knows_act_is_void(Party, VoidAct)",
+        "ratification_action(Ratification)"
+      ],
+      "conclusion": "new_act_deemed_at_ratification_relationship(Party, NewAct)",
+      "constants": {},
+      "supporting_span": "if a party ratifies an act knowing that the act is void, it is deemed that the party did a new act.",
+      "explanation": "If a party knowingly ratifies a void act, it is treated as a new legal act."
+    }
+  ],
+  "warnings": []
+}

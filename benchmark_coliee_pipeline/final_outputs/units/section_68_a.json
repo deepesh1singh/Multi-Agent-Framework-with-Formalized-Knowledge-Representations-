@@ -1,0 +1,133 @@
+{
+  "unit_id": "section_68_a",
+  "section_id": "section_68",
+  "unit_label": "68(a)",
+  "statute_text": "\u00a768. Overall limitation on itemized deductions\n\n(a) General rule\n\nIn the case of an individual whose adjusted gross income exceeds the applicable amount, the amount of the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of-\n\n(1) 3 percent of the excess of adjusted gross income over the applicable amount, or\n\n(2) 80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+  "variables": [
+    {
+      "variable_name": "AdjustedGrossIncome",
+      "description": "The total income of an individual before certain adjustments.",
+      "supporting_span": "adjusted gross income"
+    },
+    {
+      "variable_name": "ApplicableAmount",
+      "description": "The threshold amount used to determine the reduction in itemized deductions.",
+      "supporting_span": "applicable amount"
+    },
+    {
+      "variable_name": "ItemizedDeductions",
+      "description": "The total amount of deductions that can be claimed on a tax return.",
+      "supporting_span": "itemized deductions"
+    },
+    {
+      "variable_name": "TaxableYear",
+      "span_type": "time_concept",
+      "description": "The specific year for which the income and deductions are calculated.",
+      "supporting_span": "taxable year"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "agi_exceeds_applicable_amount",
+      "predicate_type": "status",
+      "arguments": [
+        "AdjustedGrossIncome",
+        "ApplicableAmount"
+      ],
+      "description": "The adjusted gross income exceeds the applicable amount.",
+      "supporting_span": "In the case of an individual whose adjusted gross income exceeds the applicable amount,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "itemized_deductions_allowable_for_year",
+      "predicate_type": "datatype",
+      "arguments": [
+        "ItemizedDeductions",
+        "TaxableYear"
+      ],
+      "description": "The itemized deductions allowable for a specific taxable year.",
+      "supporting_span": "the amount of the itemized deductions otherwise allowable for the taxable year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "deduction_reduction_calculation_base",
+      "predicate_type": "datatype",
+      "arguments": [
+        "AdjustedGrossIncome",
+        "ApplicableAmount"
+      ],
+      "description": "The amount of adjusted gross income exceeding the applicable amount.",
+      "supporting_span": "excess of adjusted gross income over the applicable amount",
+      "constants": {}
+    },
+    {
+      "predicate_name": "deduction_reduction_calculation_base_2",
+      "predicate_type": "datatype",
+      "arguments": [
+        "ItemizedDeductions"
+      ],
+      "description": "The portion of itemized deductions to be considered for the 80 percent calculation.",
+      "supporting_span": "80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "deduction_reduction_calculation_base_2",
+      "predicate_type": "datatype",
+      "arguments": [
+        "ItemizedDeductions"
+      ],
+      "description": "The portion of itemized deductions to be considered for the calculation.",
+      "supporting_span": "80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_68_a_rule_1",
+      "conditions": [
+        "agi_exceeds_applicable_amount(AdjustedGrossIncome, ApplicableAmount)"
+      ],
+      "conclusion": "deduction_reduction_calculation_base_2(ItemizedDeductions)",
+      "constants": {
+        "rate_1": 0.03,
+        "rate_2": 0.8
+      },
+      "supporting_span": "In the case of an individual whose adjusted gross income exceeds the applicable amount, the amount of the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of\u2014(1) 3 percent of the excess of adjusted gross income over the applicable amount, or (2) 80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+      "explanation": "The rule defines the calculation basis for the reduction of itemized deductions when AGI exceeds the applicable amount."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_68_a",
+      "rule_id": "section_68_a_rule_1",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "AdjustedGrossIncome",
+        "ApplicableAmount"
+      ],
+      "rhs_args": [
+        "ItemizedDeductions"
+      ],
+      "rule": {
+        "rule_id": "section_68_a_rule_1",
+        "conditions": [
+          "agi_exceeds_applicable_amount(AdjustedGrossIncome, ApplicableAmount)"
+        ],
+        "conclusion": "deduction_reduction_calculation_base_2(ItemizedDeductions)",
+        "constants": {
+          "rate_1": 0.03,
+          "rate_2": 0.8
+        },
+        "supporting_span": "In the case of an individual whose adjusted gross income exceeds the applicable amount, the amount of the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of\u2014(1) 3 percent of the excess of adjusted gross income over the applicable amount, or (2) 80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+        "explanation": "The rule defines the calculation basis for the reduction of itemized deductions when AGI exceeds the applicable amount."
+      }
+    },
+    {
+      "unit_id": "section_68_a",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "In the case of an individual whose adjusted gross income exceeds the applicable amount, the amount of the itemized deductions otherwise allowable for the taxable year shall be reduced by the lesser of\u2014(1) 3 percent of the excess of adjusted gross income over the applicable amount, or (2) 80 percent of the amount of the itemized deductions otherwise allowable for such taxable year.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

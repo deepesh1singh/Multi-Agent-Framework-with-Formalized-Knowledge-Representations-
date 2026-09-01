@@ -1,0 +1,135 @@
+{
+  "unit_id": "article_106",
+  "article_number": "106",
+  "unit_label": "Article 106",
+  "title": "Article 106 Article 106  (1) A subagent represents the principal with respect to acts within the scope of the authority thereof.",
+  "statute_text": "Article 106 Article 106  (1) A subagent represents the principal with respect to acts within the scope of the authority thereof.\n(2) A subagent has the same rights and obligations as an agent in relation to the principal and third parties within the scope of that subagent's authority.\n(Abuse of Authority to Represent)",
+  "variables": [
+    {
+      "variable_name": "Subagent",
+      "description": "A person or entity acting on behalf of a principal through an agent.",
+      "supporting_span": "subagent"
+    },
+    {
+      "variable_name": "Act",
+      "description": "A legal action or deed performed within a specific scope of authority.",
+      "supporting_span": "acts"
+    },
+    {
+      "variable_name": "ScopeOfAuthority",
+      "description": "The defined limits and permissions granted to an agent or subagent.",
+      "supporting_span": "scope of the authority thereof"
+    },
+    {
+      "variable_name": "Agent",
+      "description": "A person or entity authorized to act on behalf of another party.",
+      "supporting_span": "agent"
+    },
+    {
+      "variable_name": "ThirdParty",
+      "description": "An external party not involved in the primary relationship between agent and principal.",
+      "supporting_span": "third parties"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "subagent_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Subagent"
+      ],
+      "description": "A subagent is a person or entity acting on behalf of the principal.",
+      "supporting_span": "A subagent represents the principal",
+      "constants": {}
+    },
+    {
+      "predicate_name": "act_within_scope",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Act",
+        "ScopeOfAuthority"
+      ],
+      "description": "An act is performed within the defined scope of authority.",
+      "supporting_span": "acts within the scope of the authority thereof",
+      "constants": {}
+    },
+    {
+      "predicate_name": "subagent_represents_principal_within_scope",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Subagent",
+        "Act",
+        "ScopeOfAuthority"
+      ],
+      "description": "A subagent represents the principal with respect to acts within the scope of authority.",
+      "supporting_span": "A subagent represents the principal with respect to acts within the scope of the authority thereof.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "agent_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Agent"
+      ],
+      "description": "An agent is a person or entity authorized to act on behalf of another party.",
+      "supporting_span": "agent",
+      "constants": {}
+    },
+    {
+      "predicate_name": "third_party_status",
+      "predicate_type": "status",
+      "arguments": [
+        "ThirdParty"
+      ],
+      "description": "An external party not involved in the primary relationship between agent and principal.",
+      "supporting_span": "third parties",
+      "constants": {}
+    },
+    {
+      "predicate_name": "subagent_rights_and_obligations",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Subagent"
+      ],
+      "description": "A subagent has rights and obligations similar to an agent's in relation to the principal and third parties.",
+      "supporting_span": "A subagent has the same rights and obligations as an agent in relation to the principal and third parties within the scope of that subagent's authority.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "subagent_authority_scope",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Subagent",
+        "ScopeOfAuthority"
+      ],
+      "description": "The specific scope of authority for a subagent.",
+      "supporting_span": "within the scope of that subagent's authority",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_106_rule_1",
+      "conditions": [
+        "subagent_status(Subagent)",
+        "act_within_scope(Act, ScopeOfAuthority)"
+      ],
+      "conclusion": "subagent_represents_principal_within_scope(Subagent, Act, ScopeOfAuthority)",
+      "constants": {},
+      "supporting_span": "A subagent represents the principal with respect to acts within the scope of the authority thereof.",
+      "explanation": "A subagent represents the principal for actions performed within their granted authority."
+    },
+    {
+      "rule_id": "article_106_rule_2",
+      "conditions": [
+        "subagent_status(Subagent)",
+        "act_within_scope(Act, ScopeOfAuthority)"
+      ],
+      "conclusion": "subagent_rights_and_obligations(Subagent)",
+      "constants": {},
+      "supporting_span": "A subagent has the same rights and obligations as an agent in relation to the principal and third parties within the scope of that subagent's authority.",
+      "explanation": "A subagent possesses the same legal rights and obligations as an agent when acting within their specific scope of authority."
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,182 @@
+{
+  "unit_id": "section_3306_a",
+  "section_id": "section_3306",
+  "unit_label": "3306(a)",
+  "statute_text": "\u00a73306. Definitions\n\n(a) Employer\n\n(1) In general\n\nThe term \"employer\" means, with respect to any calendar year, any person who-\n\n(A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or\n\n(B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.\n\nFor purposes of this paragraph, there shall not be taken into account any wages paid to, or employment of, an employee performing domestic services referred to in paragraph (3).\n\n(2) Agricultural labor\n\nIn the case of agricultural labor, the term \"employer\" means, with respect to any calendar year, any person who-\n\n(A) during the calendar year or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or\n\n(B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.\n\n(3) Domestic service\n\nIn the case of domestic service in a private home, local college club, or local chapter of a college fraternity or sorority, the term \"employer\" means, with respect to any calendar year, any person who during the calendar year or the preceding calendar year paid wages in cash of $1,000 or more for such service.\n\n(4) Special rule\n\nA person treated as an employer under paragraph (3) shall not be treated as an employer with respect to wages paid for any service other than domestic service referred to in paragraph (3) unless such person is treated as an employer under paragraph (1) or (2) with respect to such other service.",
+  "variables": [
+    {
+      "variable_name": "Employer",
+      "description": "A person who pays wages or employs individuals for services.",
+      "supporting_span": "The term \"employer\" means, with respect to any calendar year, any person who-"
+    },
+    {
+      "variable_name": "CalendarYear",
+      "description": "The specific period of time in which employment occurs.",
+      "supporting_span": "with respect to any calendar year"
+    },
+    {
+      "variable_name": "Wages",
+      "description": "Payments made to employees for work performed.",
+      "supporting_span": "paid wages of $1,500 or more"
+    },
+    {
+      "variable_name": "IndividualInEmployment",
+      "description": "A person performing labor or services.",
+      "supporting_span": "employed at least one individual in employment"
+    },
+    {
+      "variable_name": "DomesticService",
+      "description": "Services performed in a private home, local college club, or local chapter of a college fraternity or sorority.",
+      "supporting_span": "performing domestic services referred to in paragraph (3)"
+    },
+    {
+      "variable_name": "AgriculturalLabor",
+      "description": "Work performed in the agricultural sector.",
+      "supporting_span": "In the case of agricultural labor"
+    },
+    {
+      "variable_name": "CashPayment",
+      "description": "Wages paid specifically in cash for domestic service.",
+      "supporting_span": "paid wages in cash of $1,000 or more"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "employer_definition_general",
+      "predicate_type": "definition",
+      "arguments": [
+        "Employer",
+        "CalendarYear"
+      ],
+      "description": "Definition of employer based on general wages or employment count.",
+      "supporting_span": "The term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "employer_definition_agricultural",
+      "predicate_type": "definition",
+      "arguments": [
+        "Employer",
+        "AgriculturalLabor"
+      ],
+      "description": "Definition of employer specifically for agricultural labor.",
+      "supporting_span": "In the case of agricultural labor, the term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year, or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or (B) on each of some10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "employer_definition_domestic",
+      "predicate_type": "definition",
+      "arguments": [
+        "Employer",
+        "DomesticService"
+      ],
+      "description": "Definition of employer specifically for domestic service.",
+      "supporting_span": "In the case of domestic service in a private home, local college club, or local chapter of a college fraternity or sorority, the term \"employer\" means, with respect to any calendar year, any person who during the calendar year or the preceding calendar year paid wages in cash of $1,000 or more for such service.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "domestic_service_exclusion",
+      "predicate_type": "exception",
+      "arguments": [
+        "Employer"
+      ],
+      "description": "Exclusion of domestic services from general employer definition.",
+      "supporting_span": "For purposes of this paragraph, there shall not be taken into account any wages paid to, or employment of, an employee performing domestic services referred to in paragraph (3).",
+      "constants": {}
+    },
+    {
+      "predicate_name": "special_rule_domestic_service",
+      "predicate_type": "exception",
+      "arguments": [
+        "Employer"
+      ],
+      "description": "Special rule regarding the treatment of employer status for non-domestic service.",
+      "supporting_span": "A person treated as an employer under paragraph (3) shall not be treated as an employer with respect to wages paid for any service other than domestic service referred to in paragraph (3) unless such person is treated as an employer under paragraph (1) or (2) with respect to such other service.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_3306_a_rule_1",
+      "conditions": [
+        "(employer_definition_general(Employer, CalendarYear) OR employer_definition_agricultural(Employer, AgriculturalLabor))"
+      ],
+      "conclusion": "employer_definition_general(Employer, CalendarYear)",
+      "constants": {},
+      "supporting_span": "The term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.",
+      "explanation": "General definition of an employer based on wages paid or number of individuals employed."
+    },
+    {
+      "rule_id": "section_3306_a_rule_2",
+      "conditions": [
+        "employer_definition_agricultural(Employer, AgriculturalLabor)"
+      ],
+      "conclusion": "employer_definition_agricultural(Employer, AgriculturalLabor)",
+      "constants": {},
+      "supporting_span": "In the case of agricultural labor, the term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year, or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.",
+      "explanation": "Specific definition of an employer for agricultural labor."
+    },
+    {
+      "rule_id": "section_3306_a_rule_3",
+      "conditions": [
+        "employer_definition_domestic(Employer, DomesticService)"
+      ],
+      "conclusion": "employer_definition_domestic(Employer, DomesticService)",
+      "constants": {},
+      "supporting_span": "In the case of domestic service in a private home, local college club, or local chapter of a college fraternity or sorority, the term \"employer\" means, with respect to any calendar year, any person who during the calendar year or the preceding calendar year paid wages in cash of $1,000 or more for such service.",
+      "explanation": "Specific definition of an employer for domestic service."
+    },
+    {
+      "rule_id": "section_3306_a_rule_4",
+      "conditions": [
+        "NOT domestic_service_exclusion(Employer)"
+      ],
+      "conclusion": "special_rule_domestic_service(Employer)",
+      "constants": {},
+      "supporting_span": "A person treated as an employer under paragraph (3) shall not be treated as an employer with respect to wages paid for any service other than domestic service referred to in paragraph (3) unless such person is treated as an employer under paragraph (1) or (2) with respect to such other service.",
+      "explanation": "A person treated as an employer for domestic services is only considered an employer for those specific services unless they meet the criteria of general or agricultural labor."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_3306_a",
+      "rule_id": "section_3306_a_rule_2",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "employer_definition_agricultural(Employer, AgriculturalLabor)"
+    },
+    {
+      "unit_id": "section_3306_a",
+      "rule_id": "section_3306_a_rule_3",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "employer_definition_domestic(Employer, DomesticService)"
+    },
+    {
+      "unit_id": "section_3306_a",
+      "stage": "predicates",
+      "index": 0,
+      "supporting_span": "The term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_3306_a",
+      "stage": "predicates",
+      "index": 1,
+      "supporting_span": "In the case of agricultural labor, the term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year, or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or (B) on each of some10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_3306_a",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "The term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year or the preceding calendar year paid wages of $1,500 or more, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_3306_a",
+      "stage": "rules",
+      "index": 1,
+      "supporting_span": "In the case of agricultural labor, the term \"employer\" means, with respect to any calendar year, any person who- (A) during the calendar year, or the preceding calendar year paid wages of $20,000 or more for agricultural labor, or (B) on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

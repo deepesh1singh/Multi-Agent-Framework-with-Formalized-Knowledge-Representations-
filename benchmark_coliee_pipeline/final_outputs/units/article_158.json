@@ -1,0 +1,126 @@
+{
+  "unit_id": "article_158",
+  "article_number": "158",
+  "unit_label": "Article 158",
+  "title": "Article 158 Article 158  (1) If a minor or an adult ward has no legal representative during the period of six months preceding the expiration of the period of prescription, the prescription period does not expire with respect to that minor or adult ward until six months pass from the time when that minor or adult ward becomes a person with a capacity to act, or a legal representative assumes the position.",
+  "statute_text": "Article 158 Article 158  (1) If a minor or an adult ward has no legal representative during the period of six months preceding the expiration of the period of prescription, the prescription period does not expire with respect to that minor or adult ward until six months pass from the time when that minor or adult ward becomes a person with a capacity to act, or a legal representative assumes the position.\n(2) If a minor or an adult ward has a right vis-a-vis the minor's or the adult ward's father, mother, or guardian who manages the property, the prescription period does not expire with respect to that right until six months have passed from the time when that minor or adult ward becomes a person with capacity to act, or a succeeding legal representative assumes the position.\n(Postponement of Expiry of Prescription Period of Rights Between Husband and Wife)",
+  "variables": [
+    {
+      "variable_name": "Minor",
+      "description": "A minor person.",
+      "supporting_span": "minor"
+    },
+    {
+      "variable_name": "AdultWard",
+      "description": "An adult ward under legal protection.",
+      "supporting_span": "adult ward"
+    },
+    {
+      "variable_name": "LegalRepresentative",
+      "description": "A person who represents a minor or an adult ward.",
+      "supporting_span": "legal representative"
+    },
+    {
+      "variable_name": "PrescriptionPeriod",
+      "description": "The period of time during which a legal right must be asserted.",
+      "supporting_span": "prescription period"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "minor_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Minor"
+      ],
+      "description": "The status of a person as a minor.",
+      "supporting_span": "minor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "adult_ward_status",
+      "predicate_type": "status",
+      "relationship": "relationship",
+      "arguments": [
+        "AdultWard"
+      ],
+      "description": "The status of a person as an adult ward.",
+      "supporting_span": "adult ward",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_representative_exists",
+      "predicate_type": "relationship",
+      "arguments": [
+        "LegalRepresentative"
+      ],
+      "description": "Existence of a legal representative for a minor or adult ward.",
+      "supporting_span": "legal representative",
+      "constants": {}
+    },
+    {
+      "predicate_name": "prescription_period_duration",
+      "predicate_type": "datatype",
+      "arguments": [
+        "PrescriptionPeriod"
+      ],
+      "description": "The duration of the prescription period.",
+      "supporting_span": "prescription period",
+      "constants": {}
+    },
+    {
+      "predicate_name": "no_legal_representative_during_preceding_period",
+      "predicate_type": "exception",
+      "arguments": [
+        "Minor",
+        "AdultWard",
+        "PrescriptionPeriod"
+      ],
+      "description": "Condition where no legal representative exists during the six months preceding prescription expiration.",
+      "supporting_span": "has no legal representative during the period of six months preceding the expiration of the period of prescription",
+      "constants": {}
+    },
+    {
+      "predicate_name": "prescription_period_not_expired_until_condition_met",
+      "predicate_type": "status",
+      "arguments": [
+        "PrescriptionPeriod"
+      ],
+      "description": "The status of the prescription period not expiring until a specific condition is met.",
+      "supporting_span": "the prescription period does not expire with respect to that minor or adult ward until six months pass from the time when that minor or adult ward becomes a person with a capacity to act, or a legal representative assumes the position.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "capacity_to_act_attained",
+      "predicate_type": "status",
+      "arguments": [
+        "Minor",
+        "AdultWard"
+      ],
+      "description": "The status of becoming a person with capacity to act.",
+      "supporting_span": "becomes a person with a capacity to act",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_158_rule_1",
+      "conditions": [
+        "minor_status(Minor)",
+        "no_legal_representative_during_preceding_period(Minor, AdultWard, PrescriptionPeriod)"
+      ],
+      "conclusion": "prescription_period_not_expired_until_condition_met(PrescriptionPeriod)",
+      "constants": {},
+      "supporting_span": "If a minor or an adult ward has no legal representative during the period of six months preceding the expiration of the period of prescription, the prescription period does not expire with respect to that minor or adult ward until six months pass from the time when that minor or adult ward becomes a person with a capacity to act, or a legal representative assumes the position.",
+      "explanation": "The prescription period for a minor or an adult ward without a legal representative in the 6 months before expiration is extended until they gain capacity or a representative is appointed."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "article_158",
+      "rule_id": "article_158_rule_1",
+      "issue": "Placeholder or invalid conclusion",
+      "conclusion": "prescription_period_not_expired_until_condition_met(PrescriptionPeriod)"
+    }
+  ]
+}

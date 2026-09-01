@@ -1,0 +1,55 @@
+{
+  "unit_id": "article_12",
+  "article_number": "12",
+  "unit_label": "Article 12",
+  "title": "Article 12 Article 12  A person subject to a decision for commencement of curatorship becomes a person under curatorship, and a curator is appointed for that person.",
+  "statute_text": "Article 12 Article 12  A person subject to a decision for commencement of curatorship becomes a person under curatorship, and a curator is appointed for that person.\n(Acts Requiring Consent of Curator)",
+  "variables": [
+    {
+      "variable_name": "PersonUnderCuratorship",
+      "description": "A person who has been subject to a decision for commencement of curatorship.",
+      "supporting_span": "A person subject to a decision for commencement of curatorship becomes a person under curatorship"
+    },
+    {
+      "variable_name": "Curator",
+      "description": "The individual appointed to act on behalf of the person under curatorship.",
+      "supporting_span": "a curator is appointed for that person"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "person_under_curatorship_status",
+      "predicate_type": "status",
+      "arguments": [
+        "PersonUnderCuratorship"
+      ],
+      "description": "A person who has been subject to a decision for commencement of curatorship.",
+      "supporting_span": "A person subject to a decision for commencement of curatorship becomes a person under curatorship",
+      "constants": {}
+    },
+    {
+      "predicate_name": "curator_appointed_for_person",
+      "predicate_type": "relationship",
+      "arguments": [
+        "PersonUnderCuratorship",
+        "Curator"
+      ],
+      "description": "The individual appointed to act on behalf of the person under curatorship.",
+      "supporting_span": "a curator is appointed for that person",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_12_rule_1",
+      "conditions": [
+        "person_under_curatorship_status(PersonUnderCuratorship)"
+      ],
+      "conclusion": "curator_appointed_for_person(PersonUnderCuratorship, Curator)",
+      "constants": {},
+      "supporting_span": "A person subject to a decision for commencement of curatorship becomes a person under curatorship, and a curator is appointed for that person.",
+      "explanation": "If a person is subject to a decision for commencement of curatorship, they are considered a person under curatorship and a curator is appointed for them."
+    }
+  ],
+  "warnings": []
+}

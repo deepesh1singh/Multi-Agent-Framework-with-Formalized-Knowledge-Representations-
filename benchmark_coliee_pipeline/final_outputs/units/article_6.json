@@ -1,0 +1,137 @@
+{
+  "unit_id": "article_6",
+  "article_number": "6",
+  "unit_label": "Article 6",
+  "title": "Article 6 Article 6  (1) A minor who is permitted to conduct one or multiple types of business has the same capacity to act as an adult as far as that business is concerned.",
+  "statute_text": "Article 6 Article 6  (1) A minor who is permitted to conduct one or multiple types of business has the same capacity to act as an adult as far as that business is concerned.\n(2) In a case as referred to in the preceding paragraph, if there are grounds that make the minor unable to sustain that business, the legal representative may revoke or limit the permission therefor in accordance with the provisions of Part IV (Relatives).\n(Decisions for Commencement of Guardianship)",
+  "variables": [
+    {
+      "variable_name": "Minor",
+      "description": "A minor who is permitted to conduct one or multiple types of business.",
+      "supporting_span": "A minor who is permitted to conduct one or multiple types of business"
+    },
+    {
+      "variable_name": "Business",
+      "description": "The type of business the minor is permitted to conduct.",
+      "supporting_span": "one or multiple types of business"
+    },
+    {
+      "variable_name": "Adult",
+      "description": "An adult person with legal capacity.",
+      "supporting_span": "adult"
+    },
+    {
+      "variable_name": "LegalCapacity",
+      "description": "The capacity to act as an end-user of a legal right or obligation.",
+      "supporting_span": "capacity to act"
+    },
+    {
+      "variable_name": "LegalRepresentative",
+      "description": "A person authorized to represent the minor in legal matters.",
+      "supporting_span": "legal representative"
+    },
+    {
+      "variable_name": "decision",
+      "description": "The decision regarding whether a minor is able to sustain a business.",
+      "supporting_span": "grounds that make the minor unable to sustain that business"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "minor_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Minor"
+      ],
+      "description": "A minor who is permitted to conduct one or multiple types of business.",
+      "supporting_span": "A minor who is permitted to conduct one or multiple types of business",
+      "constants": {}
+    },
+    {
+      "predicate_name": "business_type",
+      "predicate_type": "datatype",
+      "arguments": [
+        "Business"
+      ],
+      "description": "The type of business the minor is permitted to conduct.",
+      "supporting_span": "one or multiple types of business",
+      "constants": {}
+    },
+    {
+      "predicate_name": "adult_status",
+      "predicate_type": "status",
+      "arguments": [
+        "Adult"
+      ],
+      "description": "An adult person with legal capacity.",
+      "supporting_span": "adult",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_capacity_status",
+      "predicate_type": "status",
+      "arguments": [
+        "LegalCapacity"
+      ],
+      "description": "The capacity to act as an end-user of legal rights or obligations.",
+      "supporting_span": "capacity to act",
+      "constants": {}
+    },
+    {
+      "predicate_name": "minor_has_same_capacity_as_adult",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Minor",
+        "Adult"
+      ],
+      "description": "A minor who is permitted to conduct business has the same capacity to act as an adult for that specific business.",
+      "supporting_span": "A minor who is permitted to conduct one or multiple types of business has the same capacity to act as an adult as far as that business is concerned.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "grounds_for_unsustainability",
+      "predicate_type": "status",
+      "arguments": [
+        "decision"
+      ],
+      "description": "Grounds that make the minor unable to sustain that business.",
+      "supporting_span": "grounds that make the minor unable to sustain that business",
+      "constants": {}
+    },
+    {
+      "predicate_name": "legal_representative_presence",
+      "predicate_type": "status",
+      "arguments": [
+        "LegalRepresentative"
+      ],
+      "description": "A person authorized to represent the minor in legal matters.",
+      "supporting_span": "legal representative",
+      "constants": {}
+    },
+    {
+      "predicate_name": "permission_revocation_or_limitation",
+      "predicate_type": "exception",
+      "arguments": [
+        "LegalRepresentative",
+        "decision"
+      ],
+      "description": "The legal representative may revoke or limit the permission for a business if there are grounds that make the minor unable to sustain it.",
+      "supporting_span": "the legal representative may revoke or limit the permission therefor in accordance with the provisions of Part IV (Relatives)",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_6_rule_1",
+      "conditions": [
+        "minor_status(Minor)",
+        "business_type(Business)"
+      ],
+      "conclusion": "minor_has_same_capacity_as_adult(Minor, Adult)",
+      "constants": {},
+      "supporting_span": "A minor who is permitted to conduct one or multiple types of business has the same capacity to act as an adult as far as that business is concerned.",
+      "explanation": "A minor with permission for a specific business type has the same legal capacity as an adult for that specific business."
+    }
+  ],
+  "warnings": []
+}

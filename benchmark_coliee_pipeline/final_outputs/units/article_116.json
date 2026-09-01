@@ -1,0 +1,65 @@
+{
+  "unit_id": "article_116",
+  "article_number": "116",
+  "unit_label": "Article 116",
+  "title": "Article 116 Article 116  Ratification is retroactive to the time of the conclusion of the contract unless a particular intention is manifested; provided, however, that this may not prejudice the rights of a third party.",
+  "statute_text": "Article 116 Article 116  Ratification is retroactive to the time of the conclusion of the contract unless a particular intention is manifested; provided, however, that this may not prejudice the rights of a third party.\n(Liability of Unauthorized Agency)",
+  "variables": [
+    {
+      "variable_name": "Ratification",
+      "description": "The act of confirming or approving an action previously taken.",
+      "supporting_span": "Ratification"
+    },
+    {
+      "variable_name": "Contract",
+      "description": "A legally binding agreement between two or more parties.",
+      "supporting_span": "contract"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "ratification_exists",
+      "predicate_type": "status",
+      "arguments": [
+        "Ratification"
+      ],
+      "description": "The existence of a ratification.",
+      "supporting_span": "Ratification",
+      "constants": {}
+    },
+    {
+      "predicate_name": "contract_conclusion_time",
+      "predicate_type": "datatype",
+      "arguments": [
+        "Contract"
+      ],
+      "description": "The time at which the contract was concluded.",
+      "supporting_span": "conclusion of the contract",
+      "constants": {}
+    },
+    {
+      "predicate_name": "ratification_is_retroactive_to_contract_conclusion",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Ratification",
+        "Contract"
+      ],
+      "description": "The ratification is retroactive to the time of the conclusion of the contract.",
+      "supporting_span": "Ratification is retroactive to the time of the conclusion of the contract",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_116_rule_1",
+      "conditions": [
+        "contract_conclusion_time(Contract)"
+      ],
+      "conclusion": "ratification_is_retroactive_to_contract_conclusion(Ratification, Contract)",
+      "constants": {},
+      "supporting_span": "Ratification is retroactive to the time of the conclusion of the contract unless a particular intention is manifested; provided, however, that this may not prejudice the rights of a third party.",
+      "explanation": "Ratification of a contract is retroactively applied from the moment it was concluded, unless there's a specific intent otherwise or it harms a third party."
+    }
+  ],
+  "warnings": []
+}

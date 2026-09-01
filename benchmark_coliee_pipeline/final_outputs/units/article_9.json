@@ -1,0 +1,89 @@
+{
+  "unit_id": "article_9",
+  "article_number": "9",
+  "unit_label": "Article 9",
+  "title": "Article 9 Article 9  A juridical act performed by an adult ward is voidable; provided, however, that this does not apply to the purchase of daily necessities or to any other act involved in day-to-day life.",
+  "statute_text": "Article 9 Article 9  A juridical act performed by an adult ward is voidable; provided, however, that this does not apply to the purchase of daily necessities or to any other act involved in day-to-day life.\n(Rescission of Decisions for Commencement of Guardianship)",
+  "variables": [
+    {
+      "variable_name": "JuridicalAct",
+      "description": "A legal action performed by a person.",
+      "supporting_span": "juridical act"
+    },
+    {
+      "variable_name": "AdultWard",
+      "description": "An adult individual under guardianship.",
+      "supporting_span": "adult ward"
+    },
+    {
+      "variable_name": "VoidableAct",
+      "description": "An act that can be annulled or set aside.",
+      "supporting_span": "voidable"
+    },
+    {
+      "variable_name": "DailyNecessities",
+      "description": "Items or services required for daily living.",
+      "supporting_span": "purchase of daily necessities"
+    },
+    {
+      "variable_name": "DayToDayLife",
+      "description": "Activities involved in everyday life.",
+      "supporting_span": "any other act involved in day-to-day life"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "juridical_act_performed_by_adult_ward",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "A juridical act performed by an adult ward.",
+      "supporting_span": "A juridical act performed by an adult ward is voidable",
+      "constants": {}
+    },
+    {
+      "predicate_name": "juridical_act_is_voidable",
+      "predicate_type": "status",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "The status of a juridical act as being voidable.",
+      "supporting_span": "A juridical act performed by an adult ward is voidable",
+      "constants": {}
+    },
+    {
+      "predicate_name": "purchase_of_daily_necessities_exception",
+      "predicate_type": "exception",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "Exception for purchase of daily necessities.",
+      "supporting_span": "provided, however, that this does not apply to the purchase of daily necessities",
+      "constants": {}
+    },
+    {
+      "predicate_name": "day_to_day_life_act_exception",
+      "predicate_type": "exception",
+      "arguments": [
+        "JuridicalAct"
+      ],
+      "description": "Exception for acts involved in day-to-day life.",
+      "supporting_span": "or to any other act involved in day-to-day life.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "article_9_rule_1",
+      "conditions": [
+        "juridical_act_performed_by_adult_ward(JuridicalAct)"
+      ],
+      "conclusion": "juridical_act_is_voidable(JuridicalAct)",
+      "constants": {},
+      "supporting_span": "A juridical act performed by an adult ward is voidable",
+      "explanation": "A juridical act performed by an adult ward is generally voidable."
+    }
+  ],
+  "warnings": []
+}

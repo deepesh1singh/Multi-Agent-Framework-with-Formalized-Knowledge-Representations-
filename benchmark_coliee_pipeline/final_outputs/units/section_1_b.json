@@ -1,0 +1,131 @@
+{
+  "unit_id": "section_1_b",
+  "section_id": "section_1",
+  "unit_label": "1(b)",
+  "statute_text": "\u00a71. Tax imposed\n\n(b) Heads of households\n\nThere is hereby imposed on the taxable income of every head of a household (as defined in section 2(b)) a tax determined in accordance with the following:\n\n(i) 15% of taxable income if the taxable income is not over $29,600;\n(ii) $4,440, plus 28% of the excess over $29,600 if the taxable income is over $29,600 but not over $76,400;\n(iii) $17,544, plus 31% of the excess over $76,400 if the taxable income is over $76,400 but not over $127,500;\n(iv) $33,385, plus 36% of the excess over $127,500 if the taxable income is over $127,500 but not over $250,000;\n(v) $77,485, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.",
+  "variables": [
+    {
+      "variable_name": "TaxableIncome",
+      "description": "The amount of income subject to tax.",
+      "supporting_span": "taxable income"
+    },
+    {
+      "variable_name": "HeadOfHousehold",
+      "description": "A person who is the head of a household as defined in section 2(b).",
+      "supporting_span": "head of a household (as defined in section 2(b))"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "is_head_of_household",
+      "predicate_type": "status",
+      "arguments": [
+        "HeadOfHousehold"
+      ],
+      "description": "Identifies if a person is a head of household.",
+      "supporting_span": "every head of a household (as defined in section 2(b))",
+      "constants": {}
+    },
+    {
+      "predicate_name": "taxable_income_amount",
+      "predicate_type": "datatype",
+      "arguments": [
+        "TaxableIncome",
+        "decimal"
+      ],
+      "description": "The amount of income subject to tax.",
+      "supporting_span": "the taxable income of every head of a household",
+      "constants": {}
+    },
+    {
+      "predicate_name": "tax_determined_for_head_of_household",
+      "predicate_type": "definition",
+      "arguments": [
+        "TaxableIncome",
+        "HeadOfHousehold"
+      ],
+      "description": "The tax determined for the taxable income of a head of household.",
+      "supporting_span": "There is hereby imposed on the taxable income of every head of a household (as defined in section 2(b)) a tax determined in accordance with the following:",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_1_b_i",
+      "conditions": [
+        "taxable_income_amount(TaxableIncome, 29600)"
+      ],
+      "conclusion": "tax_determined_for_head_of_household(TaxableIncome, HeadOfHousehold)",
+      "constants": {
+        "rate": 0.15,
+        "threshold_1": 29600
+      },
+      "supporting_span": "15% of taxable income if the taxable income is not over $29,600",
+      "explanation": "If taxable income is under or equal to $29,600, tax is 15% of that amount."
+    },
+    {
+      "rule_id": "section_1_b_ii",
+      "conditions": [
+        "taxable_income_amount(TaxableIncome, 76400)",
+        "NOT (taxable_income_amount(TaxableIncome, 29600))"
+      ],
+      "conclusion": "tax_determined_for_head_of_household(TaxableIncome, HeadOfHousehold)",
+      "constants": {
+        "base_tax": 4440,
+        "rate": 0.28,
+        "threshold_1": 29600,
+        "threshold_2": 76400
+      },
+      "supporting_span": "$4,440, plus 28% of the excess over $29,600 if the taxable income is over $29,600 but not over $76,400",
+      "explanation": "If taxable income is between $29,601 and $76,400, tax is $4,440 plus 28% of the amount exceeding $29,600."
+    },
+    {
+      "rule_id": "section_1_b_iii",
+      "conditions": [
+        "taxable_income_amount(TaxableIncome, 127500)",
+        "NOT (taxable_income_amount(TaxableIncome, 76400))"
+      ],
+      "conclusion": "tax_determined_for_head_of_household(TaxableIncome, HeadOfHousehold)",
+      "constants": {
+        "base_tax": 17544,
+        "rate": 0.31,
+        "threshold_1": 76400,
+        "threshold_2": 127500
+      },
+      "supporting_span": "$17,544, plus 31% of the excess over $76,400 if the taxable income is over $76,400 but not over $127,500",
+      "explanation": "If taxable income is between $76,401 and $127,500, tax is $17,544 plus 31% of the amount exceeding $76,400."
+    },
+    {
+      "rule_id": "section_1_b_iv",
+      "conditions": [
+        "taxable_income_amount(TaxableIncome, 250000)",
+        "NOT (taxable_income_amount(TaxableIncome, 127500))"
+      ],
+      "conclusion": "tax_determined_for_head_of_household(TaxableIncome, HeadOfHousehold)",
+      "constants": {
+        "base_tax": 33385,
+        "rate": 0.36,
+        "threshold_1": 127500,
+        "threshold_2": 250000
+      },
+      "supporting_span": "$33,385, plus 36% of the excess over $127,500 if the taxable income is over $127,500 but not over $250,000",
+      "explanation": "If taxable income is between $127,501 and $250,000, tax is $33,385 plus 36% of the amount exceeding $127,500."
+    },
+    {
+      "rule_id": "section_1_b_v",
+      "conditions": [
+        "taxable_income_amount(TaxableIncome, 250000)",
+        "NOT (taxable_income_amount(TaxableIncome, 127500))"
+      ],
+      "conclusion": "tax_determined_hoh_over_250k",
+      "constants": {
+        "base_tax": 77485,
+        "rate": 0.396,
+        "threshold": 250000
+      },
+      "supporting_span": "$77,485, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.",
+      "explanation": "If taxable income exceeds $250,000, tax is $77,485 plus 39.6% of the amount exceeding $250,000."
+    }
+  ],
+  "warnings": []
+}

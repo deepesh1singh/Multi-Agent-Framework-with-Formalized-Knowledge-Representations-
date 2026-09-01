@@ -1,0 +1,124 @@
+{
+  "unit_id": "section_1_c",
+  "section_id": "section_1",
+  "unit_label": "1(c)",
+  "statute_text": "\u00a71. Tax imposed\n\n(c) Unmarried individuals (other than surviving spouses and heads of households)\n\nThere is hereby imposed on the taxable income of every individual (other than a surviving spouse as defined in section 2(a) or the head of a household as defined in section 2(b)) who is not a married individual (as defined in section 7703) a tax determined in accordance with the following:\n\n(i) 15% of taxable income if the taxable income is not over $22,100;\n(ii) $3,315, plus 28% of the excess over $22,100 if the taxable income is over $22,100 but not over $53,500;\n(iii) $12,107, plus 31% of the excess over $53,500 if the taxable income is over $53,500 but not over $115,000;\n(iv) $31,172, plus 36% of the excess over $115,000 if the taxable income is over $115,000 but not over $250,000;\n(v) $79,772, plus 39.6% of the excess over $250,000 if the taxable income is over $250,000.",
+  "variables": [
+    {
+      "variable_name": "UnmarriedIndividual",
+      "description": "An individual who is not a married individual as defined in section 7703.",
+      "supporting_span": "unmarried individuals (other than surviving spouses and heads of households)"
+    },
+    {
+      "variable_name": "TaxableIncome",
+      "description": "The amount of income subject to tax calculation.",
+      "supporting_span": "taxable income"
+    },
+    {
+      "variable_name": "SurvivingSpouse",
+      "description": "A spouse who survived their partner's death.",
+      "supporting_span": "surviving spouse as defined in section 2(a)"
+    },
+    {
+      "variable_name": "HeadOfHousehold",
+      "description": "The head of a household unit.",
+      "supporting_span": "head of a household as defined in section 2(b)"
+    },
+    {
+      "variable_name": "MarriedIndividual",
+      "description": "An individual who is married according to the definition in section 7703.",
+      "supporting_span": "married individual (as defined in section 7703)"
+    },
+    {
+      "variable_name": "TaxAmount",
+      "description": "The amount of tax imposed on taxable income.",
+      "supporting_span": "a tax determined in accordance with the following"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "is_unmarried_individual",
+      "predicate_type": "status",
+      "arguments": [
+        "UnmarriedIndividual"
+      ],
+      "description": "Identifies an individual who is not a married individual, excluding surviving spouses and heads of households.",
+      "supporting_span": "Unmarried individuals (other than surviving spouses and heads of households)",
+      "constants": {}
+    },
+    {
+      "predicate_name": "tax_imposed_on_income",
+      "predicate_type": "relationship",
+      "arguments": [
+        "TaxableIncome",
+        "TaxAmount"
+      ],
+      "description": "The tax amount determined for the taxable income of an unmarried individual.",
+      "supporting_span": "There is hereby imposed on the taxable income of every individual (other than a surviving spouse as defined in section 2(a) or the head of a household as defined in section 2(b)) who is not a married individual (as defined in section 7703) a tax determined in accordance with the following:",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_1_c_rule_1",
+      "conditions": [
+        "is_unmarried_individual(UnmarriedIndividual)"
+      ],
+      "conclusion": "tax_imposed_on_income(TaxableIncome, TaxAmount)",
+      "constants": {
+        "rate_1": 0.15,
+        "threshold_1": 22100,
+        "rate_2": 0.28,
+        "threshold_2": 53500,
+        "rate_3": 0.31,
+        "threshold_3": 115000,
+        "rate_4": 0.36,
+        "threshold_4": 250000,
+        "rate_5": 0.396
+      },
+      "supporting_span": "There is hereby imposed on the taxable income of every individual (other than a surviving spouse as defined in section 2(a) or the head of a household as defined in section 2(b)) who is not a married individual (as defined in section 7703) a tax determined in accordance with the following:",
+      "explanation": "The rule defines the tax imposed on the taxable income of an unmarried individual based on different brackets."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_1_c",
+      "rule_id": "section_1_c_rule_1",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "UnmarriedIndividual"
+      ],
+      "rhs_args": [
+        "TaxAmount",
+        "TaxableIncome"
+      ],
+      "rule": {
+        "rule_id": "section_1_c_rule_1",
+        "conditions": [
+          "is_unmarried_individual(UnmarriedIndividual)"
+        ],
+        "conclusion": "tax_imposed_on_income(TaxableIncome, TaxAmount)",
+        "constants": {
+          "rate_1": 0.15,
+          "threshold_1": 22100,
+          "rate_2": 0.28,
+          "threshold_2": 53500,
+          "rate_3": 0.31,
+          "threshold_3": 115000,
+          "rate_4": 0.36,
+          "threshold_4": 250000,
+          "rate_5": 0.396
+        },
+        "supporting_span": "There is hereby imposed on the taxable income of every individual (other than a surviving spouse as defined in section 2(a) or the head of a household as defined in section 2(b)) who is not a married individual (as defined in section 7703) a tax determined in accordance with the following:",
+        "explanation": "The rule defines the tax imposed on the taxable income of an unmarried individual based on different brackets."
+      }
+    },
+    {
+      "unit_id": "section_1_c",
+      "stage": "variables",
+      "index": 0,
+      "supporting_span": "unmarried individuals (other than surviving spouses and heads of households)",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

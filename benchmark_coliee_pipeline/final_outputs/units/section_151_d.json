@@ -1,0 +1,336 @@
+{
+  "unit_id": "section_151_d",
+  "section_id": "section_151",
+  "unit_label": "151(d)",
+  "statute_text": "\u00a7151. Allowance of deductions for personal exemptions\n\n(d) Exemption amount\n\nFor purposes of this section-\n\n(1) In general\n\nExcept as otherwise provided in this subsection, the term \"exemption amount\" means $2,000.\n\n(2) Exemption amount disallowed in case of certain dependents\n\nIn the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the exemption amount applicable to such individual for such individual's taxable year shall be zero.\n\n(3) Phaseout\n\n(A) In general\n\nIn the case of any taxpayer whose adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b), the exemption amount shall be reduced by the applicable percentage.\n\n(B) Applicable percentage\n\nFor purposes of subparagraph (A), the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b). In the case of a married individual filing a separate return, the preceding sentence shall be applied by substituting \"$1,250\" for \"$2,500\". In no event shall the applicable percentage exceed 100 percent.\n\n(5) Special rules for taxable years 2018 through 2025\n\nIn the case of a taxable year beginning after December 31, 2017, and before January 1, 2026, the term \"exemption amount\" means zero.",
+  "variables": [
+    {
+      "variable_name": "ExemptionAmount",
+      "description": "The base exemption amount for an individual.",
+      "supporting_span": "the term \"exemption amount\" means $2,000."
+    },
+    {
+      "variable_name": "Taxpayer",
+      "description": "An individual or entity that files a tax return.",
+      "supporting_span": "any taxpayer whose adjusted gross income"
+    },
+    {
+      "variable_name": "AdjustedGrossIncome",
+      "description": "The total income of the taxpayer after certain deductions.",
+      "supporting_span": "taxpayer's adjusted gross income"
+    },
+    {
+      "variable_name": "ApplicableAmount",
+      "description": "The threshold amount for determining exemption reductions.",
+      "supporting_span": "the applicable amount in effect under section 68(b)"
+    },
+    {
+      "variable_name": "ApplicablePercentage",
+      "description": "The percentage by which the exemption amount is reduced based on income levels.",
+      "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b)."
+    },
+    {
+      "variable_name": "MarriedIndividualFilingSeparateReturn",
+      "description": "A specific filing status of a married individual.",
+      "supporting_span": "In the case of a married individual filing a separate return"
+    },
+    {
+      "variable_name": "100PercentLimit",
+      "description": "The maximum reduction percentage for an exemption amount.",
+      "supporting_span": "In no event shall the applicable percentage exceed 100 percent."
+    },
+    {
+      "variable_name": "TaxableYear",
+      "description": "The specific year in which a tax return is filed.",
+      "supporting_span": "taxable year"
+    },
+    {
+      "variable_name": "DependentIndividual",
+      "description": "An individual for whom a deduction under this section is allowable to another taxpayer.",
+      "supporting_span": "the individual for whom a deduction under this section is allowable to another taxpayer"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "base_exemption_amount_definition",
+      "predicate_type": "definition",
+      "arguments": [
+        "ExemptionAmount",
+        "decimal"
+      ],
+      "description": "The base exemption amount for an individual.",
+      "supporting_span": "the term \"exemption amount\" means $2,000.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "dependent_exemption_disallowed",
+      "predicate_type": "exception",
+      "arguments": [
+        "DependentIndividual",
+        "TaxableYear"
+      ],
+      "description": "The exemption amount is zero for a dependent individual in specific circumstances.",
+      "supporting_span": "In the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the exemption amount applicable to such individual for such individual's taxable year shall be zero.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "exemption_reduction_applied",
+      "predicate_type": "status",
+      "arguments": [
+        "Taxpayer",
+        "AdjustedGrossIncome",
+        "TaxableYear"
+      ],
+      "description": "The exemption amount is reduced by the applicable percentage if income exceeds a threshold.",
+      "supporting_span": "In the case of any taxpayer whose adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b), the exemption amount shall be reduced by the applicable percentage.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "applicable_percentage_definition",
+      "predicate_type": "definition",
+      "arguments": [
+        "ApplicablePercentage",
+        "decimal"
+      ],
+      "description": "The calculation of the applicable percentage based on income levels.",
+      "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b).",
+      "constants": {}
+    },
+    {
+      "predicate_name": "married_separate_filing_adjustment",
+      "predicate_type": "exception",
+      "arguments": [
+        "MarriedIndividualFilingSeparateReturn"
+      ],
+      "description": "Adjustment to the calculation of the applicable perentage for married individuals filing just separately.",
+      "supporting_span": "In the case of a married individual filing a separate return, the preceding sentence shall be applied by substituting \"$1,250\" for \"$2,500\".",
+      "constants": {}
+    },
+    {
+      "predicate_name": "maximum_exemption_reduction_limit",
+      "predicate_type": "status",
+      "arguments": [
+        "ApplicablePercentage"
+      ],
+      "description": "The cap on the applicable percentage.",
+      "supporting_span": "In no event shall the applicable percentage exceed 100 percent.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_taxable_year",
+      "predicate_type": "datatype",
+      "arguments": [
+        "TaxableYear"
+      ],
+      "description": "The year in which a tax return is filed.",
+      "supporting_span": "taxable year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_taxpayer",
+      "predicate_type": "status",
+      "arguments": [
+        "Taxpayer"
+      ],
+      "description": "An individual or entity that files a tax return.",
+      "supporting_span": "any taxpayer whose adjusted gross income",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_applicable_percentage",
+      "predicate_type": "status",
+      "arguments": [
+        "ApplicablePercentage"
+      ],
+      "description": "The percentage by which the exemption amount is reduced based on income levels.",
+      "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction or thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b).",
+      "constants": {}
+    },
+    {
+      "predicate_name": "recent_year_exemption_zero",
+      "predicate_type": "exception",
+      "arguments": [
+        "TaxableYear"
+      ],
+      "description": "The exemption amount is zero for years between 2018 and 2025.",
+      "supporting_span": "In the case of a taxable year beginning after December 31, 2017, and before January 1, 2026, the term \"exemption amount\" means zero.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_151_d_rule_1",
+      "conditions": [
+        "base_exemption_amount_definition(ExemptionAmount)"
+      ],
+      "conclusion": "base_exemption_amount_definition(ExemptionAmount)",
+      "constants": {},
+      "supporting_span": "the term \"exemption amount\" means $2,000.",
+      "explanation": "Defines the base exemption amount as $2,000."
+    },
+    {
+      "rule_id": "section_151_d_rule_2",
+      "conditions": [
+        "dependent_exemption_disallowed(DependentIndividual, TaxableYear)"
+      ],
+      "conclusion": "dependent_exemption_disallowed(Dependent_151_d_rule_2)",
+      "constants": {},
+      "supporting_span": "In the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the exemption amount applicable to such individual for such individual's taxable year shall be zero.",
+      "explanation": "The exemption amount is zero for certain dependents."
+    },
+    {
+      "rule_id": "section_151_d_rule_3",
+      "conditions": [
+        "exemption_reduction_applied(Taxpayer, AdjustedGrossIncome, TaxableYear)"
+      ],
+      "conclusion": "exemption_reduction_applied(Taxpayer, AdjustedGrossIncome, TaxableYear)",
+      "constants": {},
+      "supporting_span": "In the case of any taxpayer whose adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b), the exemption amount shall be reduced by the applicable percentage.",
+      "explanation": "Reduces the exemption amount if the adjusted gross income exceeds a specific threshold."
+    },
+    {
+      "rule_id": "section_151_d_rule_4",
+      "conditions": [
+        "applicable_percentage_definition(ApplicablePercentage)"
+      ],
+      "conclusion": "applicable_percentage_definition(ApplicableYear)",
+      "constants": {},
+      "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b).",
+      "explanation": "Defines the calculation of the applicable percentage."
+    },
+    {
+      "rule_id": "section_151_d_rule_5",
+      "conditions": [
+        "married_separate_filing_adjustment(MarriedIndividualFilingSeparateReturn)"
+      ],
+      "conclusion": "married_separate_filing_adjustment(MarriedIndividualFilingSeparateReturn)",
+      "constants": {},
+      "supporting_span": "In the case of a married individual filing a separate return, the preceding sentence shall be applied by substituting \"$1,250\" for \"$2,500\".",
+      "explanation": "Adjusts the calculation of the applicable percentage for married individuals filing separately."
+    },
+    {
+      "rule_id": "section_151_d_rule_6",
+      "conclusion": "maximum_exemption_reduction_limit(ApplicablePercentage)",
+      "conditions": [
+        "maximum_exemption_reduction_limit(ApplicableYear)"
+      ],
+      "constants": {},
+      "supporting_span": "In no event shall the applicable percentage exceed 100 percent.",
+      "explanation": "Cap the applicable percentage at 100 percent."
+    },
+    {
+      "rule_id": "section_151_d_rule_7",
+      "conditions": [
+        "recent_year_exemption_zero(TaxableYear)"
+      ],
+      "conclusion": "recent_year_exemption_zero(TaxableYear)",
+      "constants": {},
+      "supporting_span": "In the case of a taxable year beginning after December 31, 2017, and before January 1, 2026, the term \"exemption amount\" means zero.",
+      "explanation": "Sets the exemption amount to zero for years between 2018 and 2025."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_2",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "DependentIndividual",
+        "TaxableYear"
+      ],
+      "rhs_args": [
+        "Dependent_151_d_rule_2"
+      ],
+      "rule": {
+        "rule_id": "section_151_d_rule_2",
+        "conditions": [
+          "dependent_exemption_disallowed(DependentIndividual, TaxableYear)"
+        ],
+        "conclusion": "dependent_exemption_disallowed(Dependent_151_d_rule_2)",
+        "constants": {},
+        "supporting_span": "In the case of an individual with respect to whom a deduction under this section is allowable to another taxpayer for a taxable year beginning in the calendar year in which the individual's taxable year begins, the exemption amount applicable to such individual for such individual's taxable year shall be zero.",
+        "explanation": "The exemption amount is zero for certain dependents."
+      }
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_4",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "ApplicablePercentage"
+      ],
+      "rhs_args": [
+        "ApplicableYear"
+      ],
+      "rule": {
+        "rule_id": "section_151_d_rule_4",
+        "conditions": [
+          "applicable_percentage_definition(ApplicablePercentage)"
+        ],
+        "conclusion": "applicable_percentage_definition(ApplicableYear)",
+        "constants": {},
+        "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b).",
+        "explanation": "Defines the calculation of the applicable percentage."
+      }
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_6",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "ApplicableYear"
+      ],
+      "rhs_args": [
+        "ApplicablePercentage"
+      ],
+      "rule": {
+        "rule_id": "section_151_d_rule_6",
+        "conclusion": "maximum_exemption_reduction_limit(ApplicablePercentage)",
+        "conditions": [
+          "maximum_exemption_reduction_limit(ApplicableYear)"
+        ],
+        "constants": {},
+        "supporting_span": "In no event shall the applicable percentage exceed 100 percent.",
+        "explanation": "Cap the applicable percentage at 100 percent."
+      }
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "base_exemption_amount_definition(ExemptionAmount)"
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_3",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "exemption_reduction_applied(Taxpayer, AdjustedGrossIncome, TaxableYear)"
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_5",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "married_separate_filing_adjustment(MarriedIndividualFilingSeparateReturn)"
+    },
+    {
+      "unit_id": "section_151_d",
+      "rule_id": "section_151_d_rule_7",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "recent_year_exemption_zero(TaxableYear)"
+    },
+    {
+      "unit_id": "section_151_d",
+      "stage": "variables",
+      "index": 8,
+      "supporting_span": "the individual for whom a deduction under this section is allowable to another taxpayer",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_151_d",
+      "stage": "predicates",
+      "index": 8,
+      "supporting_span": "the term \"applicable percentage\" means 2 percentage points for each $2,500 (or fraction or thereof) by which the taxpayer's adjusted gross income for the taxable year exceeds the applicable amount in effect under section 68(b).",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}
