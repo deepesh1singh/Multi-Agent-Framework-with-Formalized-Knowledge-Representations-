@@ -1,0 +1,248 @@
+{
+  "unit_id": "section_63_f",
+  "section_id": "section_63",
+  "unit_label": "63(f)",
+  "statute_text": "\u00a763. Taxable income defined\n\n(f) Aged or blind additional amounts\n\n(1) Additional amounts for the aged\n\nThe taxpayer shall be entitled to an additional amount of $600-\n\n(A) for himself if he has attained age 65 before the close of his taxable year, and\n\n(B) for the spouse of the taxpayer if the spouse has attained age 65 before the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).\n\n(2) Additional amount for blind\n\nThe taxpayer shall be entitled to an additional amount of $600-\n\n(A) for himself if he is blind at the close of the taxable year, and\n\n(B) for the spouse of the taxpayer if the spouse is blind as of the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).\n\nFor purposes of subparagraph (B), if the spouse dies during the taxable year the determination of whether such spouse is blind shall be made as of the time of such death.\n\n(3) Higher amount for certain unmarried individuals\n\nIn the case of an individual who is not married and is not a surviving spouse, paragraphs (1) and (2) shall be applied by substituting \"$750\" for \"$600\".",
+  "variables": [
+    {
+      "variable_name": "Taxpayer",
+      "description": "The individual who is the subject of the tax calculation.",
+      "supporting_span": "The taxpayer"
+    },
+    {
+      "variable_name": "AdditionalAmount",
+      "description": "An additional amount allowed for aged or blind status.",
+      "supporting_span": "additional amount"
+    },
+    {
+      "variable_name": "AgeThreshold",
+      "description": "The age at which an individual is considered to have attained a certain status.",
+      "supporting_span": "age 65"
+    },
+    {
+      "variable_name": "Spouse",
+      "description": "The legal spouse of the taxpayer.",
+      "supporting_span": "spouse of the taxpayer"
+    },
+    {
+      "variable_name": "TaxableYear",
+      "description": "The specific calendar year for which tax is calculated.",
+      "supporting_span": "taxable year"
+    },
+    {
+      "variable_name": "AdditionalExemption",
+      "description": "An exemption allowed to the taxpayer for a spouse under section 151(b).",
+      "supporting_span": "additional exemption is allowable to the taxpayer for such spouse under section 151(b)"
+    },
+    {
+      "variable_name": "BlindStatus",
+      "description": "The status of being blind.",
+      "supporting_span": "is blind"
+    },
+    {
+      "variable_name": "SurvivingSpouse",
+      "description": "A legal status for a spouse who has survived the death of their partner.",
+      "supporting_span": "surviving spouse"
+    },
+    {
+      "variable_name": "UnmarriedIndividual",
+      "description": "An individual who is not married and is not a surviving spouse.",
+      "supporting_span": "individual who is not married and is not a surviving spouse"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "entitled_to_additional_amount_aged",
+      "predicate_type": "status",
+      "arguments": [
+        "Taxpayer",
+        "AdditionalAmount"
+      ],
+      "description": "The taxpayer is entitled to an additional amount for being aged.",
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he has attained age 65 before the close of his taxable year,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "entitled_to_additional_amount_blind",
+      "predicate_type": "status",
+      "arguments": [
+        "Taxpayer",
+        "AdditionalAmount"
+      ],
+      "description": "The taxpayer is entitled to an additional amount for being blind.",
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he is blind at the close of the taxable year,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "entitled_to_additional_amount_spouse_aged",
+      "predicate_type": "status",
+      "arguments_count": 2,
+      "arguments": [
+        "Taxpayer",
+        "Spouse"
+      ],
+      "description": "The taxpayer is entitled to amount for the spouse of the taxpayer who is aged.",
+      "supporting_span": "for the spouse of the taxpayer if the spouse has attained age 65 before the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).",
+      "constants": {}
+    },
+    {
+      "predicate_name": "entitled_to_additional_amount_spouse_blind",
+      "predicate_type": "status",
+      "arguments_count": 2,
+      "arguments": [
+        "Taxpayer",
+        "Spouse"
+      ],
+      "description": "The taxpayer is entitled to amount for the spouse of just being blind.",
+      "supporting_span": "for the spouse of the taxpayer if the spouse is blind as of the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).",
+      "constants": {}
+    },
+    {
+      "predicate_name": "entitled_to_higher_amount_unmarried",
+      "predicate_type": "status",
+      "arguments": [
+        "UnmarriedIndividual"
+      ],
+      "description": "An unmarried individual who is not a surviving spouse is entitled to a higher amount.",
+      "supporting_span": "In the case of an individual who is not married and is not a surviving spouse, paragraphs (1) and (2) shall be applied by substituting \"$750\" for \"$600\".",
+      "constants": {}
+    },
+    {
+      "predicate_name": "spouse_blind_at_death",
+      "predicate_type": "status",
+      "arguments": [
+        "Spouse"
+      ],
+      "description": "The determination of whether the spouse is blind is made as of the time of death.",
+      "supporting_span": "if the spouse dies during the taxable year the determination of whether such spouse is blind shall be made as of the time of such death.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "additional_exemption_allowed",
+      "predicate_type": "relationship",
+      "arguments": [
+        "Taxpayer",
+        "AdditionalExemption"
+      ],
+      "description": "An additional exemption is allowable to the taxpayer for a spouse under section 151(b).",
+      "supporting_span": "an additional exemption is allowable to the taxpayer for such spouse under section 151(b)",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_63_f_rule_1",
+      "conditions": [
+        "entitled_to_additional_amount_aged(Taxpayer, AdditionalAmount)"
+      ],
+      "conclusion": "entitled_to_additional_amount_aged(Taxpayer, AdditionalAmount)",
+      "constants": {
+        "amount": 600
+      },
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he has attained age 65 before the close of his taxable year,",
+      "explanation": "The taxpayer is entitled to a $600 amount for being aged."
+    },
+    {
+      "rule_id": "section_63_f_rule_2",
+      "conditions": [
+        "entitled_to_additional_amount_spouse_aged(Taxpayer, Spouse)"
+      ],
+      "conclusion": "entitled_to_additional_amount_spouse_aged(Taxpayer, Spouse)",
+      "constants": {
+        "amount": 600
+      },
+      "supporting_span": "for the spouse of the taxpayer if the spouse has attained age 65 before the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).",
+      "explanation": "The taxpayer is entitled to a $600 amount for their aged spouse."
+    },
+    {
+      "rule_id": "section_63_f_rule_3",
+      "conditions": [
+        "entitled_to_additional_amount_blind(Taxpayer, AdditionalAmount)"
+      ],
+      "conclusion": "entitled_to_additional_amount_blind(Taxpayer, Summer)",
+      "constants": {
+        "amount": 600
+      },
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he is blind at the close of the taxable year,",
+      "explanation": "The taxpayer is entitled to a $600 amount for being blind."
+    },
+    {
+      "rule_id": "section_63_f_rule_4",
+      "conditions": [
+        "entitled_to_additional_amount_spouse_blind(Taxpayer, Spouse)"
+      ],
+      "conclusion": "entitled_to_additional_amount_spouse_blind(Taxpayer, Spouse)",
+      "constants": {
+        "amount": 600
+      },
+      "supporting_span": "for the spouse of the taxpayer if the spouse is blind as of the close of the taxable year and an additional exemption is allowable to the taxpayer for such spouse under section 151(b).",
+      "explanation": "The taxpayer is entitled to a $600 amount for their blind spouse."
+    },
+    {
+      "rule_id": "section_63_f_rule_5",
+      "conditions": [
+        "entitled_to_higher_amount_unmarried(UnmarriedIndividual)"
+      ],
+      "conclusion": "entitled_to_higher_amount_unmarried(UnmarriedIndividual)",
+      "constants": {
+        "amount": 750
+      },
+      "supporting_span": "In the case of an individual who is not married and is not a surviving spouse, paragraphs (1) and (2) shall be applied by substituting \"$750\" for \"$600\".",
+      "explanation": "Unmarried individuals not being surviving spouses are entitled to $750 instead of $600."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_63_f",
+      "rule_id": "section_63_f_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "entitled_to_additional_amount_aged(Taxpayer, AdditionalAmount)"
+    },
+    {
+      "unit_id": "section_63_f",
+      "rule_id": "section_63_f_rule_2",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "entitled_to_additional_amount_spouse_aged(Taxpayer, Spouse)"
+    },
+    {
+      "unit_id": "section_63_f",
+      "rule_id": "section_63_f_rule_4",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "entitled_to_additional_amount_spouse_blind(Taxpayer, Spouse)"
+    },
+    {
+      "unit_id": "section_63_f",
+      "rule_id": "section_63_f_rule_5",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "entitled_to_higher_amount_unmarried(UnmarriedIndividual)"
+    },
+    {
+      "unit_id": "section_63_f",
+      "stage": "predicates",
+      "index": 0,
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he has attained age 65 before the close of his taxable year,",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_63_f",
+      "stage": "predicates",
+      "index": 1,
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he is blind at the close of the taxable year,",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_63_f",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he has attained age 65 before the close of his taxable year,",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_63_f",
+      "stage": "rules",
+      "index": 2,
+      "supporting_span": "The taxpayer shall be entitled to an additional amount of $600- (A) for himself if he is blind at the close of the taxable year,",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

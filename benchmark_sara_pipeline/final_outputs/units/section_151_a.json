@@ -1,0 +1,66 @@
+{
+  "unit_id": "section_151_a",
+  "section_id": "section_151",
+  "unit_label": "151(a)",
+  "statute_text": "\u00a7151. Allowance of deductions for personal exemptions\n\n(a) Allowance of deductions\n\nIn the case of an individual, the exemptions provided by this section shall be allowed as deductions in computing taxable income.",
+  "variables": [
+    {
+      "variable_name": "Individual",
+      "description": "A person for whom the exemption is being calculated.",
+      "supporting_span": "In the case of an individual"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "individual_exemptions_allowed_as_deductions",
+      "predicate_type": "status",
+      "arguments": [
+        "Individual"
+      ],
+      "description": "The exemptions for an individual are allowed as deductions in computing taxable income.",
+      "supporting_span": "In the case of an individual, the exemptions provided by this section shall be allowed as deductions in computing taxable income.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "deduction_allowed_for_individual",
+      "predicate_type": "status",
+      "arguments": [
+        "Individual"
+      ],
+      "description": "The exemption for an individual is a valid deduction.",
+      "supporting_span": "In the case of an individual, the exemptions provided by this section shall be allowed as deductions in computing taxable income.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "exemptions_defined_by_section",
+      "predicate_type": "definition",
+      "arguments": [
+        "string"
+      ],
+      "description": "The specific exemptions defined under Section 151.",
+      "supporting_span": "the exemptions provided by this section shall be allowed as deductions in computing taxable income.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_151_a_rule_1",
+      "conditions": [
+        "individual_exemptions_allowed_as_deductions(I)"
+      ],
+      "conclusion": "deduction_allowed_for_individual(I)",
+      "constants": {},
+      "supporting_span": "In the case of an individual, the exemptions provided by section 151 shall be allowed as deductions in computing taxable income.",
+      "explanation": "If a person is an individual, their personal exemptions are allowed as deductions."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_151_a",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "In the case of an individual, the exemptions provided by section 151 shall be allowed as deductions in computing taxable income.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

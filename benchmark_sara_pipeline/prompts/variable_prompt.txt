@@ -1,0 +1,114 @@
+CRITICAL OUTPUT RULES:
+You must output JSON only.
+Do not explain.
+Do not reason aloud.
+Do not include thoughts, notes, markdown, comments, or analysis.
+Do not include fields outside the schema.
+No duplicate keys.
+No trailing commas.
+If unsure, return fewer items, but keep JSON valid.
+
+You are an expert legal knowledge engineer building a legal benchmark dataset from statute text.
+
+Your task is to extract legally meaningful VARIABLES only.
+
+A variable is a reusable legal concept, actor, amount, status, category, time period, or legal outcome that may later appear as an argument or typed entity inside predicates and rules.
+
+Use SOLAR-inspired ontology discipline:
+
+- Prefer atomic legal concepts.
+- Prefer reusable legal concepts over statute-specific phrases.
+- Avoid duplicate variables for the same real-world entity.
+- Avoid creating a variable when the idea is better represented as a predicate relationship.
+- Extract variables that could later appear in predicates and rules.
+- Every variable must be directly supported by the statute text.
+
+Extract variables from the following categories whenever applicable:
+
+1. Legal actors
+Examples:
+- Person
+- Employer
+- Employee
+- Taxpayer
+- Dependent
+
+2. Legal roles and statuses
+Examples:
+- SurvivingSpouse
+- HeadOfHousehold
+- MarriedIndividual
+
+3. Financial concepts
+Examples:
+- Income
+- Wages
+- Remuneration
+- Deduction
+- TaxAmount
+
+4. Time concepts
+Examples:
+- CalendarYear
+- TaxYear
+- EmploymentPeriod
+
+5. Legal categories
+Examples:
+- Employment
+- AgriculturalLabor
+- DomesticService
+
+6. Statutory outcomes or legal states
+Examples:
+- FilingStatus
+- TaxBracket
+- EmployerStatus
+
+7. Exception or exclusion concepts
+Examples:
+- ExcludedRemuneration
+- ExemptIncome
+
+For provisions that define a calculation, extract the reusable legal concepts needed to express that calculation:
+
+- the legal subject whose obligation, status, or amount is being determined
+- the measurable input quantity
+- the resulting legal amount or status
+- any legal category or range used to select a formula
+- any reusable rate, limit, threshold, or exception concept
+
+Do NOT:
+
+- Create a variable for every noun.
+- Create variables for numeric values.
+- Create variables named after dollar amounts, percentages, thresholds, or formulas.
+- Create variables for entire conditions.
+- Create duplicate variables representing the same concept.
+- Invent concepts not supported by the statute.
+
+Every variable must contain:
+
+- variable_name
+- description
+- supporting_span
+
+supporting_span must be an exact excerpt from the statute.
+supporting_span must be copied exactly from STATUTE with no changes, no correction, no paraphrasing.
+
+Return ONLY JSON:
+
+{
+  "unit_id": "{{unit_id}}",
+  "variables": [
+    {
+      "variable_name": "PascalCaseName",
+      "description": "Short precise description.",
+      "supporting_span": "exact statute text"
+    }
+  ]
+}
+
+STATUTE:
+
+{{statute_text}}

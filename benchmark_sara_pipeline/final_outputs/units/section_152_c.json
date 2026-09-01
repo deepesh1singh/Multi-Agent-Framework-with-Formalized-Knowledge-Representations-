@@ -1,0 +1,143 @@
+{
+  "unit_id": "section_152_c",
+  "section_id": "section_152",
+  "unit_label": "152(c)",
+  "statute_text": "\u00a7152. Dependent defined\n\n(c) Qualifying child\n\nFor purposes of this section-\n\n(1) In general\n\nThe term \"qualifying child\" means, with respect to any taxpayer for any taxable year, an individual-\n\n(A) who bears a relationship to the taxpayer described in paragraph (2),\n\n(B) who has the same principal place of abode as the taxpayer for more than one-half of such taxable year,\n\n(C) who meets the age requirements of paragraph (3), and\n\n(E) who has not filed a joint return (other than only for a claim of refund) with the individual's spouse for the taxable year beginning in the calendar year in which the taxable year of the taxpayer begins.\n\n(2) Relationship\n\nFor purposes of paragraph (1)(A), an individual bears a relationship to the taxpayer described in this paragraph if such individual is-\n\n(A) a child of the taxpayer or a descendant of such a child, or\n\n(B) a brother, sister, stepbrother, or stepsister of the taxpayer or a descendant of any such relative.\n\n(3) Age requirements\n\nFor purposes of paragraph (1)(C), an individual meets the requirements of this paragraph if such individual is younger than the taxpayer claiming such individual as a qualifying child and is less than 25 years old at the end of the taxable year.",
+  "variables": [
+    {
+      "variable_name": "Taxpayer",
+      "description": "The person who claims a dependent.",
+      "supporting_span": "taxpayer"
+    },
+    {
+      "variable_name": "TaxableYear",
+      "description": "The specific tax year for which the claim is made.",
+      "supporting_span": "taxable year"
+    },
+    {
+      "variable_name": "QualifyingChild",
+      "description": "An individual who meets all requirements to be claimed as a child dependent.",
+      "supporting_span": "qualifying child"
+    },
+    {
+      "variable_name": "PrincipalPlaceOfAbode",
+      "description": "The primary residence of the taxpayer or the qualifying child.",
+      "supporting_span": "principal place of abode"
+    },
+    {
+      "variable_name": "Relationship",
+      "description": "The familial connection between a taxpayer and an individual.",
+      "supporting_span": "relationship to the taxpayer"
+    },
+    {
+      "variable_name": "summit_id",
+      "description": "A unique identifier for the section.",
+      "supporting_span": "section_152_c"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "is_qualifying_child",
+      "predicate_type": "status",
+      "arguments": [
+        "QualifyingChild"
+      ],
+      "description": "An individual who meets all requirements to be claimed as a qualifying child.",
+      "supporting_span": "(1) In general\nThe term \"qualifying child\" means, with respect to any1 taxpayer for any taxable year, an individual-",
+      "constants": {}
+    },
+    {
+      "predicate_name": "bears_relationship_to_taxpayer",
+      "predicate_type": "relationship",
+      "arguments": [
+        "QualifyingChild",
+        "Taxpayer"
+      ],
+      "description": "An individual bears a relationship to the taxpayer as described in paragraph (2).",
+      "supporting_span": "(A) who bears a relationship to the taxpayer described in paragraph (2),",
+      "constants": {}
+    },
+    {
+      "predicate_name": "is_descendant_of_child",
+      "predicate_type": "relationship",
+      "arguments": [
+        "QualifyingChild"
+      ],
+      "description": "The individual is a descendant of the child of the taxpayer or a descendant of any such relative.",
+      "supporting_span": "(2) Relationship\nFor purposes of paragraph (1)(A), an individual bears a relationship to the taxpayer described in this paragraph if such individual is-\n(A) a child of the taxpayer or a descendant of such a child, or\n(B) a brother, sister, stepbrother, or stepsister of the taxpayer or a descendant of any such relative.",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_same_principal_place_of_abode",
+      "predicate_type": "relationship",
+      "arguments": [
+        "QualifyingChild",
+        "Taxpayer"
+      ],
+      "description": "The individual has the same principal place of abode as the taxpayer for more than one-half of the taxable year.",
+      "supporting_span": "(B) who has the same principal place of abode as the taxpayer for more than one-half of such taxable year,",
+      "constants": {}
+    },
+    {
+      "predicate_name": "meets_age_requirements",
+      "predicate_type": "status",
+      "arguments": [
+        "QualifyingChild"
+      ],
+      "description": "The individual meets the age requirements to be claimed as a qualifying child.",
+      "supporting_span": "(3) Age requirements\nFor purposes of paragraph (1)(C), an individual meets the requirements of this paragraph if such individual is younger than the taxpayer claiming such individual as a qualifying child and is less than 25 years old at the end of the taxable year.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_152_c_rule_1",
+      "conditions": [
+        "bears_relationship_to_taxpayer(QualifyingChild, Taxpayer)",
+        "has_same_principal_place_of_abode(QualifyingChild, Taxpayer)",
+        "meets_age_requirements(QualifyingChild)"
+      ],
+      "conclusion": "is_qualifying_child(QualifyingChild)",
+      "constants": {},
+      "supporting_span": "(1) In general\nThe term \"qualifying child\" means, with respect to any taxpayer for any taxable year, an individual- (A) who bears a relationship to the taxpayer described in paragraph (2), (B) who has the same principal place of of abode as the taxpayer for more than one-half of such taxable year, (C) who meets the age requirements of paragraph (3), and (E) who has not filed a joint return (other than only for a claim of refund) with the individual's spouse for the taxable year beginning in the calendar year in which the taxable year of the taxpayer begins.",
+      "explanation": "A qualifying child is an individual who bears a relationship to the taxpayer, shares the same principal place of abode and meets age requirements."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_152_c",
+      "stage": "variables",
+      "index": 5,
+      "supporting_span": "section_152_c",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_c",
+      "stage": "predicates",
+      "index": 0,
+      "supporting_span": "(1) In general\nThe term \"qualifying child\" means, with respect to any1 taxpayer for any taxable year, an individual-",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_c",
+      "stage": "predicates",
+      "index": 2,
+      "supporting_span": "(2) Relationship\nFor purposes of paragraph (1)(A), an individual bears a relationship to the taxpayer described in this paragraph if such individual is-\n(A) a child of the taxpayer or a descendant of such a child, or\n(B) a brother, sister, stepbrother, or stepsister of the taxpayer or a descendant of any such relative.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_c",
+      "stage": "predicates",
+      "index": 4,
+      "supporting_span": "(3) Age requirements\nFor purposes of paragraph (1)(C), an individual meets the requirements of this paragraph if such individual is younger than the taxpayer claiming such individual as a qualifying child and is less than 25 years old at the end of the taxable year.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_c",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "(1) In general\nThe term \"qualifying child\" means, with respect to any taxpayer for any taxable year, an individual- (A) who bears a relationship to the taxpayer described in paragraph (2), (B) who has the same principal place of of abode as the taxpayer for more than one-half of such taxable year, (C) who meets the age requirements of paragraph (3), and (E) who has not filed a joint return (other than only for a claim of refund) with the individual's spouse for the taxable year beginning in the calendar year in which the taxable year of the taxpayer begins.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

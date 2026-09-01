@@ -1,0 +1,266 @@
+{
+  "unit_id": "section_3306_b",
+  "section_id": "section_3306",
+  "unit_label": "3306(b)",
+  "statute_text": "\u00a73306. Definitions\n\n(b) Wages\n\nFor purposes of this chapter, the term \"wages\" means all remuneration for employment, including the cash value of all remuneration (including benefits) paid in any medium other than cash; except that such term shall not include-\n\n(1) that part of the remuneration which, after remuneration (other than remuneration referred to in the succeeding paragraphs of this subsection) equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year, is paid to such individual by such employer during such calendar year;\n\n(2) the amount of any payment (including any amount paid by an employer for insurance or annuities, or into a fund, to provide for any such payment) made to, or on behalf of, an employee or any of his dependents under a plan or system established by an employer which makes provision for his employees generally (or for his employees generally and their dependents) or for a class or classes of his employees (or for a class or classes of his employees and their dependents), on account of-\n\n(A) sickness or accident disability, or\n\n(C) death;\n\n(7) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business;\n\n(10) any payment or series of payments by an employer to an employee or any of his dependents which is paid-\n\n(A) upon or after the termination of an employee's employment relationship because of (i) death, or (ii) retirement for disability, and\n\n(B) under a plan established by the employer which makes provision for his employees generally or a class or classes of his employees (or for such employees or class or classes of employees and their dependents),\n\nother than any such payment or series of payments which would have been paid if the employee's employment relationship had not been so terminated;\n\n(11) remuneration for agricultural labor paid in any medium other than cash;\n\n(15) any payment made by an employer to a survivor or the estate of a former employee after the calendar year in which such employee died;",
+  "variables": [
+    {
+      "variable_name": "Remuneration",
+      "description": "All remuneration for employment, including the cash value of all remuneration (including benefits).",
+      "supporting_span": "all remuneration for employment, including the cash value of all remuneration (including benefits)"
+    },
+    {
+      "variable_name": "Employer",
+      "description": "The entity providing payment or services to an employee.",
+      "supporting_span": "employer"
+    },
+    {
+      "variable_name": "Employee",
+      "description": "An individual receiving wages or remuneration for employment.",
+      "supporting_span": "employee"
+    },
+    {
+      "variable_name": "Dependent",
+      "description": "A dependent of an employee.",
+      "supporting_span": "dependents"
+    },
+    {
+      "variable_name": "CalendarYear",
+      "description": "The period during which payments are made to an individual by an employer.",
+      "supporting_span": "calendar year"
+    },
+    {
+      "variable_name": "NonCashRemuneration",
+      "description": "Remuneration paid in any medium other than cash.",
+      "supporting_span": "remuneration paid in any medium other than cash"
+    },
+    {
+      "variable_name": "InsuranceOrAnnuities",
+      "description": "Payments made by an employer for insurance or annuities, or into a fund to provide for such payment.",
+      "supporting_span": "any payment (including any amount paid by an employer for insurance or annuities, or into a fund, to provide for any such payment)"
+    },
+    {
+      "variable_name": "t",
+      "description": "The portion of remuneration exceeding $7,000 in a calendar year.",
+      "supporting_span": "that part of the remuneration which, after remuneration (other than remuneration referred to in the succeeding paragraphs of this subsection) equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year, is paid to such individual by such employer during such calendar year"
+    },
+    {
+      "variable_name": "SicknessOrAccidentDisability",
+      "description": "A disability resulting from sickness or accident.",
+      "supporting_span": "sickness or accident disability"
+    },
+    {
+      "variable_name": "Death",
+      "description": "The death of an employee.",
+      "supporting_span": "death"
+    },
+    {
+      "variable_name": "AgriculturalLabor",
+      "description": "Labor performed in the agricultural sector.",
+      "supporting_span": "agricultural labor"
+    },
+    {
+      "variable_name": "SurvivorOrEstate",
+      "description": "A survivor or the estate of a former employee.",
+      "supporting_span": "survivor or the estate of a former employee"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "wages_definition_includes_remuneration",
+      "predicate_type": "definition",
+      "arguments": [
+        "Remuneration",
+        "string"
+      ],
+      "description": "Defines wages as all remuneration for employment.",
+      "supporting_span": "the term \"wages\" means all remuneration for employment, including the cash value of all remuneration (including benefits) paid in any medium other than cash",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_exclude_excess_remuneration",
+      "predicate_type": "exception",
+      "arguments": [
+        "Remuneration",
+        "t"
+      ],
+      "description": "Excludes the portion of remuneration exceeding $7,000 in a calendar year.",
+      "supporting_span": "that part of the remuneration which, after remuneration (other than remuneration referred to in the succeeding paragraphs of this subsection) equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year, is paid to such individual by such employer during such calendar year",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_exclude_insurance_or_annuities",
+      "predicate_type": "exception",
+      "arguments": [
+        "InsuranceOrAnnuities",
+        "string"
+      ],
+      "description": "Excludes payments for insurance or annuities made to employees generally.",
+      "supporting_span": "the amount of any payment (including any amount paid by an employer for insurance or annuities, or into a fund, to provide for any such payment) made to, or on behalf of, an employee or any of his dependents under a plan or system established by an employer which makes provision for his employees generally (or for his employees generally and their dependents) or for a class or classes of his employees (or for a class or classes of his employees and their dependents), on account of-",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_exclude_sickness_disability",
+      "predicate_type": "exception",
+      "arguments": [
+        "SicknessOrAccidentDisability"
+      ],
+      "description": "Excludes payments for sickness or accident disability.",
+      "supporting_span": "sickness or accident disability",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_exclude_death_benefit",
+      "predicate_type": "exception",
+      "arguments": [
+        "Death"
+      ],
+      "description": "Excludes payments made on account of death.",
+      "supporting_span": "death",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_eclude_non_cash_service_outside_trade",
+      "predicate_type": "exception",
+      "arguments": [
+        "NonCashRemuneration"
+      ],
+      "description": "Excludes non-cash remuneration for services not in the course of trade or business.",
+      "supporting_span": "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business",
+      "constants": {}
+    },
+    {
+      "predicate_name": "wages_exclude_agricultural_labor",
+      "predicate_type": "exception",
+      "arguments": [
+        "AgriculturalLabor"
+      ],
+      "description": "Excludes remuneration for agricultural labor paid in any medium other than cash.",
+      "supporting_span": "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (7) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to enployee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium10.5",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_3306_b_rule_1",
+      "conditions": [
+        "wages_definition_includes_remuneration(Remuneration)"
+      ],
+      "conclusion": "wages_definition_includes_remuneration(Remuneration)",
+      "constants": {},
+      "supporting_span": "the term \"wages\" means all remuneration for employment, including the cash value of all remuneration (including benefits) paid in any medium other than cash",
+      "explanation": "Defines wages as all remuneration for employment."
+    },
+    {
+      "rule_id": "section_3306_b_rule_2",
+      "conditions": [
+        "wages_exclude_excess_remuneration(t)"
+      ],
+      "conclusion": "wages_exclude_excess_remuneration(t)",
+      "constants": {},
+      "supporting_span": "that part of the remuneration which, after remuneration (other than remuneration referred to in the succeeding paragraphs of this subsection) equal to $7,000 with respect to employment has been paid to an individual by an employer during any calendar year, is paid to such individual by such employer during such calendar year",
+      "explanation": "Excludes the portion of remuneration exceeding $7,000 in a calendar year."
+    },
+    {
+      "rule_id": "section_3306_b_rule_3",
+      "conditions": [
+        "wages_exclude_insurance_or_annuities(InsuranceOrAnnuities)"
+      ],
+      "conclusion": "wages_exclude_insurance_or_annuities(InsuranceOrAnnuities)",
+      "constants": {},
+      "supporting_span": "the amount of any payment (including any amount paid by an employer for insurance or annuities, or into a fund, to provide for any such payment) made to, or on behalf of, an employee or any of his dependents under a plan or system established by an employer which makes provision for his employees generally (or for his employees generally and their dependents) or for a class or classes of his employees (or for a class or classes of his employees and their dependents), on account of-",
+      "explanation": "Excludes payments for insurance or annuities made to employees generally."
+    },
+    {
+      "rule_id": "section_3306_b_rule_4",
+      "conditions": [
+        "wages_exclude_sickness_disability(SicknessOrAccidentDisability)"
+      ],
+      "conclusion": "wages_exclude_sickness_disability(SicknessOrAccidentDisability)",
+      "constants": {},
+      "supporting_span": "sickness or accident disability",
+      "explanation": "Excludes payments for sickness or accident disability."
+    },
+    {
+      "rule_id": "section_3306_b_rule_5",
+      "conditions": [
+        "wages_exclude_death_benefit(Death)"
+      ],
+      "conclusion": "wages_exclude_death_benefit(Death)",
+      "constants": {},
+      "supporting_span": "death",
+      "explanation": "Excludes payments made on account of death."
+    },
+    {
+      "rule_id": "section_3306_b_rule_6",
+      "conditions": [
+        "wages_eclude_non_cash_service_outside_trade(NonCashRemuneration)"
+      ],
+      "conclusion": "wages_eclude_non_cash_service_outside_trade(NonCashRemuneration)",
+      "constants": {},
+      "supporting_span": "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business",
+      "explanation": "Excludes non-cash remuneration for terms not in the course of trade."
+    },
+    {
+      "rule_id": "section_3306_b_rule_7",
+      "conditions": [
+        "wages_exclude_agricultural_labor(AgriculturalLabor)"
+      ],
+      "conclusion": "wages_exclude_agricultural_labor(AgriculturalLabor)",
+      "constants": {},
+      "supporting_span": "remuneration for agricultural labor paid in any medium other than cash",
+      "explanation": "Excludes remuneration for agricultural labor paid in any medium other than cash."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_definition_includes_remuneration(Remuneration)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_2",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_exclude_excess_remuneration(t)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_3",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_exclude_insurance_or_annuities(InsuranceOrAnnuities)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_4",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_exclude_sickness_disability(SicknessOrAccidentDisability)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_5",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_exclude_death_benefit(Death)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_6",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_eclude_non_cash_service_outside_trade(NonCashRemuneration)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "rule_id": "section_3306_b_rule_7",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "wages_exclude_agricultural_labor(AgriculturalLabor)"
+    },
+    {
+      "unit_id": "section_3306_b",
+      "stage": "predicates",
+      "index": 6,
+      "supporting_span": "remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (7) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to enployee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium other than cash to an employee for service not in the course of the employer's trade or business; (11) remuneration paid in any medium10.5",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

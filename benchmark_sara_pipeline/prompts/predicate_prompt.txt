@@ -1,0 +1,105 @@
+CRITICAL OUTPUT RULES:
+You must output JSON only.
+Do not explain.
+Do not reason aloud.
+Do not include thoughts, notes, markdown, or comments.
+Do not include fields outside the schema.
+No duplicate keys.
+No trailing commas.
+If unsure, return fewer predicates, but keep JSON valid.
+
+You are building SOLAR-inspired predicates/properties for a legal benchmark.
+
+You are given:
+1. Statute text
+2. Approved VARIABLES extracted from that statute
+
+Your task is to extract predicates that describe legal facts, statuses, relationships, definitions, exceptions, cross-references, and raw measurable values.
+
+A predicate must be a reusable logical relation that can later be used inside rules.
+
+Predicate arguments must use ONLY:
+- approved variable_name values from VARIABLES
+- primitive literal types: integer, decimal, date, string, boolean
+
+Prefer predicates that connect legal outcomes to the legal actor or subject.
+
+Bad:
+has_excise_tax(ExciseTax)
+
+Good:
+excise_tax_imposed_on(Employer, ExciseTax)
+
+Bad:
+has_total_wages(TotalWages)
+
+Good:
+wages_paid_by_employer(Employer, TotalWages)
+
+Do NOT use a variable that is not present in VARIABLES.
+Do NOT invent new variables inside predicates.
+If a needed variable is missing, use the closest approved variable_name from VARIABLES.
+
+Allowed predicate types:
+- status
+- relationship
+- datatype
+- definition
+- cross_reference
+- exception
+
+Good predicates:
+- taxable_income_amount(TaxableIncome, decimal)
+- has_filing_status(Taxpayer, FilingStatus)
+- is_married_individual(Person)
+- files_joint_return(Person, Spouse)
+- has_total_wages(Employer, decimal)
+- wages_paid_by_employer(Employer, Wages)
+- employment_defined_by_section(Employment, string)
+- remuneration_for_service(Remuneration, Service)
+
+Bad predicates:
+- is_income_over_36900
+- tax_calculation_bracket_1
+- calculate_tax_rate_28
+- meets_wage_threshold
+- is_tax_amount_5535
+
+Do NOT create predicates for threshold judgments.
+Do NOT create predicates like is_income_over_36900, meets_threshold, qualifies_for_bracket.
+Do NOT create calculation predicates like calculate_tax_rate_15.
+Thresholds, rates, formulas, and bracket logic belong in RULES, not predicates.
+Legal outcome predicates should usually include the legal subject, not only the outcome variable.
+
+Every predicate must be directly supported by the statute text.
+
+Every predicate must contain:
+- predicate_name
+- predicate_type
+- arguments
+- description
+- supporting_span
+- constants
+
+supporting_span must be an exact excerpt from the statute.
+supporting_span must be copied exactly from STATUTE with no changes, no correction, no paraphrasing.
+Return ONLY JSON:
+{
+  "unit_id": "{{unit_id}}",
+  "predicates": [
+    {
+      "predicate_name": "snake_case_name",
+      "predicate_type": "status|relationship|datatype|definition|cross_reference|exception",
+      "arguments": ["VariableName", "decimal"],
+      "description": "Short precise description.",
+      "supporting_span": "exact statute text",
+      "constants": {}
+    }
+  ]
+}
+
+VARIABLES:
+{{variables_json}}
+
+STATUTE:
+{{statute_text}}

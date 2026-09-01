@@ -1,0 +1,208 @@
+{
+  "unit_id": "section_3306_a",
+  "classes": [
+    {
+      "class_name": "Person",
+      "description": "A person who may qualify as an employer.",
+      "supporting_span": "any person who"
+    },
+    {
+      "class_name": "Employer",
+      "description": "A person treated as an employer under section 3306(a).",
+      "supporting_span": "The term \"employer\" means"
+    },
+    {
+      "class_name": "CalendarYear",
+      "description": "The calendar year or preceding calendar year used for employer-status determination.",
+      "supporting_span": "calendar year or the preceding calendar year"
+    },
+    {
+      "class_name": "Wages",
+      "description": "Wages paid by a person for employment, agricultural labor, or domestic service.",
+      "supporting_span": "paid wages"
+    },
+    {
+      "class_name": "Employment",
+      "description": "Employment of individuals for some portion of a day.",
+      "supporting_span": "employed at least one individual in employment for some portion of the day"
+    },
+    {
+      "class_name": "AgriculturalLabor",
+      "description": "Agricultural labor used for the special employer definition.",
+      "supporting_span": "agricultural labor"
+    },
+    {
+      "class_name": "DomesticService",
+      "description": "Domestic service in a private home, local college club, or local chapter.",
+      "supporting_span": "domestic service in a private home, local college club, or local chapter of a college fraternity or sorority"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "paid_wages",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "decimal"],
+      "description": "Amount of wages paid by a person.",
+      "supporting_span": "paid wages",
+      "constants": {}
+    },
+    {
+      "predicate_name": "paid_wages_for_agricultural_labor",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "decimal"],
+      "description": "Amount of wages paid for agricultural labor.",
+      "supporting_span": "paid wages of $20,000 or more for agricultural labor",
+      "constants": {}
+    },
+    {
+      "predicate_name": "paid_cash_wages_for_domestic_service",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "decimal"],
+      "description": "Amount of cash wages paid for domestic service.",
+      "supporting_span": "paid wages in cash of $1,000 or more for such service",
+      "constants": {}
+    },
+    {
+      "predicate_name": "employment_days_in_distinct_weeks",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "integer"],
+      "description": "Number of days in different calendar weeks on which individuals were employed.",
+      "supporting_span": "on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week",
+      "constants": {}
+    },
+    {
+      "predicate_name": "individuals_employed_per_day",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "integer"],
+      "description": "Number of individuals employed for some portion of the day.",
+      "supporting_span": "employed at least one individual in employment for some portion of the day",
+      "constants": {}
+    },
+    {
+      "predicate_name": "agricultural_laborers_employed_per_day",
+      "predicate_type": "datatype",
+      "arguments": ["Person", "integer"],
+      "description": "Number of individuals employed in agricultural labor for some portion of the day.",
+      "supporting_span": "employed at least 5 individuals in employment in agricultural labor for some portion of the day",
+      "constants": {}
+    },
+    {
+      "predicate_name": "has_domestic_service_wages_or_employment",
+      "predicate_type": "exception",
+      "arguments": ["Person"],
+      "description": "Domestic service wages or employment excluded from paragraph (1).",
+      "supporting_span": "there shall not be taken into account any wages paid to, or employment of, an employee performing domestic services referred to in paragraph (3)",
+      "constants": {}
+    },
+    {
+      "predicate_name": "treated_as_domestic_service_employer",
+      "predicate_type": "status",
+      "arguments": ["Person"],
+      "description": "Person treated as an employer under paragraph (3).",
+      "supporting_span": "A person treated as an employer under paragraph (3)",
+      "constants": {}
+    },
+    {
+      "predicate_name": "treated_as_general_or_agricultural_employer",
+      "predicate_type": "status",
+      "arguments": ["Person"],
+      "description": "Person treated as an employer under paragraph (1) or paragraph (2).",
+      "supporting_span": "unless such person is treated as an employer under paragraph (1) or (2)",
+      "constants": {}
+    },
+    {
+      "predicate_name": "is_employer",
+      "predicate_type": "status",
+      "arguments": ["Person"],
+      "description": "Person qualifies as an employer under section 3306(a).",
+      "supporting_span": "The term \"employer\" means",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_3306_a_1_A",
+      "conditions": [
+        "paid_wages(person, wages)",
+        "wages >= 1500",
+        "NOT has_domestic_service_wages_or_employment(person)"
+      ],
+      "conclusion": "is_employer(person)",
+      "constants": {
+        "general_wage_threshold": 1500
+      },
+      "supporting_span": "during the calendar year or the preceding calendar year paid wages of $1,500 or more",
+      "explanation": "General employer status based on wage threshold, excluding domestic service under paragraph (3)."
+    },
+    {
+      "rule_id": "section_3306_a_1_B",
+      "conditions": [
+        "employment_days_in_distinct_weeks(person, days)",
+        "days >= 10",
+        "individuals_employed_per_day(person, count)",
+        "count >= 1",
+        "NOT has_domestic_service_wages_or_employment(person)"
+      ],
+      "conclusion": "is_employer(person)",
+      "constants": {
+        "general_day_threshold": 10,
+        "general_employee_threshold": 1
+      },
+      "supporting_span": "on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least one individual in employment for some portion of the day",
+      "explanation": "General employer status based on 10 distinct-week employment days with at least one employee."
+    },
+    {
+      "rule_id": "section_3306_a_2_A",
+      "conditions": [
+        "paid_wages_for_agricultural_labor(person, wages)",
+        "wages >= 20000"
+      ],
+      "conclusion": "is_employer(person)",
+      "constants": {
+        "agricultural_wage_threshold": 20000
+      },
+      "supporting_span": "during the calendar year or the preceding calendar year paid wages of $20,000 or more for agricultural labor",
+      "explanation": "Agricultural employer status based on agricultural wage threshold."
+    },
+    {
+      "rule_id": "section_3306_a_2_B",
+      "conditions": [
+        "employment_days_in_distinct_weeks(person, days)",
+        "days >= 10",
+        "agricultural_laborers_employed_per_day(person, count)",
+        "count >= 5"
+      ],
+      "conclusion": "is_employer(person)",
+      "constants": {
+        "agricultural_day_threshold": 10,
+        "agricultural_employee_threshold": 5
+      },
+      "supporting_span": "on each of some 10 days during the calendar year or during the preceding calendar year, each day being in a different calendar week, employed at least 5 individuals in employment in agricultural labor for some portion of the day",
+      "explanation": "Agricultural employer status based on 10 distinct-week employment days with at least five agricultural laborers."
+    },
+    {
+      "rule_id": "section_3306_a_3",
+      "conditions": [
+        "paid_cash_wages_for_domestic_service(person, wages)",
+        "wages >= 1000"
+      ],
+      "conclusion": "is_employer(person)",
+      "constants": {
+        "domestic_service_cash_wage_threshold": 1000
+      },
+      "supporting_span": "paid wages in cash of $1,000 or more for such service",
+      "explanation": "Domestic service employer status based on cash wage threshold."
+    },
+    {
+      "rule_id": "section_3306_a_4",
+      "conditions": [
+        "treated_as_domestic_service_employer(person)",
+        "NOT treated_as_general_or_agricultural_employer(person)"
+      ],
+      "conclusion": "not_employer_for_non_domestic_service(person)",
+      "constants": {},
+      "supporting_span": "shall not be treated as an employer with respect to wages paid for any service other than domestic service referred to in paragraph (3) unless such person is treated as an employer under paragraph (1) or (2)",
+      "explanation": "Domestic-service employer status does not extend to non-domestic services unless paragraph (1) or (2) also applies."
+    }
+  ]
+}

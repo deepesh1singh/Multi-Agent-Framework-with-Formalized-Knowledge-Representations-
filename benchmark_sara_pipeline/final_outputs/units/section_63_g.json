@@ -1,0 +1,48 @@
+{
+  "unit_id": "section_63_g",
+  "section_id": "section_63",
+  "unit_label": "63(g)",
+  "statute_text": "\u00a763. Taxable income defined\n\n(g) Marital status\n\nFor purposes of this section, marital status shall be determined under section 7703.",
+  "variables": [
+    {
+      "variable_name": "MaritalStatus",
+      "description": "The legal determination of an individual's marital status as defined by section 7703.",
+      "supporting_span": "marital status shall be determined under section 7703"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "marital_status_determined_by_section",
+      "predicate_type": "definition",
+      "arguments": [
+        "MaritalStatus"
+      ],
+      "description": "The marital status of an individual is determined by the rules in section 7703.",
+      "supporting_span": "marital status shall be determined under section 7703",
+      "constants": {}
+    },
+    {
+      "predicate_name": "is_married_individual",
+      "predicate_type": "status",
+      "arguments": [
+        "MaritalStatus"
+      ],
+      "description": "The legal status of an individual as a married person.",
+      "supporting_span": "marital status shall be determined under section 7703",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_63_g_rule_1",
+      "conditions": [
+        "marital_status_determined_by_section(M)"
+      ],
+      "conclusion": "is_married_individual(M)",
+      "constants": {},
+      "supporting_span": "marital status shall be determined under section 7703.",
+      "explanation": "Defines the determination of marital status for purposes of the section."
+    }
+  ],
+  "warnings": []
+}

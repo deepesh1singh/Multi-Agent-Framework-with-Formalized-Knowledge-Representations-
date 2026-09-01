@@ -1,0 +1,160 @@
+{
+  "unit_id": "section_1_d",
+  "section_id": "section_1",
+  "unit_label": "1(d)",
+  "statute_text": "\u00a71. Tax imposed\n\n(d) Married individuals filing separate returns\n\nThere is hereby imposed on the taxable income of every married individual (as defined in section 7703) who does not make a single return jointly with his spouse, a tax determined in accordance with the following:\n\n(i) 15% of taxable income if the taxable income is not over $18,450;\n(ii) $2,767.50, plus 28% of the excess over $18,450 if the taxable income is over $18,450 but not over $44,575;\n(iii) $10,082.50, plus 31% of the excess over $44,575 if the taxable income is over $44,575 but not over $70,000;\n(iv) $17,964.25, plus 36% of the excess over $70,000 if the taxable income is over $70,000 but not over $125,000;\n(v) $37,764.25, plus 39.6% of the excess over $125,000 if the taxable income is over $125,000",
+  "variables": [
+    {
+      "variable_name": "MarriedIndividual",
+      "description": "A married individual filing a separate return.",
+      "supporting_span": "married individual (as defined in section 7703) who does not make a single return jointly with his spouse"
+    },
+    {
+      "variable_name": "TaxableIncome",
+      "description": "The amount of income subject to tax calculation.",
+      "supporting_span": "taxable income"
+    },
+    {
+      "variable_name": "TaxAmount",
+      "description": "The calculated tax amount based on the rules in section 1(d).",
+      "supporting_span": "a tax determined in accordance with the following"
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "taxable_income_of_married_individual",
+      "predicate_type": "datatype",
+      "arguments": [
+        "MarriedIndividual",
+        "TaxableIncome"
+      ],
+      "description": "The taxable income of a married individual filing a separate return.",
+      "supporting_span": "the taxable income of every married individual (as defined in section 7703) who does not make a single return jointly with his spouse",
+      "constants": {}
+    },
+    {
+      "predicate_name": "tax_determined_for_married_individual",
+      "predicate_type": "status",
+      "arguments": [
+        "MarriedIndividual",
+        "TaxAmount"
+      ],
+      "description": "The tax amount determined for a married individual filing a separate return.",
+      "supporting_span": "a tax determined in accordance with the following",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_1_d_rule_1",
+      "conditions": [
+        "taxable_income_of_married_individual(M, I)",
+        "NOT (I > 18450)"
+      ],
+      "conclusion": "tax_determined_for_married_individual(M, T)",
+      "constants": {
+        "rate": 0.15,
+        "threshold_1": 18450
+      },
+      "supporting_span": "(i) 15% of taxable income if the taxable income is not over $18,450;",
+      "explanation": "A tax of 15% is applied to the taxable income of a married individual if it does not exceed $18,450."
+    },
+    {
+      "rule_id": "section_1_d_rule_2",
+      "conditions": [
+        "taxable_income_of_married_individual(M, I)",
+        "I > 18450",
+        "NOT (I > 44575)"
+      ],
+      "conclusion": "tax_determined_for_married_individual(M, T)",
+      "constants": {
+        "base_amount": 2767.5,
+        "rate": 0.28,
+        "threshold_1": 18450,
+        "threshold_2": 44575
+      },
+      "supporting_span": "(ii) $2,767.50, plus 28% of the excess over $18,450 if the taxable income is over $18,450 but not over $44,575;",
+      "explanation": "A tax of $2,767.50 plus 28% of the amount exceeding $18,450 is applied if the taxable income is between $18,450 and $44,575."
+    },
+    {
+      "rule_id": "section_1_d_rule_3",
+      "conditions": [
+        "taxable_income_of_married_123",
+        "I > 44575",
+        "NOT (I > 70000)"
+      ],
+      "conclusion": "tax_determined_for_married_individual(M, T)",
+      "constants": {
+        "base_amount": 10082.5,
+        "rate": 0.31,
+        "threshold_1": 44575,
+        "threshold_2": 70000
+      },
+      "supporting_span": "(iii) $10,082.50, plus 31% of the excess over $44,575 if the taxable income is over $44,575 but not over $70,000;",
+      "explanation": "A tax of $10,082.50 plus 31% of the amount exceeding $44,575 is applied if the taxable income is between $44,575 and $70,000."
+    },
+    {
+      "rule_id": "section_1_d_rule_4",
+      "conditions": [
+        "taxable_income_of_married_individual(M, I)",
+        "I > 70000",
+        "NOT (I > 125000)"
+      ],
+      "conclusion": "tax_determined_for_married_individual(M, T)",
+      "constants": {
+        "base_amount": 17964.25,
+        "rate": 0.36,
+        "threshold_1": 70000,
+        "threshold_2": 125000
+      },
+      "supporting_span": "(iv) $17,964.25, plus 36% of the excess over $70,000 if the taxable income is over $70,000 but not over $125,000;",
+      "explanation": "A tax of $17,964.25 plus 36% of the amount exceeding $70,000 is applied if the taxable income is between $70,000 and $125,000."
+    },
+    {
+      "rule_id": "section_1_d_rule_5",
+      "conditions": [
+        "taxable_income_of_married_individual(M, I)",
+        "I > 125000"
+      ],
+      "conclusion": "tax_determined_for_married_individual(M, T)",
+      "constants": {
+        "base_amount": 37764.25,
+        "rate": 0.396,
+        "threshold_1": 125000
+      },
+      "supporting_span": "(v) $37,764.25, plus 39.6% of the excess over $125,000 if the taxable income is over $125,000",
+      "explanation": "A tax of $37,764.25 plus 39.6% of the amount exceeding $125000 is applied if the taxable income exceeds $125,000."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_1_d",
+      "rule_id": "section_1_d_rule_3",
+      "issue": "No shared argument between conditions and conclusion",
+      "lhs_args": [
+        "I > 70000"
+      ],
+      "rhs_args": [
+        "M",
+        "T"
+      ],
+      "rule": {
+        "rule_id": "section_1_d_rule_3",
+        "conditions": [
+          "taxable_income_of_married_123",
+          "I > 44575",
+          "NOT (I > 70000)"
+        ],
+        "conclusion": "tax_determined_for_married_individual(M, T)",
+        "constants": {
+          "base_amount": 10082.5,
+          "rate": 0.31,
+          "threshold_1": 44575,
+          "threshold_2": 70000
+        },
+        "supporting_span": "(iii) $10,082.50, plus 31% of the excess over $44,575 if the taxable income is over $44,575 but not over $70,000;",
+        "explanation": "A tax of $10,082.50 plus 31% of the amount exceeding $44,575 is applied if the taxable income is between $44,575 and $70,000."
+      }
+    }
+  ]
+}

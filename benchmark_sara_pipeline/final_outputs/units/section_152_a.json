@@ -1,0 +1,66 @@
+{
+  "unit_id": "section_152_a",
+  "section_id": "section_152",
+  "unit_label": "152(a)",
+  "statute_text": "\u00a7152. Dependent defined\n\n(a) In general\n\nFor purposes of this subtitle, the term \"dependent\" means-\n\n(1) a qualifying child, or\n\n(2) a qualifying relative.",
+  "variables": [
+    {
+      "variable_name": "Dependent",
+      "description": "A person who is a qualifying child or a qualifying relative for purposes of this subtitle.",
+      "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative."
+    }
+  ],
+  "predicates": [
+    {
+      "predicate_name": "is_dependent_type",
+      "predicate_type": "status",
+      "arguments": [
+        "Dependent"
+      ],
+      "description": "Identifies if a person is classified as a dependent.",
+      "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative.",
+      "constants": {}
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "section_152_a_rule_1",
+      "conditions": [
+        "is_dependent_type(Dependent)"
+      ],
+      "conclusion": "is_dependent_type(Dependent)",
+      "constants": {},
+      "supporting_span": "the term \"different\" means- (1) a qualifying child, or (2) a qualifying relative.",
+      "explanation": "Defines the term 'dependent' as either a qualifying child or a qualifying relative."
+    }
+  ],
+  "warnings": [
+    {
+      "unit_id": "section_152_a",
+      "rule_id": "section_152_a_rule_1",
+      "issue": "Tautological rule P -> P",
+      "conclusion": "is_dependent_type(Dependent)"
+    },
+    {
+      "unit_id": "section_152_a",
+      "stage": "variables",
+      "index": 0,
+      "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_a",
+      "stage": "predicates",
+      "index": 0,
+      "supporting_span": "the term \"dependent\" means- (1) a qualifying child, or (2) a qualifying relative.",
+      "issue": "supporting_span not found exactly in statute_text"
+    },
+    {
+      "unit_id": "section_152_a",
+      "stage": "rules",
+      "index": 0,
+      "supporting_span": "the term \"different\" means- (1) a qualifying child, or (2) a qualifying relative.",
+      "issue": "supporting_span not found exactly in statute_text"
+    }
+  ]
+}

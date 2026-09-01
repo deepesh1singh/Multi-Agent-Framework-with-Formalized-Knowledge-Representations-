@@ -1,0 +1,100 @@
+[
+  {
+    "unit_id": "section_63_a",
+    "section_id": "section_63",
+    "unit_label": "63(a)",
+    "statute_text": "\u00a763. Taxable income defined\n\n(a) In general\n\nExcept as provided in subsection (b), for purposes of this subtitle, the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction).",
+    "variables": [
+      {
+        "variable_name": "TaxableIncome",
+        "description": "The amount of income subject to taxation after deductions.",
+        "supporting_span": "taxable income"
+      },
+      {
+        "variable_name": "GrossIncome",
+        "description": "The total income before any subtractions.",
+        "supporting_span": "gross income"
+      },
+      {
+        "variable_name": "DeductionsAllowed",
+        "description": "The specific deductions permitted by the chapter, excluding standard deduction.",
+        "supporting_span": "deductions allowed by this chapter (other than the standard deduction)"
+      },
+      {
+        "variable_name": "StandardDeduction",
+        "description": "A standard amount of deduction from income.",
+        "supporting_span": "standard deduction"
+      }
+    ],
+    "predicates": [
+      {
+        "predicate_name": "is_taxable_income_defined",
+        "predicate_type": "definition",
+        "arguments": [
+          "TaxableIncome"
+        ],
+        "description": "Defines the term 'taxable income' as gross income minus specific deductions.",
+        "supporting_span": "the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction)",
+        "constants": {}
+      },
+      {
+        "predicate_name": "deductions_allowed_by_chapter",
+        "predicate_type": "datatype",
+        "arguments": [
+          "DeductionsAllowed"
+        ],
+        "description": "The specific deductions permitted by the chapter, excluding the standard deduction.",
+        "supporting_span": "deductions allowed by this chapter (other than the standard deduction)",
+        "constants": {}
+      },
+      {
+        "predicate_name": "has_gross_income_amount",
+        "predicate_type": "datatype",
+        "arguments": [
+          "GrossIncome"
+        ],
+        "description": "The total income before any subtractions.",
+        "supporting_span": "gross income",
+        "constants": {}
+      }
+    ],
+    "rules": [
+      {
+        "rule_id": "section_63_a_rule_1",
+        "conditions": [
+          "has_gross_income_amount(GrossIncome)",
+          "deductions_allowed_by_chapter(DeductionsAllowed)"
+        ],
+        "conclusion": "is_taxable_income_defined(TaxableIncome)",
+        "constants": {},
+        "supporting_span": "the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction)",
+        "explanation": "Defines taxable income as gross income minus specific deductions."
+      }
+    ],
+    "warnings": [
+      {
+        "unit_id": "section_63_a",
+        "rule_id": "section_63_a_rule_1",
+        "issue": "No shared argument between conditions and conclusion",
+        "lhs_args": [
+          "DeductionsAllowed",
+          "GrossIncome"
+        ],
+        "rhs_args": [
+          "TaxableIncome"
+        ],
+        "rule": {
+          "rule_id": "section_63_a_rule_1",
+          "conditions": [
+            "has_gross_income_amount(GrossIncome)",
+            "deductions_allowed_by_chapter(DeductionsAllowed)"
+          ],
+          "conclusion": "is_taxable_income_defined(TaxableIncome)",
+          "constants": {},
+          "supporting_span": "the term \"taxable income\" means gross income minus the deductions allowed by this chapter (other than the standard deduction)",
+          "explanation": "Defines taxable income as gross income minus specific deductions."
+        }
+      }
+    ]
+  }
+]

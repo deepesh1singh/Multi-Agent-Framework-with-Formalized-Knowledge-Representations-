@@ -1,0 +1,139 @@
+CRITICAL OUTPUT RULES:
+You must output JSON only.
+Do not explain.
+Do not reason aloud.
+Do not include thoughts, notes, markdown, or comments.
+Do not include fields outside the schema.
+No duplicate keys.
+No trailing commas.
+If unsure, return fewer rules, but keep JSON valid.
+
+You are building SOLAR-inspired legal rules for a benchmark dataset.
+
+You are given:
+1. Statute text
+2. Approved VARIABLES
+3. Approved PREDICATES
+
+Your task is to extract legal rules from the statute.
+
+Rules must use ONLY approved predicate_name values from PREDICATES.
+Do NOT invent new predicates.
+Do NOT invent new variables.
+
+IMPORTANT CONDITION FORMAT:
+The conditions array represents logical AND.
+Each string inside conditions is one required condition.
+
+Each condition string may be:
+1. A single predicate:
+   "is_employer(E)"
+
+2. An OR expression enclosed in parentheses:
+   "(is_married_individual(P) OR is_surviving_spouse(P))"
+
+3. A NOT expression:
+   "NOT is_exempt(E)"
+
+Do NOT split OR expressions into separate condition strings.
+Do NOT write AND inside a condition string.
+Use separate strings for AND conditions.
+
+IMPORTANT VARIABLE BINDING RULE:
+The set of arguments appearing in the conclusion must be a subset of the set of arguments appearing across all condition predicates.
+Prefer conclusions whose arguments are already present in the conditions, such as has_excise_tax(Employer) instead of has_excise_tax(ExciseTax), unless ExciseTax is introduced in the conditions.
+
+RHS/conclusion arguments ⊆ LHS/condition arguments
+
+Every symbolic argument in the conclusion must already appear in at least one condition predicate.
+Do NOT introduce a new symbolic argument only in the conclusion.
+Numeric constants like 0.06, 36900, true, false are allowed.
+
+Valid:
+conditions: ["has_wages(E, W)", "has_calendar_year(Y)"]
+conclusion: "excise_tax_calculated_from_wages(E, W)"
+
+Invalid:
+conditions: ["has_employer_status(E)"]
+conclusion: "has_excise_tax(T)"
+
+because T appears only in the conclusion.
+
+Thresholds, constants, rates, limits, exceptions, and formulas belong in rules.
+
+Rules SHOULD capture:
+- eligibility conditions
+- definitions
+- exceptions
+- exclusions
+- threshold logic
+- numeric limits
+- rate formulas
+- calculation formulas
+- legal consequences
+
+Do NOT create tautological rules:
+- P -> P
+- same predicate in condition and conclusion with no legal transformation
+
+Each rule must contain:
+- rule_id
+- conditions
+- conclusion
+- constants
+- supporting_span
+- explanation
+
+conditions must be a list of predicate/logical expressions.
+conclusion must be one approved predicate expression or calculation expression using approved predicates.
+supporting_span must be an exact excerpt from the statute.
+supporting_span must be copied exactly from STATUTE with no changes, no correction, no paraphrasing.
+constants must include every numeric threshold, dollar amount, percentage, rate, or formula value used in the rule.
+If the statute contains a rate, formula, threshold, or calculation basis, the rule conclusion must express the calculated legal outcome, not merely the existence of the outcome.
+Do not create tautological rules where the same predicate appears in both condition and conclusion. A rule must transform conditions into a legal consequence, definition, exclusion, calculation, or status.
+Do not mention paragraph, subsection, or section references unless they appear exactly in the statute text.
+For supporting_span, copy one exact continuous substring from STATUTE. Do not summarize. Do not paraphrase. Do not replace words.
+
+Bad:
+conditions: ["employer_has_employees(E, P)"]
+conclusion: "excise_tax_imposed_on_employer(E, T)"
+
+Good:
+conditions: [
+  "employer_has_employees(E, P)",
+  "wages_paid_by_employer(E, W)",
+  "excise_tax_calculated_for_period(T, Y)"
+]
+conclusion: "excise_tax_imposed_on_employer(E, T)"
+constants: {"rate": 0.06, "basis": "total wages"}
+
+Return ONLY JSON:
+{
+  "unit_id": "{{unit_id}}",
+  "rules": [
+    {
+      "rule_id": "{{unit_id}}_rule_1",
+      "conditions": [
+        "approved_predicate_name(X, Y)",
+        "(approved_predicate_name(X) OR approved_predicate_name(Y))",
+        "NOT approved_predicate_name(X)"
+      ],
+      "conclusion": "approved_predicate_name(X, Y)",
+      "constants": {
+        "threshold": 36900,
+        "rate": 0.15
+      },
+      "supporting_span": "exact statute text",
+      "explanation": "Short explanation of the legal rule."
+    }
+  ]
+}
+
+VARIABLES:
+{{variables_json}}
+
+PREDICATES:
+{{predicates_json}}
+
+STATUTE:
+{{statute_text}}
